@@ -31,8 +31,8 @@
                     <div class="col-lg-5 mb-3">
                         <div class="card bg-white p-3">
                             <div class="d-flex justify-content-between  h-100">
-                                <h3 class="first mb-0 col-6" id="super_1"
-                                    style="font-family: Lexend,serif;font-size: 22px">UTC+2</h3>
+                                <h3 class="first mb-0" id="super_1"
+                                    style="font-family: Lexend,serif;font-size: 22px">Australia/Sydney Time</h3>
                                 <h3 class="second mb-0" id="super_time_1"
                                     style="font-family: Lexend,serif;font-size: 28px">UTC+2</h3>
                             </div>
@@ -41,7 +41,7 @@
                     <div class="col-lg-5 mb-3">
                         <div class="card bg-white p-3">
                             <div class="d-flex justify-content-between  h-100">
-                                <h3 class="first mb-0 col-6" id="super_2"
+                                <h3 class="first mb-0 " id="super_2"
                                     style="font-family: Lexend,serif;font-size: 22px" >UTC+2</h3>
                                 <h3 class="second mb-0" id="super_time_2"
                                     style="font-family: Lexend,serif;font-size: 28px">UTC+2</h3>
