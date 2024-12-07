@@ -82,21 +82,25 @@
                     <li class="me-md-4 mb-2 mb-md-0" style="color: #424856">© The Clock Time Brand, LLC.</li>
                 </ul>
             </div>
-
+           
+            
+            
+            
+            
             <div class="col-lg-4 col-12 link-group">
                 <a  href="#" class="d-inline-block me-2 social-icon" title="Tiktok"><img loading="lazy" src="{{ asset('public') }}/tik.svg"
                         alt="Tiktok" /></a>
-                <a  href="#" class="d-inline-block me-2 social-icon" title="Pinterest"><img loading="lazy" src="{{ asset('public') }}/pint.svg"
+                <a  href="https://www.pinterest.com/theclocktime/" class="d-inline-block me-2 social-icon" title="Pinterest"><img loading="lazy" src="{{ asset('public') }}/pint.svg"
                         alt="Pinterest" /></a>
                 <a  href="#" class="d-inline-block me-2 social-icon" title="Instagram"><img loading="lazy" src="{{ asset('public') }}/ig.svg"
                         alt="Instagram" /></a>
-                <a  href="#" class="d-inline-block me-2 social-icon" title="Twitter"><img loading="lazy" src="{{ asset('public') }}/twt.svg"
+                <a  href="https://x.com/theclocktime" class="d-inline-block me-2 social-icon" title="Twitter"><img loading="lazy" src="{{ asset('public') }}/twt.svg"
                         alt="Twitter" /></a>
                 <a  href="#" class="d-inline-block me-2 social-icon" title="Facebook"><img loading="lazy" src="{{ asset('public') }}/fb.svg"
                         alt="Facebook" /></a>
-                <a  href="#" class="d-inline-block me-2 social-icon" title="LinkedIn"><img loading="lazy" src="{{ asset('public') }}/in.svg"
+                <a  href="https://www.linkedin.com/company/the-clock-time" class="d-inline-block me-2 social-icon" title="LinkedIn"><img loading="lazy" src="{{ asset('public') }}/in.svg"
                         alt="LinkedIn" /></a>
-                <a  href="#" class="d-inline-block social-icon" title="Youtube"><img loading="lazy" src="{{ asset('public') }}/yt.svg"
+                <a  href="https://www.youtube.com/@TheClockTimecom" class="d-inline-block social-icon" title="Youtube"><img loading="lazy" src="{{ asset('public') }}/yt.svg"
                         alt="Youtube" /></a>
             </div>
         </div>
