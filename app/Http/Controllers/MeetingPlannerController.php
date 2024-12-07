@@ -8,10 +8,11 @@ use App\Models\City;
 use App\Services\GeoIPService;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use App\Traits\GetDate;
 
 class MeetingPlannerController extends Controller
 {
-
+    use GetDate;
     protected $geoIPService;
 
     public function __construct(GeoIPService $geoIPService)
@@ -31,13 +32,20 @@ class MeetingPlannerController extends Controller
             $country = Country::where('code', $location['iso_code'])->first();
         }
         $city = City::where('name', $country->capital)->first();
-        $date = Carbon::now()->timezone($city->timezone);
-        return view('front.meeting-planner')
 
-            ->with('abb', $country)
-            ->with('gmt', false)
-            ->with('abblong', '')
-            ->with('date',  $date);
+        $date = $this->city($city->slug);
+
+        return view('front.meeting-planner')
+            ->with([
+                'timezoneName' => $city->name,
+                'date' =>  $date,
+                'timezone' => $city->timezone,
+                'offset' => $date['offset'],
+                'hoursWithSign' => $date['hoursWithSign'],
+                'sign' => $date['sign'],
+                'hours' => $date['hours'],
+                'hoursNumber' => $date['hoursNumber'],
+            ]);
     }
 
     public function getUserLocationPlanner(Request $request)

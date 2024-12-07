@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\City;
+use App\Models\Country;
 use App\Models\Timezone;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use App\Traits\GetDate;
 
 class ConvertCityToCityController extends Controller
 {
+    use GetDate;
     public function convertCity(Request $request)
     {
 
@@ -50,27 +53,54 @@ class ConvertCityToCityController extends Controller
         return response()->json($result);
     }
 
-    public function getCity(Request $request)
+    public function getCityold(Request $request)
     {
 
 
-        $city   = City::with('country')
-            ->where('slug', $request
-                ->input('city_slug'))
+        $city   = City::where('slug', $request
+            ->input('city_slug'))
             ->first();
 
 
         $date = dateLocalTime($city->lng);
-
+        // return $date['hours'];
         $result = [
             'city_name'             =>  $city->name,
             'city_slug'             =>  $city->slug,
-            'country_name'          =>  $city->country->name,
+            'country_name'          =>  $city->country,
             'time'                  =>  $date['time'],
             'hours'                 =>  $date['hours'],
             'day'                  =>  $date['day'],
             'flag'                  =>  asset('vendor/blade-flags/country-' . \Str::lower($city->iso2) . '.svg'),
             'gmt'                   =>  $date['gmt'],
+
+        ];
+
+
+
+        return response()->json($result);
+    }
+    public function getCity(Request $request)
+    {
+        $city   = City::where('slug', $request
+            ->input('city_slug'))
+            ->first();
+
+        $country = Country::where('name', $city->country)->first();
+        $date = $this->city($city->slug);
+
+        $hours = Carbon::parse($date['currentTimeWithSeconds'])->format('H');
+        $day = Carbon::parse($date['formatted_date'])->format('D');
+        $offset = $date['offset'];
+        $result = [
+            'city_name'             =>  $city->name,
+            'city_slug'             =>  $city->slug,
+            'country_name'          =>  $city->country,
+            'time'                  =>  $date['time'] . ' ' . $date['identify'],
+            'hours'                 =>  $hours,
+            'day'                  =>  $day,
+            'flag'                  =>  asset('vendor/blade-flags/country-' . \Str::lower($country->code) . '.svg'),
+            'gmt'                   => $offset,
 
         ];
 

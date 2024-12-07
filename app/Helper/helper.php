@@ -62,13 +62,12 @@ if (! function_exists('convertGmtStringToDateTime')) {
             'day_of_week' => $dateTime->format('l'),
         ];
     }
-
 }
 if (! function_exists('generateAbbreviationsLinks')) {
 
 
-     function generateAbbreviationsLinks($abbreviations): string
-     {
+    function generateAbbreviationsLinks($abbreviations): string
+    {
         if (count($abbreviations) > 0) {
             $html = '<h3 class="mb-4 justify-content-center text-center fw-bold wow animate__animated animate__fadeInUp">';
             $html .= '(';
@@ -90,8 +89,6 @@ if (! function_exists('generateAbbreviationsLinks')) {
 
         return '';
     }
-
-
 }
 
 if (! function_exists('formatGmtOffset')) {
@@ -108,8 +105,6 @@ if (! function_exists('formatGmtOffset')) {
         // Return the formatted offset
         return 'GMT ' . $offset;
     }
-
-
 }
 
 if (! function_exists('timeApiService')) {
@@ -137,14 +132,11 @@ if (! function_exists('timeApiService')) {
             $dateTimeWithZone       = new DateTime('now', $timezone);
             $gmtOffset              = $timezone->getOffset($dateTimeWithZone) / 3600; // Convert seconds to hours
             $data['gmt_offset']     = 'GMT' . ($gmtOffset >= 0 ? '+' : '') . $gmtOffset; // e.g., "GMT+2" or "GMT-5"
-            $data['gmt']            = ($gmtOffset >= 0 ? '+' : ''). $gmtOffset; // e.g., "+3" or "-3"
+            $data['gmt']            = ($gmtOffset >= 0 ? '+' : '') . $gmtOffset; // e.g., "+3" or "-3"
         }
 
         return $data;
-
-        }
-
-
+    }
 }
 
 
@@ -160,9 +152,7 @@ if (! function_exists('getGmtOffset')) {
         $offsetInHours = $offsetInSeconds / 3600;
 
 
-        return ($offsetInHours > 0)?'GMT +'.$offsetInHours:'GMT '.$offsetInHours;
-
-
+        return ($offsetInHours > 0) ? 'GMT +' . $offsetInHours : 'GMT ' . $offsetInHours;
     }
 }
 
@@ -174,20 +164,20 @@ if (! function_exists('dateLocalTime')) {
 
         $utcTimestamp = time();
 
-// Calculate GMT offset based on longitude
+        // Calculate GMT offset based on longitude
         $gmtOffset = round($longitude / 15);  // Each 15° longitude is roughly a 1-hour offset
         $offsetSeconds = $gmtOffset * 3600;
 
-// Calculate the local timestamp by applying the offset
+        // Calculate the local timestamp by applying the offset
         $localTimestamp = $utcTimestamp + $offsetSeconds;
 
 
-//        $data['time_Zone']      = $timeData['timeZone'];       // e.g., "Africa/Cairo"
+        //        $data['time_Zone']      = $timeData['timeZone'];       // e.g., "Africa/Cairo"
 
 
 
 
-// Format each required value without DateTime functions
+        // Format each required value without DateTime functions
         $data = [
             'time'                  => gmdate("g:i A", $localTimestamp),              // e.g., "5:45 PM"
             'hours'                  => gmdate("G", $localTimestamp),                 // e.g., "23"
@@ -212,12 +202,12 @@ if (! function_exists('dateLocalTime')) {
 }
 if (! function_exists('payer')) {
 
-    function payer($date, $city,$country)
+    function payer($date, $city, $country)
     {
 
         $timeApiService = new PrayerTimeService(); // Initialize the service
-        $timeData = $timeApiService->getPrayerTimings($date,  $city,$country);
-        if($timeData != null){
+        $timeData = $timeApiService->getPrayerTimings($date,  $city, $country);
+        if ($timeData != null) {
 
             $data = $timeData['data']['timings'];
 
@@ -230,9 +220,7 @@ if (! function_exists('payer')) {
 
             $_SESSION['sunrise'] =  $convertedTimings['Sunrise'];
             $_SESSION['sunset'] = $convertedTimings['Sunset'];
-
-
-        }else{
+        } else {
             $data  = [];
         }
 
@@ -247,26 +235,24 @@ if (! function_exists('convertTo12HourFormat')) {
         $dateTime = DateTime::createFromFormat('H:i', $time);
         return $dateTime ? $dateTime->format('g:i A') : 'Invalid Time'; // e.g., "4:03 PM"
     }
-
 }
 
-if(! function_exists('countryDate')) {
-    function countryDate($time,$countries){
+if (! function_exists('countryDate')) {
+    function countryDate($time, $countries)
+    {
 
         $countryData = [];
-        foreach($countries as $country){
+        foreach ($countries as $country) {
 
-            if($country->capitalCities()){
-                if( $time == dateLocalTime($country->capitalCities()->lng)['time'] ){
-//                    $countryData[]  = $country->capitalCities()->name.'|'.dateLocalTime($country->capitalCities()->lng)['time'];
+            if ($country->capitalCities()) {
+                if ($time == dateLocalTime($country->capitalCities()->lng)['time']) {
+                    //                    $countryData[]  = $country->capitalCities()->name.'|'.dateLocalTime($country->capitalCities()->lng)['time'];
                     $countryData[]  = $country;
                 }
             }
         }
 
 
-        return collect($countryData)->take(9) ;
+        return collect($countryData)->take(9);
     }
 }
-
-

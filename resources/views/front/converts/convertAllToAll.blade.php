@@ -5,7 +5,8 @@
     <div class="container">
         <div class="text-center">
             <h2>Time converter </h2>
-            <h2 class="fs-5">Easily convert and manage across different Zones , Countries , Cities with our intuitive tool.</h2>
+            <h2 class="fs-5">Easily convert and manage across different Zones , Countries , Cities with our intuitive
+                tool.</h2>
         </div>
         <div class="w-75 m-auto mt-5">
             <form id="AllToAll" action="{{ url('get-convert-all-all') }}" method="GET">
@@ -13,14 +14,14 @@
                     <div class="col-lg-5 mb-3 position-relative">
                         <i class="fa-solid fa-location-dot position-absolute top-50 "
                             style="color:rgba(0, 0, 0, 0.4);transform: translateY(-50%);z-index: 10;left:20px;"></i>
-                        <input name="mode-select" placeholder="Search different Zones , Countries , Cities..." class="w-100 rounded-2 ps-3 bg-white"
-                            required />
+                        <input name="mode-select" placeholder="Search different Zones , Countries , Cities..."
+                            class="w-100 rounded-2 ps-3 bg-white" required />
                     </div>
                     <div class="col-lg-5 mb-3 position-relative">
                         <i class="fa-solid fa-location-dot position-absolute top-50 "
                             style="color:rgba(0, 0, 0, 0.4);transform: translateY(-50%);z-index: 10;left:20px;"></i>
-                        <input name="mode-select3" placeholder="Search different Zones , Countries , Cities..." class="w-100 rounded-2 ps-3 bg-white"
-                            required />
+                        <input name="mode-select3" placeholder="Search different Zones , Countries , Cities..."
+                            class="w-100 rounded-2 ps-3 bg-white" required />
                     </div>
                     <div class="col-lg-2 mb-3">
                         <button class="btn btn-convert rounded-2 w-100 h-100" type="submit">Convert</button>
@@ -30,16 +31,20 @@
                     <div class="col-lg-5 mb-3">
                         <div class="card bg-white p-3">
                             <div class="d-flex justify-content-between  h-100">
-                                <h3 class="first mb-0 col-6" id="super_1" style="font-family: Lexend,serif;font-size: 22px" class="col-7">UTC+2</h3>
-                                <h3 class="second mb-0" id="super_time_1" style="font-family: Lexend,serif;font-size: 28px">UTC+2</h3>
+                                <h3 class="first mb-0 col-6" id="super_1"
+                                    style="font-family: Lexend,serif;font-size: 22px">UTC+2</h3>
+                                <h3 class="second mb-0" id="super_time_1"
+                                    style="font-family: Lexend,serif;font-size: 28px">UTC+2</h3>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-5 mb-3">
                         <div class="card bg-white p-3">
                             <div class="d-flex justify-content-between  h-100">
-                                <h3 class="first mb-0 col-6" id="super_2" style="font-family: Lexend,serif;font-size: 22px" class="">UTC+2</h3>
-                                <h3 class="second mb-0" id="super_time_2" style="font-family: Lexend,serif;font-size: 28px">UTC+2</h3>
+                                <h3 class="first mb-0 col-6" id="super_2"
+                                    style="font-family: Lexend,serif;font-size: 22px" >UTC+2</h3>
+                                <h3 class="second mb-0" id="super_time_2"
+                                    style="font-family: Lexend,serif;font-size: 28px">UTC+2</h3>
                             </div>
                         </div>
                     </div>
@@ -110,7 +115,3 @@
         });
     });
 </script>
-
-
-
-

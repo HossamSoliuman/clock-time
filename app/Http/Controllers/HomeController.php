@@ -522,10 +522,6 @@ class HomeController extends Controller
 
 
 
-
-
-
-
     public function showBySlug($slug)
     {
         $slugEntry = Slug::where('slug', $slug)->first();

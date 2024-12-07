@@ -7,99 +7,105 @@ use App\Models\AbbreviationLongName;
 use App\Models\City;
 use App\Models\Country;
 use App\Models\Gmt;
+use App\Models\IanaTimezone;
 use App\Models\Slug;
 use App\Models\Timezone;
+use App\Models\TimezoneDetail;
 use App\Services\TimeApiService;
-use DateTime;
+use Carbon\Carbon;
+use App\Traits\GetDate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 
 class ConvertAllToAllController extends Controller
 {
+    use GetDate;
 
     public function fetchAll(Request $request)
     {
         $search = $request->input('search');
-//dd('mark');
+        $results = collect();
 
-        $results = [];
-
-        if( strlen($request->input('search')) > 0 ) {
-            // Fetch GMT timezones with the search criteria
-            $abb = Abbreviation::where('name', 'LIKE', "%{$search}%")
-                ->take(10)
-                ->get();
-
-            // Fetch GMT timezones with the search criteria
-            $tz_name = AbbreviationLongName::where('name', 'LIKE', "%{$search}%")
-                ->take(10)
-                ->get();
-
-            // Fetch other time zones with the search criteria
-            $timeZones = TimeZone::where('name', 'LIKE', "%{$search}%")
-                ->take(10)
-                ->get();
-
-
-            // Fetch GMT timezones with the search criteria
-            $gmts = Gmt::where('name', 'LIKE', "%{$search}%")
-                ->orWhere('utc_name', 'LIKE', "%{$search}%")
-                ->where('dst', 'no')
-                ->take(10)
-                ->get();
-
-            // Fetch other Cities with the search criteria
-            $cities = City::where('name', 'LIKE', "%{$search}%")
-                ->take(10)
-                ->get();
-
-            // Fetch other Countries with the search criteria
-            $country = Country::where('name', 'LIKE', "%{$search}%")
-                ->take(10)
-                ->get();
-
-            // Merge results and format them
-            $results = $abb->merge($tz_name)
-                ->merge($timeZones)
-                ->merge($gmts)
-                ->merge($cities)
-                ->merge($country)
-
-                ->map(function ($zone) {
-
-                    // Check if the object is an instance of the Gmt model
-                    if ($zone instanceof Gmt) {
-                        return [
-                            'slug' => $zone->slug,
-                            'value' => $zone->name . ' ( ' . $zone->utc_name . ' ) '
-                        ];
-                    }
-
-                    // Check if the object is an instance of the City model
-                    if ($zone instanceof City) {
-                        return [
-                            'slug' => $zone->slug,
-                            'value' => $zone->name .' / ' .$zone->country->name
-                        ];
-                    }
-
-
-                    // Handle time zone instances
+        $cities = City::where('name', 'LIKE', "%{$search}%")
+            ->take(10)
+            ->get()
+            ->map(function ($zone) {
                 return [
                     'slug' => $zone->slug,
-                    'value' => $zone->name
+                    'value' => $zone->name . ' / ' . $zone->country
                 ];
             });
 
+        if (strlen($search) > 0) {
+            $abb = IanaTimezone::where('iana_timezone', 'LIKE', "%{$search}%")
+                ->take(10)
+                ->get()
+                ->map(function ($zone) {
+                    return [
+                        'slug' => $zone->slug,
+                        'value' => $zone->iana_timezone
+                    ];
+                });
+
+            $timezoneDetail = TimezoneDetail::where('name', 'LIKE', "%{$search}%")
+                ->take(10)
+                ->get()
+                ->map(function ($zone) {
+                    return [
+                        'slug' => $zone->name_slug,
+                        'value' => $zone->name
+                    ];
+                });
+
+            $timezoneDetailLong = TimezoneDetail::where('timezone_long', 'LIKE', "%{$search}%")
+                ->orWhere('long_slug', 'LIKE', "%{$search}%")
+                ->take(10)
+                ->get()
+                ->map(function ($zone) {
+                    return [
+                        'slug' => $zone->long_slug,
+                        'value' => $zone->timezone_long
+                    ];
+                });
+
+            $gmts = Gmt::where('name', 'LIKE', "%{$search}%")
+                ->orWhere('utc_name', 'LIKE', "%{$search}%")
+                ->take(10)
+                ->get()
+                ->map(function ($zone) {
+                    return [
+                        'slug' => $zone->slug,
+                        'value' => $zone->name . ' ( ' . $zone->utc_name . ' ) '
+                    ];
+                });
+
+            $country = Country::where('name', 'LIKE', "%{$search}%")
+                ->take(10)
+                ->get()
+                ->map(function ($zone) {
+                    return [
+                        'slug' => $zone->slug,
+                        'value' => $zone->name
+                    ];
+                });
+
+            $results = $results
+                ->merge($abb)
+                ->merge($timezoneDetail)
+                ->merge($timezoneDetailLong)
+                ->merge($gmts)
+                ->merge($cities)
+                ->merge($country);
         }
 
         return response()->json($results);
-
-
     }
 
 
 
-    public function convertAllToAll( Request $request)
+
+
+    public function convertAllToAll(Request $request)
     {
 
         $super_one = $request->input('super_1');
@@ -107,7 +113,7 @@ class ConvertAllToAllController extends Controller
         $super_two =  $request->input('super_2');
         $result = [];
 
-        if(!empty($this->ShowModelBySlug($super_one)) && !empty($this->ShowModelBySlug($super_two))) {
+        if (!empty($this->ShowModelBySlug($super_one)) && !empty($this->ShowModelBySlug($super_two))) {
 
             $model_1 = $this->ShowModelBySlug($super_one)['model'];
             $model_2 = $this->ShowModelBySlug($super_two)['model'];
@@ -135,9 +141,6 @@ class ConvertAllToAllController extends Controller
                 'super_utc_2'   => $data['second']['utc'],
                 'super_gmt_2'   => $data['second']['gmt'],
             ];
-
-
-
         }
 
         return response()->json($result);
@@ -147,16 +150,11 @@ class ConvertAllToAllController extends Controller
 
     public function ShowModelBySlug($slug)
     {
-        // Find the slug entry
         $slugEntry = Slug::where('slug', $slug)->first();
-
         if (!$slugEntry) {
-            // Handle case where slug is not found
             return [];
         }
-
         return ['model' => $slugEntry->model];
-
     }
 
 
@@ -171,126 +169,45 @@ class ConvertAllToAllController extends Controller
 
 
         if ($model == 'App\Models\Timezone') {
-
-            $timeZone = Timezone::where('slug', $slug)->first();
-
-
-            $name = $timeZone->name;
-            $time = (strlen($timeZone->name)>0)?convertGmtStringToDateTime(getGmtOffset($timeZone->name))['time']:'empty';
-
-            $utc  =  (strlen($timeZone->name)>0)?$timeZone->name.' Time':"Time";
-            $gmt  =  (strlen($timeZone->name)>0)?getGmtOffset($timeZone->name).':00':"00:00";
-
-
-
-        }
-        elseif ($model == 'App\Models\Abbreviation') {
-
-            $abb = Abbreviation::where('slug', $slug)
-                ->with('timezones')
-                ->first();
-
-
-            $timezoneRelation = $abb->timezones->first()->name;
-
-            $name =  $abb->name;
-            $time =  (strlen($timezoneRelation)>0)?convertGmtStringToDateTime(getGmtOffset($timezoneRelation))['time']:'empty';
-            $utc  =  (strlen($abb->name)>0)?$abb->name.' Time':"Time";
-            $gmt  =  (strlen($timezoneRelation)>0)?getGmtOffset($timezoneRelation).':00':"00:00";
-
-
-
-        }
-        elseif ($model == 'App\Models\AbbreviationLongName') {
-
-
-            $abb_long   = AbbreviationLongName::with('abbreviation.timezones')
-                ->where('slug',$slug)
-                ->first();
-
-
-            $name = $abb_long->name;
-            $time = (strlen( $abb_long->abbreviation->timezones->first()->name)>0)?convertGmtStringToDateTime(getGmtOffset($abb_long->abbreviation->timezones->first()->name))['time']:'empty';
-
-            $utc  =  (strlen($abb_long->name)>0)?$abb_long->name.' Time':"Time";
-            $gmt  =  (strlen($abb_long->abbreviation->timezones->first()->name)>0)?getGmtOffset($abb_long->abbreviation->timezones->first()->name).':00':"00:00";
-
-
+            $date = $this->ianaTimezone($slug);
+            $name =  $date['timezone'];
+            $time =  $date['time'] . ' ' . $date['identify'];
+            $utc  =  (strlen($name) > 0) ? $name . ' Time' : "Time";
+            $gmt  =   $date['hoursWithSign'] . ' GMT';
+        } elseif ($model == 'App\Models\Abbreviation') {
+            $date = $this->timezoneDetails($slug);
+            $name =  $date['timezone'];
+            $time =  $date['time'] . ' ' . $date['identify'];
+            $utc  =  (strlen($name) > 0) ? $name . ' Time' : "Time";
+            $gmt  =   $date['hoursWithSign'] . ' GMT';
+        } elseif ($model == 'App\Models\Gmt') {
+            $date = $this->gmt($slug);
+            $name =  $date['timezone'];
+            $time =  $date['time'] . ' ' . $date['identify'];
+            $utc  =  (strlen($name) > 0) ? $name . ' Time' : "Time";
+            $gmt  =   $date['hoursWithSign'] . ' GMT';
+        } elseif ($model == 'App\Models\City') {
+            $date = $this->city($slug);
+            $name =  $date['timezone'];
+            $time =  $date['time'] . ' ' . $date['identify'];
+            $utc  =  (strlen($name) > 0) ? $name . ' Time' : "Time";
+            $gmt  =   $date['hoursWithSign'] . ' GMT';
+        } elseif ($model == 'App\Models\Country') {
+            $date = $this->country($slug);
+            $name =  $date['timezone'];
+            $time =  $date['time'] . ' ' . $date['identify'];
+            $utc  =  (strlen($name) > 0) ? $name . ' Time' : "Time";
+            $gmt  =   $date['hoursWithSign'] . ' GMT';
         }
 
-        elseif ($model == 'App\Models\Gmt') {
+        $result = [
 
-
-            $gmt    = Gmt::where('slug', $slug)
-                ->orWhere('utc_slug', $slug)
-                ->first();
-
-
-
-            // Check which field matched
-            $matchedField = $gmt->slug === $slug ? 'name' : 'utc_name';
-
-
-
-
-            $name =  $gmt->name;
-            $time = (strlen($gmt->name)>0)?convertGmtStringToDateTime($gmt->name)['time']:'empty';
-            $utc  =  $gmt->$matchedField.' Time';
-            $gmt  =  formatGmtOffset($gmt->$matchedField).':00';
-
-
-        }
-        elseif ($model == 'App\Models\City') {
-
-            $city = City::where('slug', $slug)->first();
-
-            $api_time = dateLocalTime($city->lng);
-
-
-
-            $name =  $city->name ;
-            $time =  $api_time['time'];
-            $utc  =  (strlen($city->name)>0)?getGmtOffset($api_time['time_Zone']).' Time':"Time";
-            $gmt  =  formatGmtOffset(getGmtOffset($api_time['time_Zone'])) .':00';
-
-        }
-        elseif ($model == 'App\Models\Country') {
-
-            $country = Country::where('slug', $slug)->first();
-
-            if ($country && $country->capitalCities()) {
-                    $city = $country->capitalCities();
-
-                $api_time = dateLocalTime($city->lng);
-
-                $name =  $country->name  ;
-                $time = $api_time['time'];
-                $utc  =  (strlen($city->name)>0)?getGmtOffset($api_time['time_Zone']).' Time':"Time";
-                $gmt  =  formatGmtOffset(getGmtOffset($api_time['time_Zone'])) .':00';
-
-
-
-                }else{
-
-                $name =  $country->name  ;
-                $time = 'No Capital';
-
-                }
-
-        }
-
-                $result = [
-
-                    'name'  =>  $name ,
-                    'time'  =>  $time,
-                    'utc'   =>  $utc ,
-                    'gmt'   =>  $gmt,
-                ];
+            'name'  =>  $name,
+            'time'  =>  $time,
+            'utc'   =>  $utc,
+            'gmt'   =>  $gmt,
+        ];
 
         return array($result);
     }
-
-
-
-
 }

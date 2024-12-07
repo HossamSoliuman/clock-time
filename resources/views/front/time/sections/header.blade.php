@@ -56,7 +56,7 @@
                     @else
                         <h2 class="btn-convert rounded-2 fs-6 d-inline-block px-3 py-2" style="font-weight: 400">
                             Time now in
-                            ({{ $timezoneNameLong ?? $timezoneName }}) Time zone.
+                            ({{$timezoneName }}) Time zone.
                         </h2>
                     @endif
 
