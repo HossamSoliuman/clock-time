@@ -174,7 +174,7 @@ class ConvertAllToAllController extends Controller
             $time =  $date['time'] . ' ' . $date['identify'];
             $utc  =  (strlen($name) > 0) ? $name . ' Time' : "Time";
             $gmt  =   $date['hoursWithSign'] . ' GMT';
-        } elseif ($model == 'App\Models\Abbreviation') {
+        } elseif ($model == 'App\Models\Abbreviation' || $model == 'App\Models\AbbreviationLongName') {
             $date = $this->timezoneDetails($slug);
             $name =  $date['timezone'];
             $time =  $date['time'] . ' ' . $date['identify'];
@@ -199,7 +199,6 @@ class ConvertAllToAllController extends Controller
             $utc  =  (strlen($name) > 0) ? $name . ' Time' : "Time";
             $gmt  =   $date['hoursWithSign'] . ' GMT';
         }
-
         $result = [
 
             'name'  =>  $name,
