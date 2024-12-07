@@ -1,7 +1,13 @@
 @extends('front.inc.layout')
 @section('title', 'Time Difference Calculator')
-@section('description', 'Time Difference Calculator: Find time differences, time zone converter, world clock, time zone map, time zone abbreviations ,cities time ')
-@section('keywords', 'time calculator, time zone converter, time conversion tool, world time calculator, time difference calculator, timezone calculator, time zone conversion, UTC to local time, convert time zones, time converter online, international time converter, time conversion, time difference converter, world clock converter, local time calculator, cross time zone calculator, global time converter, calculate time difference')
+@section('description',
+    'Time Difference Calculator: Find time differences, time zone converter, world clock, time zone
+    map, time zone abbreviations ,cities time ')
+@section('keywords',
+    'time calculator, time zone converter, time conversion tool, world time calculator, time difference
+    calculator, timezone calculator, time zone conversion, UTC to local time, convert time zones, time converter online,
+    international time converter, time conversion, time difference converter, world clock converter, local time calculator,
+    cross time zone calculator, global time converter, calculate time difference')
 @section('url', urldecode(url()->current()))
 @section('ogImage', 'https://theclocktime.com/images/Time-calculator.jpg')
 @section('ogImageAlt', 'Time Calculator')
@@ -40,20 +46,21 @@
                         super_2: tagify3.value[0].slug,
                     },
                     success: function(response) {
-                        // Process the response and update the hidden section
-                        // Assuming the response contains the time data to display
-                        // For example, let's say response has 'country1', 'city1', 'time1', 'country2', 'city2', 'time2'
+                        link1 = 'https://www.theclocktime.com/GMT' + response.super_link_1;
+                        link2 = 'https://www.theclocktime.com/GMT' + response.super_link_2;
+                       
 
                         $('#super_1').text(response.super_1);
                         $('#super_time_1').text(response.super_time_1);
                         $('#utc1').text(response.super_utc_1);
+                        $('#link1').attr('href', link1);
                         $('#gmt1').text(response.super_gmt_1);
 
                         $('#super_2').text(response.super_2);
                         $('#super_time_2').text(response.super_time_2);
                         $('#utc2').text(response.super_utc_2);
+                        $('#link2').attr('href', link2);
                         $('#gmt2').text(response.super_gmt_2);
-
                         // Show the hidden div
                         $('.converterUTC').show();
                         $('.analog').show();

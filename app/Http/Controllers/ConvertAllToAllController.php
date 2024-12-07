@@ -134,11 +134,13 @@ class ConvertAllToAllController extends Controller
                 'super_1'       => $data['first']['name'],
                 'super_time_1'  => $data['first']['time'],
                 'super_utc_1'   => $data['first']['utc'],
+                'super_link_1'   => $data['first']['link'],
                 'super_gmt_1'   => $data['first']['gmt'],
 
                 'super_2'       => $data['second']['name'],
                 'super_time_2'  => $data['second']['time'],
                 'super_utc_2'   => $data['second']['utc'],
+                'super_link_2'   => $data['second']['link'],
                 'super_gmt_2'   => $data['second']['gmt'],
             ];
         }
@@ -158,55 +160,46 @@ class ConvertAllToAllController extends Controller
     }
 
 
-
     public function checkIfTheModelIsAnInstance($model, $slug): array
     {
         $result = [];
-        $name = '';
-        $time = '';
-        $utc = '';
-        $gmt = '';
+        $date = [];
 
-
-        if ($model == 'App\Models\Timezone') {
-            $date = $this->ianaTimezone($slug);
-            $name =  $date['timezone'];
-            $time =  $date['time'] . ' ' . $date['identify'];
-            $utc  =  (strlen($name) > 0) ? $name . ' Time' : "Time";
-            $gmt  =   $date['hoursWithSign'] . ' GMT';
-        } elseif ($model == 'App\Models\Abbreviation' || $model == 'App\Models\AbbreviationLongName') {
-            $date = $this->timezoneDetails($slug);
-            $name =  $date['timezone'];
-            $time =  $date['time'] . ' ' . $date['identify'];
-            $utc  =  (strlen($name) > 0) ? $name . ' Time' : "Time";
-            $gmt  =   $date['hoursWithSign'] . ' GMT';
-        } elseif ($model == 'App\Models\Gmt') {
-            $date = $this->gmt($slug);
-            $name =  $date['timezone'];
-            $time =  $date['time'] . ' ' . $date['identify'];
-            $utc  =  (strlen($name) > 0) ? $name . ' Time' : "Time";
-            $gmt  =   $date['hoursWithSign'] . ' GMT';
-        } elseif ($model == 'App\Models\City') {
-            $date = $this->city($slug);
-            $name =  $date['timezone'];
-            $time =  $date['time'] . ' ' . $date['identify'];
-            $utc  =  (strlen($name) > 0) ? $name . ' Time' : "Time";
-            $gmt  =   $date['hoursWithSign'] . ' GMT';
-        } elseif ($model == 'App\Models\Country') {
-            $date = $this->country($slug);
-            $name =  $date['timezone'];
-            $time =  $date['time'] . ' ' . $date['identify'];
-            $utc  =  (strlen($name) > 0) ? $name . ' Time' : "Time";
-            $gmt  =   $date['hoursWithSign'] . ' GMT';
+        switch ($model) {
+            case 'App\Models\Timezone':
+                $date = $this->ianaTimezone($slug);
+                break;
+            case 'App\Models\Abbreviation':
+            case 'App\Models\AbbreviationLongName':
+                $date = $this->timezoneDetails($slug);
+                break;
+            case 'App\Models\Gmt':
+                $date = $this->gmt($slug);
+                break;
+            case 'App\Models\City':
+                $date = $this->city($slug);
+                break;
+            case 'App\Models\Country':
+                $date = $this->country($slug);
+                break;
         }
-        $result = [
 
-            'name'  =>  $name,
-            'time'  =>  $time,
-            'utc'   =>  $utc,
-            'gmt'   =>  $gmt,
-        ];
+        if (!empty($date)) {
+            $name = $date['timezone'];
+            $time = $date['time'] . ' ' . $date['identify'];
+            $utc = (strlen($name) > 0) ? $name . ' Time' : "Time";
+            $link = $date['sign'] . $date['hoursNumber'];
+            $gmt = $date['hoursWithSign'] . ' GMT';
 
-        return array($result);
+            $result = [
+                'name' => $name,
+                'time' => $time,
+                'utc'  => $utc,
+                'link'  => $link,
+                'gmt'  => $gmt,
+            ];
+        }
+
+        return [$result];
     }
 }
