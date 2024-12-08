@@ -127,7 +127,7 @@ class HomeController extends Controller
 
             $keywords = $country->name . " time, clock,  time,  clocks,times of  , prayers,salah time,athan time  ,azan time ,now  time,current time in  ,local time in  ,present time in  ,sunrise in  ,salah time in ,sunsets in  ,time in  right now, clock,now  ,date and time in  ,local time in  ,time in  just now, exact time";
 
-            return view('front.time.country', [
+            return view('front.country', [
                 'type' => 'country',
                 'capital' => $capital,
                 'name' => $country->name,
@@ -210,7 +210,7 @@ class HomeController extends Controller
 
             $keywords = $city->name . " time, clock,  time,  clocks,times of  , prayers,salah time,athan time  ,azan time ,now  time,current time in  ,local time in  ,present time in  ,sunrise in  ,salah time in ,sunsets in  ,time in  right now, clock,now  ,date and time in  ,local time in  ,time in  just now, exact time";
 
-            return view('front.time.city', [
+            return view('front.city', [
                 'type' => 'city',
                 'country' => $country,
                 'cities' => $similarCities,
@@ -280,7 +280,7 @@ class HomeController extends Controller
         $ogImageAlt = 'Time Zone';
         $imageUrl = 'public/images/TimeZone.jpg';
 
-        return view('front.time.timezone', [
+        return view('front.timezone', [
             'title' => $name,
             'description' => $description,
             'keywords' => $keywords,
@@ -343,7 +343,7 @@ class HomeController extends Controller
             $sign = $this->getSign($offset);
             $hoursWithSign = $this->getHoursFromOffsetWithSign($offset);
 
-            return view('front.time.timezone', [
+            return view('front.timezone', [
                 'title' => $name,
                 'description' => "Discover everything about the {$timezoneName} time zone, including its current time, UTC offset, and the countries that observe {$timezoneName}.",
                 'keywords' => "{$timezoneName} time, clock, zone, current time in {$timezoneName}, local time in {$timezoneName}, salah time, azan time, sunrise, sunset, exact time, date and time",
@@ -364,60 +364,6 @@ class HomeController extends Controller
         }
     }
 
-
-    private function convertUtcToGmt($offset)
-    {
-        $timezoneString = $offset;
-        $timezoneString = str_replace("UTC", "GMT",  $timezoneString);
-
-        return $timezoneString;
-    }
-
-    public function tzName($slug)
-    {
-
-        $tz_name = AbbreviationLongName::with('abbreviation')
-            ->with('abbreviation.timezones')
-            ->where('slug', $slug)->firstOrFail();
-
-
-        // Collect all countries from each timezone into a single collection
-        $countries = collect();
-
-        foreach ($tz_name->abbreviation->timezones as $tz) {
-            $countries = $countries->merge($tz->countries);
-        }
-
-
-        $date = convertGmtStringToDateTime(getGmtOffset($tz_name->abbreviation->timezones->first()->name));
-
-        $countries = countryDate($date['time'], $countries->unique());
-
-        //      // Ensure the collection of countries is unique
-        //      $countries = $countries->unique()->take(9);
-
-        $title = $tz_name->name . " time now ";
-        $description = 'Discover everything about the ' . $tz_name->name . ' time zone, including its current time, UTC offset, and countries that observe ' . $tz_name->name . ' time zone .';
-        $keywords = $tz_name->name . " Zone  , time, clock,  time,  clocks,times of  , prayers,salah time,athan time ,azan time ,now  time,current time in ,local time in  ,present time in  ,sunrise in  ,salah time in ,sunsets in  ,time in  right now, clock,now  ,date and time in  ,local time in  ,time in  just now, exact time";
-        $ogImage = 'https://theclocktime.com/images/time-zone.jpg';
-        $ogImageAlt = 'Time Zone';
-        $imageUrl = 'public/images/TimeZone.jpg';
-
-        return view('front.abb')
-            ->with('abb', $tz_name)
-            ->with('slug', $slug)
-            ->with('gmt', false)
-            ->with('title', $title)
-            ->with('description', $description)
-            ->with('keywords', $keywords)
-            ->with('abblong', '')
-            ->with('countries', $countries)
-            ->with('timezone', $tz_name->abbreviation->timezones->first()->name)
-            ->with('date', $date)
-            ->with('ogImage', $ogImage)
-            ->with('imageUrl', $imageUrl)
-            ->with('ogImageAlt', $ogImageAlt);
-    }
 
     public function gmt($slug)
     {

@@ -2,22 +2,24 @@
 @section('title', $title)
 @section('description', $description)
 @section('keywords', $keywords)
-{{-- @section('ogImage', asset('vendor/blade-flags/country-' . $data['flag'] . '.svg'))
-@section('ogImageAlt', $title) --}}
+@section('ogImage', asset('images/country-time.jpg'))
+@section('ogImageAlt',$title)
 @section('url', urldecode(url()->current()))
 
 @section('container')
 
     @include('front.time.sections.header')
     @include('front.time.sections.timezoneToGmtUtc')
+    @include('front.time.sections.similarCity')
+
 
     @include('front.time.sections.convertCountryToCountry')
 
-    {{-- @include('front.sections.countrySearch') --}}
+    @include('front.time.sections.countrySearch')
 
-    {{-- @include('front.sections.countryCitySearch') --}}
+    @include('front.time.sections.countryCitySearch')
 
-    {{-- @include('front.sections.meeting') --}}
+    @include('front.sections.meeting')
 
     <script>
         $(document).ready(function() {

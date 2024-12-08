@@ -32,13 +32,6 @@ class ConvertCountryController extends Controller
             ->with('name_1', 'Convert Time')
             ->with('name_2', 'Between Two Time Zones');
     }
-    public function super()
-    {
-
-        return view('front.convert-page.convert-super')
-            ->with('name_1', 'Time Difference Calculator');
-    }
-
 
     public function fetchAll(Request $request)
     {

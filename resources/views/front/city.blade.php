@@ -2,36 +2,31 @@
 @section('title', $title)
 @section('description', $description)
 @section('keywords', $keywords)
-@section('ogImage', asset('vendor/blade-flags/country-' . $data['flag'] . '.svg'))
+@section('ogImage', asset('images/city-time.jpg'))
 @section('ogImageAlt', $title)
 @section('url', urldecode(url()->current()))
 @php
-    $imageUrl =
-        strlen($data['country']->banner) > 0
-            ? 'public/country/' . $data['country']->banner
-            : 'public/images/city-time.jpg';
+    $imageUrl = 'public/images/city-time.jpg';
 @endphp
 @section('container')
 
-    @include('front.sections.header')
+    @include('front.time.sections.header')
+    @include('front.time.sections.timezoneToGmtUtc')
+    @include('front.time.sections.similarCity')
 
-    @include('front.sections.timezones')
-
-    @include('front.sections.citySearch')
-
-    @include('front.converts.convertCityToCity')
-
-    @php
-
-        $dataPayer =  payer($_SESSION['payer'], $data['city']->name,$data['city']->iso2);
+    @include('front.time.sections.citySearch')
+    @include('front.time.sections.convertCityToCity')
 
 
+    {{-- @php
+
+        $dataPayer = payer($_SESSION['payer'], $name, 'ts');
 
     @endphp
-    @if(count($dataPayer)>0)
-    @include('front.sections.payer')
-    @include('front.sections.sun')
-    @endif
+    @if (count($dataPayer) > 0)
+        @include('front.sections.payer')
+        @include('front.sections.sun')
+    @endif --}}
 
 
 

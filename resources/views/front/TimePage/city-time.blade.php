@@ -28,9 +28,8 @@
     <script>
         $(document).ready(function() {
             $('#cityTocity').on('submit', function(event) {
-                event.preventDefault(); // Prevent the default form submission
+                event.preventDefault();
 
-                // Get form action URL and form data
                 var form = $(this);
                 var url = form.attr('action');
                 var formData = form.serialize();

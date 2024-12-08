@@ -182,7 +182,6 @@ Route::get('/my-time-city', [LocationController::class, 'getUserLocationGmt'])->
 Route::get('/convert-country', [ConvertCountryController::class, 'country'])->name('convert-country');
 Route::get('/convert-city', [ConvertCountryController::class, 'city'])->name('convert-city');
 Route::get('/convert-timezone', [ConvertCountryController::class, 'tz'])->name('convert-timezone');
-Route::get('/time-converter', [ConvertCountryController::class, 'super'])->name('time-converter');
 
 Route::get('/fetch-country', [ConvertCountryController::class, 'fetchAll'])->name('fetch.country');
 Route::get('/get-convert-country', [ConvertCountryController::class, 'fetchCountry'])->name('get.convert.country');
@@ -206,7 +205,7 @@ Route::get('/get-city-planner', [ConvertCityToCityController::class, 'getCity'])
 
 
 //----------------convert from all to all zone
-
+Route::get('/time-converter', [ConvertAllToAllController::class, 'index'])->name('time-converter');
 Route::get('/get-convert-all-all', [ConvertAllToAllController::class, 'convertAllToAll'])->name('get.convert.all.all');
 Route::get('/fetch-super-all', [ConvertAllToAllController::class, 'fetchAll'])->name('fetch.super.all');
 

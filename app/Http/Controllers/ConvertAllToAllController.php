@@ -20,7 +20,11 @@ use Illuminate\Support\Collection;
 class ConvertAllToAllController extends Controller
 {
     use GetDate;
-
+    public function index()
+    {
+        return view('front.timeConverter')
+            ->with('name_1', 'Time Difference Calculator');
+    }
     public function fetchAll(Request $request)
     {
         $search = $request->input('search');
