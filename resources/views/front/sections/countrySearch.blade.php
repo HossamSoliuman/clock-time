@@ -30,7 +30,7 @@
         countrySerach.on('input', function(e) {
             $.ajax({
                 url: '{{ url('fetch-country') }}',
-                type: 'get',
+                type: 'post',
                 data: {
                     search: e.detail.value,
                     _token: '{{ csrf_token() }}'
