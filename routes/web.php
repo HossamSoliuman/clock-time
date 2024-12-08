@@ -188,7 +188,7 @@ Route::get('/get-convert-country', [ConvertCountryController::class, 'fetchCount
 
 //---------------------------convert utc To City
 Route::get('/fetch-gmts', [ConvertGmtController::class, 'fetchGmt'])->name('fetch.gmt');
-Route::get('/fetch-city', [CityController::class, 'fetchAll'])->name('fetch.city');
+Route::post('/fetch-city', [CityController::class, 'fetchAll'])->name('fetch.city');
 Route::get('/fetch-city-planner', [CityController::class, 'fetchAllPlanner'])->name('fetch.city.planner');
 Route::get('/get-convert-utc-city', [ConvertUtcCityController::class, 'fetchUtcCity'])->name('get.convert.utc.city');
 
