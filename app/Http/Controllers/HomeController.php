@@ -405,7 +405,7 @@ class HomeController extends Controller
             $hours = $this->convertDecimalToTime($decemalHours);
             $sign = $this->getSign($offset);
             $hoursWithSign = $this->getHoursFromOffsetWithSign($offset);
-            return view('front.time.timezone', [
+            return view('front.timezone', [
                 'title' => $name,
                 'description' => $isUTC
                     ? "Find the current time in Coordinated Universal Time (UTC) {$gmt->utc_name}. Discover the time difference between {$gmt->utc_name} and other time zones, UTC offset, and countries."
