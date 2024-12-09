@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\AbbreviationLongName;
 use App\Models\Country;
 use App\Models\City;
+use App\Models\IanaTimezone;
 use App\Services\GeoIPService;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -32,11 +33,15 @@ class MeetingPlannerController extends Controller
             $country = Country::where('code', $location['iso_code'])->first();
         }
         $city = City::where('name', $country->capital)->first();
-
         $date = $this->city($city->slug);
+        $ianaTimezone = IanaTimezone::where('iana_timezone', $city->timezone)->first();
 
         return view('front.meeting-planner')
             ->with([
+                'type' => 'meeting-planner',
+                'city' => $city,
+                'country' => $country,
+                'ianaTimezone' => $ianaTimezone,
                 'timezoneName' => $city->name,
                 'date' =>  $date,
                 'timezone' => $city->timezone,

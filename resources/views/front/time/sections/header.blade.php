@@ -30,10 +30,11 @@
                         </div>
                     @endif
                     <div class='d-block d-md-flex justify-content-center align-items-center w-75 m-auto'>
-                        <p class='display-5 mt-3' style="font-size:34px; color: white"> {{ strtoupper($date['formatted_date']) }}
+                        <p class='display-5 mt-3' style="font-size:34px; color: white">
+                            {{ strtoupper($date['formatted_date']) }}
                         </p>
                     </div>
-                    
+
                     @if (isset($type) && $type == 'city')
                         <h2 class="btn-convert rounded-2 fs-6 d-inline-block px-3 py-2" style="font-weight: 400">
                             Time now in
@@ -53,10 +54,21 @@
                             - <a href="{{ url($timezoneSlug) }}" style="color: white">{{ $capital->timezone }}</a>
                             .
                         </h2>
+                    @elseif (isset($type) && $type == 'meeting-planner')
+                        <h2 class="btn-convert rounded-2 fs-6 d-inline-block px-3 py-2" style="font-weight: 400">
+                            Time now in
+                            - <a href="{{ url($country->slug) }}" style="color: white">{{ $country->name }}</a>
+                            Based on Capital
+                            - <a href="{{ url($city->slug) }}" style="color: white">{{ $city->name }}</a>
+                            - Time Zone
+                            - <a href="{{ url($ianaTimezone->slug) }}"
+                                style="color: white">{{ $ianaTimezone->iana_timezone }}</a>
+                            .
+                        </h2>
                     @else
                         <h2 class="btn-convert rounded-2 fs-6 d-inline-block px-3 py-2" style="font-weight: 400">
                             Time now in
-                            ({{$timezoneName }}) Time zone.
+                            ({{ $timezoneName }}) Time zone.
                         </h2>
                     @endif
 
