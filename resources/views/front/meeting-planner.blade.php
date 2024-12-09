@@ -25,7 +25,7 @@
 
     @include('front.time.sections.convertCityToCity')
 
-    @include('front.time.sections.timezoneToGmtUtc')
+    {{-- @include('front.time.sections.timezoneToGmtUtc') --}}
 
     @include('front.sections.search')
 
