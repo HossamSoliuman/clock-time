@@ -189,7 +189,7 @@ class ConvertAllToAllController extends Controller
         }
 
         if (!empty($date)) {
-            $name = $date['timezone'];
+            $name = $date['city']->name . ' / ' . $date['city']->country;
             $time = $date['time'] . ' ' . $date['identify'];
             $utc = (strlen($name) > 0) ? $name . ' Time' : "Time";
             $link = $date['sign'] . $date['hoursNumber'];

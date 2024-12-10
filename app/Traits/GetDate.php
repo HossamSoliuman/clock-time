@@ -30,6 +30,7 @@ trait GetDate
         $sign = $this->getSign($offset);
         $hoursWithSign = $this->getHoursFromOffsetWithSign($offset);
         $date = [
+            'city' => $city,
             'time' => $adjustedTime->format('h:i'),
             'timewithSeconds' => $adjustedTime->format('h:i:s'),
             'identify' => $adjustedTime->format('A'),
@@ -44,6 +45,7 @@ trait GetDate
             'sign' => $sign,
             'hours' => $hours,
             'hoursNumber' => $hoursWithoutSign,
+
         ];
         return $date;
     }
@@ -200,7 +202,7 @@ trait GetDate
         $sign = $this->getSign($offset);
         $hoursWithSign = $this->getHoursFromOffsetWithSign($offset);
 
-      return  $date = [
+        return  $date = [
             'time' => $adjustedTime->format('h:i'),
             'timewithSeconds' => $adjustedTime->format('h:i:s'),
             'identify' => $adjustedTime->format('A'),
