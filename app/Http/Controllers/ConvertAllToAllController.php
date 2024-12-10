@@ -182,6 +182,7 @@ class ConvertAllToAllController extends Controller
                 break;
             case 'App\Models\City':
                 $date = $this->city($slug);
+                $date['timezone'] = $date['city']->name . ' / ' . $date['city']->country;
                 break;
             case 'App\Models\Country':
                 $date = $this->country($slug);
@@ -189,7 +190,7 @@ class ConvertAllToAllController extends Controller
         }
 
         if (!empty($date)) {
-            $name = $date['city']->name . ' / ' . $date['city']->country;
+            $name = $date['timezone'];
             $time = $date['time'] . ' ' . $date['identify'];
             $utc = (strlen($name) > 0) ? $name . ' Time' : "Time";
             $link = $date['sign'] . $date['hoursNumber'];
