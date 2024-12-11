@@ -5,108 +5,185 @@
         border: none;
     }
 
-    .tagify__tag > div > [contenteditable] {
+    .tagify__tag>div>[contenteditable] {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
     }
-    
-    .removeBtnDiv
-    {
+
+    .removeBtnDiv {
         width: 3% !important;
     }
-    
-    @media only screen and (max-width: 767px) 
-    {
-        .timeHours .btn
-        {
-            flex-shrink: 0;
-            width: 10px !important;
-            height: 20px !important;
-            font-size: 0px !important;
+
+    @media only screen and (min-width: 767px) {
+        .justMobile {
+            display: none;
         }
-        
-        .main-custom-div, .main-custom-div2, .main-custom-div3
-        {
+
+        #addCitySection {
+            order: 999;
+        }
+    }
+
+    @media only screen and (max-width: 767px) {
+        #addCityButton {
+            height: 41px;
+            width: 200px;
+        }
+
+        .card.p-3.ms-auto {
+            flex-direction: row;
+            gap: 8px;
+        }
+
+        .orderContainer {
+            padding: 4 !important;
+        }
+
+        .fa-solid {
+            font-size: 12px;
+        }
+
+        .d-flex.justify-content-between {
+            height: 100%;
+        }
+
+        .content.w-100 {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        .orderedsContanier {
+            justify-content: stretch;
+        }
+
+        .card {
+            border: none !important;
+            padding: 0 !important;
+            justify-content: space-between !important;
+        }
+
+        #addCitySection {
+            order: 1;
+        }
+
+        #addCitySection {
+            margin-top: 16px;
+            margin-bottom: 46px;
+        }
+
+        .justDesktop {
+            display: none;
+        }
+
+        .timeHours .btn {
+            max-width: 100%;
+            width: fit-content;
+            height: 20px !important;
+            font-size: 10px !important;
+        }
+
+        .timeHours .btn:active {
+            background-color: red !important
+        }
+
+        .main-custom-div,
+        .main-custom-div2,
+        .main-custom-div3 {
             width: 100% !important;
         }
-        
-        .main-custom-div3
-        {
+
+        .main-custom-div3 {
             margin-bottom: 10px;
         }
-        
-        .main-custom-div3 .card
-        {
+
+        .main-custom-div3 .card {
             width: 100% !important;
         }
-        
-        .meeting-planner-section .timeHours
-        {
+
+        .main-custom-div .timeHours {
+            padding: 0 12px !important;
+        }
+
+        .meeting-planner-section .timeHours {
             width: 100% !important;
-            justify-content: center;
+            justify-content: space-between;
             margin-top: 0px;
+            padding: 0;
+            gap: 1px;
         }
-        
-        .removeBtnDiv, .removeItem
-        {
+
+        .removeBtnDiv,
+        .removeItem {
             width: 100% !important;
         }
-        
-        .removeBtnDiv
-        {
+
+        .removeBtnDiv {
             margin-top: 10px;
         }
-        
-        .removeItem i::before
-        {
-            font-size:10px !important;
+
+        .removeItem i::before {
+            font-size: 10px !important;
         }
-        
-        .switcher label::before, .switcher label::after
-        {
-            font-size:16px !important;
-        }
-        
-        .switcher label::after
-        {
-            line-height: 30px !important;
-        }
-        
-        .heading-custom-class
-        {
-            font-size:20px !important;
-        }
-        
-        .div50
-        {
-            width: 50% !important;
-        }
-        
-        .div100
-        {
-            width: 100% !important;
-        }
-        
-        .timeText
-        {
-            font-size:20px !important;
-        }
-        
-        .cityText
-        {
-            font-size:18px !important;
-        }
-        
-        .countryText
-        {
-            font-size:12px !important;
-        }
-        
-        #meetingOnContent p
-        {
+
+        .switcher label::before,
+        .switcher label::after {
             font-size: 16px !important;
         }
+
+        .switcher label::after {
+            line-height: 30px !important;
+        }
+
+        .heading-custom-class {
+            font-size: 20px !important;
+        }
+
+        .div50 {
+            width: 50% !important;
+        }
+
+        .div100 {
+            width: 100% !important;
+        }
+
+        .timeText {
+            font-size: 20px !important;
+        }
+
+        .cityText {
+            font-size: 18px !important;
+        }
+
+        .countryText {
+            font-size: 12px !important;
+        }
+
+        #meetingOnContent p {
+            font-size: 16px !important;
+        }
+    }
+
+
+    #citiesSelected {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        margin-bottom: 48px;
+    }
+
+    .flagMobile {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin-bottom: -14px;
+    }
+
+    .flagMobile p {
+        margin: 0;
+        font-weight: 550;
     }
 </style>
 <section class="meeting-planner-section">
@@ -122,7 +199,7 @@
                 <div class="d-flex justify-content-end div100" style="width: 97%;gap:15px">
                     <div class="col-2 div50">
                         <input id="AddCityButtonDate" type="date" class="form-control h-100"
-                               style="background-color: #f00;color:#fff;border-radius: 3px">
+                            style="background-color: #f00;color:#fff;border-radius: 3px">
                     </div>
                     <div class="col-3 text-end div50">
                         <div class="switcher w-100">
@@ -130,7 +207,7 @@
                                 <label class="switch btn-color-mode-switch w-100">
                                     <input value="1" id="color_mode" name="color_mode" type="checkbox">
                                     <label class="btn-color-mode-switch-inner" data-off="12Hour" data-on="24Hour"
-                                           for="color_mode"></label>
+                                        for="color_mode"></label>
                                 </label>
                             </div>
                         </div>
@@ -141,14 +218,105 @@
         <div id="citiesSelected">
             <div class="row" id="citiesSelectedRow">
             </div>
+            <div id="addCitySection">
+                <div class="item">
+                    <div class="row">
+                        <div class="col-3 main-custom-div3">
+                            <div class="card p-3 ms-auto" style="width: 90%">
+                                <input name='meetingCitySearch' placeholder="Add another city..."
+                                    class="w-100 rounded-2" required />
+                                <button id="addCityButton" class="btn btn-convert rounded-1 d-md-none">
+                                    <i class="fas fa-plus me-2"></i> Add City
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-9 ps-0 main-custom-div justDesktop">
+                            <div class="d-flex timeHours">
+                                <button class="btn btn-dark" data-time="1">
+                                    1
+                                </button>
+                                <button class="btn btn-dark" data-time="2">
+                                    2
+                                </button>
+                                <button class="btn btn-dark" data-time="3">
+                                    3
+                                </button>
+                                <button class="btn btn-dark" data-time="4">
+                                    4
+                                </button>
+                                <button class="btn btn-dark" data-time="5">
+                                    5
+                                </button>
+                                <button class="btn btn-dark" data-time="6">
+                                    6
+                                </button>
+                                <button class="btn btn-secondary" data-time="7">
+                                    7
+                                </button>
+                                <button class="btn btn-secondary" data-time="8">
+                                    8
+                                </button>
+                                <button class="btn btn-light" data-time="9">
+                                    9
+                                </button>
+                                <button class="btn btn-light" data-time="10">
+                                    10
+                                </button>
+                                <button class="btn btn-light" data-time="11">
+                                    11
+                                </button>
+                                <button class="btn btn-light" data-time="12">
+                                    12
+                                </button>
+                                <button class="btn btn-light" data-time="13">
+                                    1
+                                </button>
+                                <button class="btn btn-light" data-time="14">
+                                    2
+                                </button>
+                                <button class="btn btn-light" data-time="15">
+                                    3
+                                </button>
+                                <button class="btn btn-light" data-time="16">
+                                    4
+                                </button>
+                                <button class="btn btn-secondary" data-time="17">
+                                    5
+                                </button>
+                                <button class="btn btn-secondary" data-time="18">
+                                    6
+                                </button>
+                                <button class="btn btn-dark" data-time="19">
+                                    7
+                                </button>
+                                <button class="btn btn-dark" data-time="20">
+                                    8
+                                </button>
+                                <button class="btn btn-dark" data-time="21">
+                                    9
+                                </button>
+                                <button class="btn btn-dark" data-time="22">
+                                    10
+                                </button>
+                                <button class="btn btn-dark" data-time="23">
+                                    11
+                                </button>
+                                <button class="btn btn-dark" data-time="24">
+                                    12
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div id="addCitySection">
+        <!-- <div id="addCitySection">
             <div class="item">
                 <div class="row">
                     <div class="col-3 main-custom-div3">
                         <div class="card p-3 ms-auto" style="width: 90%">
                             <input name='meetingCitySearch' placeholder="Add another city..." class="w-100 rounded-2"
-                                   required/>
+                                required />
                         </div>
                     </div>
                     <div class="col-9 ps-0 main-custom-div">
@@ -229,7 +397,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
 
         <div class="mt-3" id="meetingPlannerMessages">
@@ -282,7 +450,7 @@
                             <div>
                                 <p>
                                     These times have been provided by <a href="https://www.theclocktime.com/"
-                                                                         class="text-danger" target="_blank">theclocktime.com</a>
+                                        class="text-danger" target="_blank">theclocktime.com</a>
                                     to ensure accuracy.
                                     Please mark your calendars accordingly.Let me know if you have any questions
                                     Looking forward to our discussion.
@@ -310,112 +478,157 @@
 <script>
     const daysOfWeek = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
     const daysOfWeekFull = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    const monthsOfYear = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    const monthsOfYear = ["January", "February", "March", "April", "May", "June", "July", "August", "September",
+        "October", "November", "December"
+    ];
     var meetingSearchInput;
-    $(document).ready(function () {
+    $(document).ready(function() {
         var input2 = document.querySelector('input[name=meetingCitySearch]');
         meetingSearchInput = new Tagify(input2, {
             enforceWhitelist: false,
             mode: "select",
         });
-        meetingSearchInput.on('change', function () {
-            let slug = meetingSearchInput.value[0]?.slug
+
+        // التعامل مع تغيير القيمة
+        function handleCityAddition() {
+            let slug = meetingSearchInput.value[0]?.slug;
             if (slug) {
-                let isset = false
+                let isset = false;
                 meetingSearchInput.removeAllTags();
                 meetingSearchInput.dropdown.hide.call();
                 $('#citiesSelected #citiesSelectedRow .col-12').each((index, ele) => {
                     $(ele).find('.removeItem').each((index, button) => {
                         if ($(button).data('city') === slug) {
                             alert('You Chose This City Before!');
-                            isset = true
+                            isset = true;
                         }
                     });
                 });
                 if (!isset) {
-                    getCityData(slug)
-                    addCityToLocalstorage(slug)
+                    getCityData(slug);
+                    addCityToLocalstorage(slug);
                 }
             }
+        }
+
+        // تفعيل الزر للموبايل والتابلت
+        $('#addCityButton').on('click', function() {
+            handleCityAddition();
         });
-        meetingSearchInput.on('input', function (e) {
+
+        // التغيير التلقائي يعمل على الديسكتوب فقط
+        meetingSearchInput.on('change', function() {
+            if (window.innerWidth >= 768) {
+                handleCityAddition();
+            }
+        });
+
+        // طلب البيانات أثناء الكتابة
+        meetingSearchInput.on('input', function(e) {
             $.ajax({
                 url: '{{ route('fetch.city') }}',
                 type: 'post',
                 data: {
                     search: e.detail.value,
-                    _token: '{{ csrf_token() }}'
+                    _token: '{{ csrf_token() }}',
                 },
-                success: function (response) {
+                success: function(response) {
                     meetingSearchInput.settings.whitelist = response;
                     meetingSearchInput.dropdown.show.call();
                 },
-                error: function (xhr, status, error) {
+                error: function(xhr, status, error) {
                     console.error('AJAX Error:', status, error);
-                }
+                },
             });
         });
     });
     var date = localStorage.getItem('date') ? new Date(localStorage.getItem('date')) : new Date();
     var formattedDate = date.toISOString().split('T')[0]; // Formats as YYYY-MM-DD
     $('#AddCityButtonDate').val(formattedDate);
-    $('#AddCityButtonDate').on('change', function () {
+    $('#AddCityButtonDate').on('change', function() {
         localStorage.setItem('date', $(this).val())
         renderTimeSelect()
     });
-    $('#AddCityButtonDate').on('click', function () {
+    $('#AddCityButtonDate').on('click', function() {
         this.showPicker();
     });
-    $('#citiesSelected').on('click', '.toUp', function (e) {
-        let ownDiv = $(this).closest('.col-12');
+    $(document).on('click', '.toUp', function() {
+        let button = $(this);
+        button.prop('disabled', true);
+        let ownDiv = button.closest('.col-12');
         let ownOrder = ownDiv.data('order');
-        let previousDiv = $('#citiesSelected .col-12').filter(function () {
+
+        let previousDiv = $('#citiesSelected .col-12').filter(function() {
             return $(this).data('order') == ownOrder - 1;
         }).first();
+
         if (previousDiv.length) {
             let newOrder = previousDiv.data('order');
             ownDiv.css('order', newOrder);
             previousDiv.css('order', ownOrder);
+
             ownDiv.data('order', newOrder).attr('data-order', newOrder);
             previousDiv.data('order', ownOrder).attr('data-order', ownOrder);
         }
+        button.prop('disabled', false);
     });
-    $('#citiesSelected').on('click', '.toBottom', function (e) {
-        let ownDiv = $(this).closest('.col-12');
+
+    $(document).on('click', '.toBottom', function() {
+        let button = $(this);
+        button.prop('disabled', true);
+        let ownDiv = button.closest('.col-12');
         let ownOrder = ownDiv.data('order');
-        let previousDiv = $('#citiesSelected .col-12').filter(function () {
+
+        let nextDiv = $('#citiesSelected .col-12').filter(function() {
             return $(this).data('order') == ownOrder + 1;
         }).first();
-        if (previousDiv.length) {
-            let newOrder = previousDiv.data('order');
+
+        if (nextDiv.length) {
+            let newOrder = nextDiv.data('order');
             ownDiv.css('order', newOrder);
-            previousDiv.css('order', ownOrder);
+            nextDiv.css('order', ownOrder);
+
             ownDiv.data('order', newOrder).attr('data-order', newOrder);
-            previousDiv.data('order', ownOrder).attr('data-order', ownOrder);
+            nextDiv.data('order', ownOrder).attr('data-order', ownOrder);
         }
+        button.prop('disabled', false);
     });
-    $('#citiesSelected').on('click', '.removeItem', function (e) {
-        removeCityFromLocalstorage($(this).data('city'));
+
+    $('#citiesSelected').on('click', '.removeItem', function(e) {
+        var citySlug = $(this).data('city');
+
+        removeCityFromLocalstorage(citySlug);
+
         $(this).closest('.col-12').remove();
+
+        $('#timesContainer[data-slug="' + citySlug + '"]').remove();
+
         $('#citiesSelected .col-12').each((index, ele) => {
             $(ele).data('order', index + 1).attr('data-order', index + 1);
         });
+
         $('#meetingOnContent div').each((index, div) => {
-            if ($(div).data('slug') == $(this).data('city'))
-                div.remove()
+            if ($(div).data('slug') == citySlug) {
+                $(div).remove();
+            }
         });
+
         $('#meetingMailContentRows .row').each((index, div) => {
-            if ($(div).data('slug') == $(this).data('city'))
-                div.remove()
+            if ($(div).data('slug') == citySlug) {
+                $(div).remove();
+            }
         });
+
+        // إذا لم يكن هناك أي عناصر في #citiesSelected، إزالة 'timeZero' من localStorage
         if ($('#citiesSelected .col-12').length == 0) {
-            localStorage.removeItem('timeZero')
+            localStorage.removeItem('timeZero');
         }
     });
-    $('#color_mode').on('change', function () {
+
+    $('#color_mode').on('change', function() {
         if ($('#color_mode').prop('checked')) {
             $('#make12').removeClass('d-none');
-            let elements = $('.timeHours button').filter(function () {
+            let elements = $('.timeHours button').filter(function() {
                 return $(this).data('time') > 12;
             });
             elements.each((index, ele) => {
@@ -423,7 +636,7 @@
             });
         } else {
             $('#make24').removeClass('d-none');
-            let elements = $('.timeHours button').filter(function () {
+            let elements = $('.timeHours button').filter(function() {
                 return $(this).data('time') > 12;
             });
             elements.each((index, ele) => {
@@ -439,22 +652,38 @@
             data: {
                 city_slug: city,
             },
-            success: function (response) {
+            success: function(response) {
                 $('#addCitySerach').val('').trigger('change')
                 addRow(response)
             },
-            error: function (xhr, status, error) {
+            error: function(xhr, status, error) {
                 console.log(error);
             }
         });
     }
 
     function addRow(data) {
+        function calculateNewOrder() {
+            let lastOrder = 0;
+            $('#citiesSelected .col-12').each(function() {
+                let order = $(this).data('order');
+                if (order > lastOrder) {
+                    lastOrder = order;
+                }
+            });
+            return lastOrder + 1;
+        }
+
         let perant = $('#citiesSelected #citiesSelectedRow');
-        let order = $('#citiesSelected #citiesSelectedRow .col-12').length + 1;
+        let order = calculateNewOrder();
         let fullHours = $('#color_mode').prop('checked');
+
+        $('#citiesSelected .col-12').each((index, ele) => {
+            $(ele).data('order', index).attr('data-order', index);
+        });
+
         let newRow = `
-            <div class="col-12 mb-3 mb-md-0" data-order="${order}" data-gmt="${Math.round(data.gmt)}" data-slug="${data.city_slug}" data-now="${data.hours}" style="order: ${order}">
+            <div class="justDesktop col-12 mb-3 mb-md-0" data-order="${order}" data-gmt="${Math.round(data.gmt)}" data-slug="${data.city_slug}" data-now="${data.hours}" style="order: ${order}">
                 <div class="item mb-3">
                     <div class="row">
                         <div class="col-3 main-custom-div2">
@@ -592,13 +821,166 @@
                 </div>
             </div>
         `
+
+        let newRowMobile = `
+<div class="justMobile col-12 mb-3 mb-md-0" data-order="${order}" data-gmt="${Math.round(data.gmt)}" data-slug="${data.city_slug}" data-now="${data.hours}" style="order: ${order}">
+    <div class="item mb-3">
+        <div class="row">
+            <div class="col-3 main-custom-div2">
+                <div class="d-flex orderedsContanier">
+                    <div class="orderContainer d-flex flex-column justify-content-center p-2 pb-0" style="width: 10%">
+                        <button class="btn p-0 toUp">
+                            <i class="fa-solid fa-chevron-up"></i>
+                        </button>
+                        <button class="btn p-0 toBottom">
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </button>
+                        <button class="btn removeItem d-md-none py-1 mt-3 pt-0" data-city="${data.city_slug}">
+                            <i class="fa-solid fa-x" style="color:#fff;"></i>
+                        </button>
+                    </div>
+                    <div class="card p-2" style="width: 90%; justify-content: center;">
+                        <div class="d-flex justify-content-between">
+                            <div class="d-flex w-100">
+                                <div class="img me-2 pt-1">
+                                    <img loading="lazy" src="${data.flag}" alt="${data.city_name}" width="20">
+                                </div>
+                                <div class="content w-100">
+                                    <div class="d-flex justify-content-between">
+                                        <p class="cityText p-0 m-0">
+                                            ${data.city_name}
+                                        </p>
+                                        <p class="timeText p-0 m-0">
+                                            ${data.time}
+                                        </p>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <p class="countryText p-0 m-0">
+                                            ${data.country_name}
+                                        </p>
+                                        <p class="countryText p-0 m-0">
+                                            ${data.day}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+        `
+
+        let timesMobile = `
+                   <div id="timesContainer" class="justMobile col-12 mb-4 mb-md-0" data-order="${order}" data-gmt="${Math.round(data.gmt)}" data-slug="${data.city_slug}" data-now="${data.hours}" style="order: ${order}" >
+                <div class="flagMobile">
+                    <img loading="lazy" src="${data.flag}" alt="${data.city_name}" width="20">
+                    <p>${data.city_name}</p>
+                </div>
+                   <p class="text-danger p-0 m-0 position-absolute bottom-100 alertDay d-none" style="font-size:11px;font-weight: 500;"></p>
+                <div class="d-flex h-100 flex-column flex-md-row">
+                    <div class="p-0 mobile-time-only d-block d-md-none align-items-center justify-content-center align-self-center" style="margin-top: 10px;padding-right: 10px !important;">
+                        <p class="mb-0">12:00PM</p>
+                    </div>
+                    <div class="d-flex timeHours">
+                        <button class="btn btn-dark" data-time="1">
+                            1
+                        </button>
+                        <button class="btn btn-dark" data-time="2">
+                            2
+                        </button>
+                        <button class="btn btn-dark" data-time="3">
+                            3
+                        </button>
+                        <button class="btn btn-dark" data-time="4">
+                            4
+                        </button>
+                        <button class="btn btn-dark" data-time="5">
+                            5
+                        </button>
+                        <button class="btn btn-dark" data-time="6">
+                            6
+                        </button>
+                        <button class="btn btn-secondary" data-time="7">
+                            7
+                        </button>
+                        <button class="btn btn-secondary" data-time="8">
+                            8
+                        </button>
+                        <button class="btn btn-light" data-time="9">
+                            9
+                        </button>
+                        <button class="btn btn-light" data-time="10">
+                            10
+                        </button>
+                        <button class="btn btn-light" data-time="11">
+                            11
+                        </button>
+                        <button class="btn btn-light" data-time="12">
+                            12
+                        </button>
+                        <button class="btn btn-light" data-time="13">
+                            ${fullHours ? 13 : 1}
+                        </button>
+                        <button class="btn btn-light" data-time="14">
+                            ${fullHours ? 14 : 2}
+                        </button>
+                        <button class="btn btn-light" data-time="15">
+                            ${fullHours ? 15 : 3}
+                        </button>
+                        <button class="btn btn-light" data-time="16">
+                            ${fullHours ? 16 : 4}
+                        </button>
+                        <button class="btn btn-secondary" data-time="17">
+                            ${fullHours ? 17 : 5}
+                        </button>
+                        <button class="btn btn-secondary" data-time="18">
+                            ${fullHours ? 18 : 6}
+                        </button>
+                        <button class="btn btn-dark" data-time="19">
+                            ${fullHours ? 19 : 7}
+                        </button>
+                        <button class="btn btn-dark" data-time="20">
+                            ${fullHours ? 20 : 8}
+                        </button>
+                        <button class="btn btn-dark" data-time="21">
+                            ${fullHours ? 21 : 9}
+                        </button>
+                        <button class="btn btn-dark" data-time="22">
+                            ${fullHours ? 22 : 10}
+                        </button>
+                        <button class="btn btn-dark" data-time="23">
+                            ${fullHours ? 23 : 11}
+                        </button>
+                        <button class="btn btn-dark" data-time="24">
+                            ${fullHours ? 24 : 12}
+                        </button>
+                    </div>
+                    <div class="p-1 d-none d-md-flex align-items-center justify-content-center align-self-center removeBtnDiv">
+                        <button class="btn removeItem" data-city="${data.city_slug}">
+                            <i class="fa-solid fa-x"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+        `;
+
         $(perant).append(newRow);
+        $(perant).append(newRowMobile);
+        $('#citiesSelected').append(timesMobile);
         addNewRowInMeetingBox(data.city_name, data.country_name, data.city_slug)
         addNewRowInMeetingMail(data.city_name, data.country_name, data.city_slug)
         renderTimeSelect()
     }
 
-    $(document).ready(function () {
+    $(document).ready(function() {
         let citiesArray = localStorage.getItem('cities');
         if (citiesArray && JSON.parse(localStorage.getItem('cities')).length > 0) {
             citiesArray = JSON.parse(localStorage.getItem('cities'));
@@ -609,7 +991,7 @@
             $.ajax({
                 url: '{{ route('getUserLocationPlanner') }}',
                 type: 'get',
-                success: function (response) {
+                success: function(response) {
                     if (response.success) {
                         let city = response.data
                         $.ajax({
@@ -618,24 +1000,24 @@
                             data: {
                                 city_slug: city,
                             },
-                            success: function (response) {
+                            success: function(response) {
                                 $('#addCitySerach').val('').trigger('change')
                                 addCityToLocalstorage(city)
                                 addRow(response)
                             },
-                            error: function (xhr, status, error) {
+                            error: function(xhr, status, error) {
                                 console.log(error);
                             }
                         });
                     }
                 },
-                error: function (xhr, status, error) {
+                error: function(xhr, status, error) {
                     console.log(error);
                 }
             });
         }
     })
-    $('#citiesSelected').on('click', '.timeHours button', function (e) {
+    $('#citiesSelected').on('click', '.timeHours button', function(e) {
         $('#citiesSelected #citiesSelectedRow .col-12 .timeHours button').each((index, ele) => {
             $(ele).removeClass('active');
         });
@@ -670,6 +1052,72 @@
         let date = new Date($('#AddCityButtonDate').val());
         $('#daySelected').html(daysOfWeekFull[date.getDay()]);
         $('#dateSelected').html(formatDate(date));
+
+        $('#citiesSelected .col-12').each((index, ele) => {
+            let date = new Date($('#AddCityButtonDate').val());
+            var alert;
+            const toggleAlertDay = (show) => {
+                $(ele).find('.alertDay').each((_, ale) => {
+                    alert = $(ale)
+                    $(ale).toggleClass('d-none', !show);
+                });
+            };
+            toggleAlertDay(false);
+            let hisGmt = parseInt($(ele).data('gmt'));
+            let hisTime = parseInt(localStorage.getItem('timeZero')) + hisGmt;
+            if (hisTime <= 0) {
+                date.setDate(date.getDate() - 1);
+                hisTime += 24;
+                toggleAlertDay(true);
+                alert.html(daysOfWeek[date.getDay()]);
+            }
+            if (hisTime > 24) {
+                date.setDate(date.getDate() + 1);
+                hisTime -= 24;
+                toggleAlertDay(true);
+                alert.html(daysOfWeek[date.getDay()]);
+            }
+            $('#meetingOnContent div').each((i, el) => {
+                if ($(el).data('slug') === $(ele).data('slug')) {
+                    $(el).find('.time').html(date.toDateString());
+                    if (hisTime) {
+                        $(el).find('.time2').html(`${hisTime}:00`);
+                        if (hisTime <= 12)
+                            $(el).find('.time3').html(`${hisTime}:00 AM`);
+                        else
+                            $(el).find('.time3').html(`${hisTime - 12}:00 PM`);
+                    } else {
+                        $(el).find('.time2').html(`00:00`);
+                        $(el).find('.time3').html(`00:00`);
+                    }
+                }
+            });
+            $('#meetingMailContentRows .row').each((i, el) => {
+                if ($(el).data('slug') === $(ele).data('slug')) {
+                    $(el).find('.time').html(date.toDateString());
+                    if (hisTime) {
+                        $(el).find('.time2').html(`${hisTime}:00`);
+                        if (hisTime <= 12)
+                            $(el).find('.time3').html(`${hisTime}:00 AM`);
+                        else
+                            $(el).find('.time3').html(`${hisTime - 12}:00 PM`);
+                    } else {
+                        $(el).find('.time2').html(`00:00`);
+                        $(el).find('.time3').html(`00:00`);
+                    }
+                }
+            });
+            $(ele).find('.timeHours button').each((index, button) => {
+                if ($(button).data('time') == hisTime) {
+                    console.log($(button).parent().parent().find('.mobile-time-only').find('p').html(
+                        `${hisTime}:00`))
+                    $(button).addClass('active');
+                } else {
+                    $(button).removeClass('active');
+                }
+                $(button).attr('disabled', false);
+            });
+        });
 
         $('#citiesSelected #citiesSelectedRow .col-12').each((index, ele) => {
             let date = new Date($('#AddCityButtonDate').val());
@@ -726,9 +1174,9 @@
                 }
             });
             $(ele).find('.timeHours button').each((index, button) => {
-                if ($(button).data('time') == hisTime) 
-                {
-                    console.log($(button).parent().parent().find('.mobile-time-only').find('p').html(`${hisTime}:00`))
+                if ($(button).data('time') == hisTime) {
+                    console.log($(button).parent().parent().find('.mobile-time-only').find('p').html(
+                        `${hisTime}:00`))
                     $(button).addClass('active');
                 } else {
                     $(button).removeClass('active');
