@@ -478,11 +478,9 @@
 <script>
     const daysOfWeek = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
     const daysOfWeekFull = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    const monthsOfYear = ["January", "February", "March", "April", "May", "June", "July", "August", "September",
-        "October", "November", "December"
-    ];
+    const monthsOfYear = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     var meetingSearchInput;
-    $(document).ready(function() {
+    $(document).ready(function () {
         var input2 = document.querySelector('input[name=meetingCitySearch]');
         meetingSearchInput = new Tagify(input2, {
             enforceWhitelist: false,
@@ -504,6 +502,14 @@
                         }
                     });
                 });
+                $('#citiesSelected .justMobile').each((index, ele) => {
+                    $(ele).find('.removeItem').each((index, button) => {
+                        if ($(button).data('city') === slug) {
+                            alert('You Chose This City Before!');
+                            isset = true;
+                        }
+                    });
+                });
                 if (!isset) {
                     getCityData(slug);
                     addCityToLocalstorage(slug);
@@ -512,19 +518,19 @@
         }
 
         // تفعيل الزر للموبايل والتابلت
-        $('#addCityButton').on('click', function() {
+        $('#addCityButton').on('click', function () {
             handleCityAddition();
         });
 
         // التغيير التلقائي يعمل على الديسكتوب فقط
-        meetingSearchInput.on('change', function() {
+        meetingSearchInput.on('change', function () {
             if (window.innerWidth >= 768) {
                 handleCityAddition();
             }
         });
 
         // طلب البيانات أثناء الكتابة
-        meetingSearchInput.on('input', function(e) {
+        meetingSearchInput.on('input', function (e) {
             $.ajax({
                 url: '{{ route('fetch.city') }}',
                 type: 'post',
@@ -532,11 +538,11 @@
                     search: e.detail.value,
                     _token: '{{ csrf_token() }}',
                 },
-                success: function(response) {
+                success: function (response) {
                     meetingSearchInput.settings.whitelist = response;
                     meetingSearchInput.dropdown.show.call();
                 },
-                error: function(xhr, status, error) {
+                error: function (xhr, status, error) {
                     console.error('AJAX Error:', status, error);
                 },
             });
@@ -545,20 +551,20 @@
     var date = localStorage.getItem('date') ? new Date(localStorage.getItem('date')) : new Date();
     var formattedDate = date.toISOString().split('T')[0]; // Formats as YYYY-MM-DD
     $('#AddCityButtonDate').val(formattedDate);
-    $('#AddCityButtonDate').on('change', function() {
+    $('#AddCityButtonDate').on('change', function () {
         localStorage.setItem('date', $(this).val())
         renderTimeSelect()
     });
-    $('#AddCityButtonDate').on('click', function() {
+    $('#AddCityButtonDate').on('click', function () {
         this.showPicker();
     });
-    $(document).on('click', '.toUp', function() {
+    $(document).on('click', '.toUp', function () {
         let button = $(this);
         button.prop('disabled', true);
         let ownDiv = button.closest('.col-12');
         let ownOrder = ownDiv.data('order');
 
-        let previousDiv = $('#citiesSelected .col-12').filter(function() {
+        let previousDiv = $('#citiesSelected .col-12').filter(function () {
             return $(this).data('order') == ownOrder - 1;
         }).first();
 
@@ -573,13 +579,13 @@
         button.prop('disabled', false);
     });
 
-    $(document).on('click', '.toBottom', function() {
+    $(document).on('click', '.toBottom', function () {
         let button = $(this);
         button.prop('disabled', true);
         let ownDiv = button.closest('.col-12');
         let ownOrder = ownDiv.data('order');
 
-        let nextDiv = $('#citiesSelected .col-12').filter(function() {
+        let nextDiv = $('#citiesSelected .col-12').filter(function () {
             return $(this).data('order') == ownOrder + 1;
         }).first();
 
@@ -594,7 +600,7 @@
         button.prop('disabled', false);
     });
 
-    $('#citiesSelected').on('click', '.removeItem', function(e) {
+    $('#citiesSelected').on('click', '.removeItem', function (e) {
         var citySlug = $(this).data('city');
 
         removeCityFromLocalstorage(citySlug);
@@ -625,10 +631,10 @@
         }
     });
 
-    $('#color_mode').on('change', function() {
+    $('#color_mode').on('change', function () {
         if ($('#color_mode').prop('checked')) {
             $('#make12').removeClass('d-none');
-            let elements = $('.timeHours button').filter(function() {
+            let elements = $('.timeHours button').filter(function () {
                 return $(this).data('time') > 12;
             });
             elements.each((index, ele) => {
@@ -636,13 +642,37 @@
             });
         } else {
             $('#make24').removeClass('d-none');
-            let elements = $('.timeHours button').filter(function() {
+            let elements = $('.timeHours button').filter(function () {
                 return $(this).data('time') > 12;
             });
             elements.each((index, ele) => {
                 $(ele).html($(ele).data('time') - 12);
             });
         }
+
+        let is24HourFormat = $(this).prop('checked'); // إذا كان true، التنسيق 24 ساعة
+        $('#citiesSelected .justMobile').each((index, ele) => {
+            let hisTime = parseInt(localStorage.getItem('timeZero')) + parseInt($(ele).data('gmt'));
+
+            // تأكد من معالجة الحالتين عند تجاوز منتصف الليل
+            if (hisTime <= 0) {
+                hisTime += 24;
+            } else if (hisTime > 24) {
+                hisTime -= 24;
+            }
+
+            // صياغة الوقت
+            let formattedTime = `${hisTime}:00`;
+            if (!is24HourFormat) {
+                // تحويل الوقت إلى 12 ساعة مع AM/PM
+                let hour = hisTime % 12 || 12; // إذا كان صفر، اجعله 12
+                let ampm = hisTime >= 12 ? 'PM' : 'AM';
+                formattedTime = `${hour}:00 ${ampm}`;
+            }
+
+            // تحديث عنصر mobile-time-only
+            $(ele).find('.mobile-time-only p').html(`${formattedTime}`);
+        });
     });
 
     function getCityData(city) {
@@ -652,11 +682,11 @@
             data: {
                 city_slug: city,
             },
-            success: function(response) {
+            success: function (response) {
                 $('#addCitySerach').val('').trigger('change')
                 addRow(response)
             },
-            error: function(xhr, status, error) {
+            error: function (xhr, status, error) {
                 console.log(error);
             }
         });
@@ -665,7 +695,7 @@
     function addRow(data) {
         function calculateNewOrder() {
             let lastOrder = 0;
-            $('#citiesSelected .col-12').each(function() {
+            $('#citiesSelected .justMobile').each(function () {
                 let order = $(this).data('order');
                 if (order > lastOrder) {
                     lastOrder = order;
@@ -674,11 +704,12 @@
             return lastOrder + 1;
         }
 
+
         let perant = $('#citiesSelected #citiesSelectedRow');
         let order = calculateNewOrder();
         let fullHours = $('#color_mode').prop('checked');
 
-        $('#citiesSelected .col-12').each((index, ele) => {
+        $('#citiesSelected .justMobile').each((index, ele) => {
             $(ele).data('order', index).attr('data-order', index);
         });
 
@@ -871,16 +902,15 @@
         </div>
     </div>
 </div>
-
         `
 
         let timesMobile = `
-                   <div id="timesContainer" class="justMobile col-12 mb-4 mb-md-0" data-order="${order}" data-gmt="${Math.round(data.gmt)}" data-slug="${data.city_slug}" data-now="${data.hours}" style="order: ${order}" >
-                <div class="flagMobile">
-                    <img loading="lazy" src="${data.flag}" alt="${data.city_name}" width="20">
+            <div id="timesContainer" class="justMobile col-12 mb-4 mb-md-0 position-relative" data-order="${order}" data-gmt="${Math.round(data.gmt)}" data-slug="${data.city_slug}" data-now="${data.hours}" style="order: ${order}" >
+            <div class="flagMobile">
+            <img loading="lazy" src="${data.flag}" alt="${data.city_name}" width="20">
                     <p>${data.city_name}</p>
-                </div>
-                   <p class="text-danger p-0 m-0 position-absolute bottom-100 alertDay d-none" style="font-size:11px;font-weight: 500;"></p>
+                    </div>
+                    <p class="text-danger p-0 m-0 position-absolute alertDay d-none" style="bottom: 35%; font-size:11px;font-weight: 500;"></p>
                 <div class="d-flex h-100 flex-column flex-md-row">
                     <div class="p-0 mobile-time-only d-block d-md-none align-items-center justify-content-center align-self-center" style="margin-top: 10px;padding-right: 10px !important;">
                         <p class="mb-0">12:00PM</p>
@@ -980,7 +1010,7 @@
         renderTimeSelect()
     }
 
-    $(document).ready(function() {
+    $(document).ready(function () {
         let citiesArray = localStorage.getItem('cities');
         if (citiesArray && JSON.parse(localStorage.getItem('cities')).length > 0) {
             citiesArray = JSON.parse(localStorage.getItem('cities'));
@@ -991,7 +1021,7 @@
             $.ajax({
                 url: '{{ route('getUserLocationPlanner') }}',
                 type: 'get',
-                success: function(response) {
+                success: function (response) {
                     if (response.success) {
                         let city = response.data
                         $.ajax({
@@ -1000,25 +1030,28 @@
                             data: {
                                 city_slug: city,
                             },
-                            success: function(response) {
+                            success: function (response) {
                                 $('#addCitySerach').val('').trigger('change')
                                 addCityToLocalstorage(city)
                                 addRow(response)
                             },
-                            error: function(xhr, status, error) {
+                            error: function (xhr, status, error) {
                                 console.log(error);
                             }
                         });
                     }
                 },
-                error: function(xhr, status, error) {
+                error: function (xhr, status, error) {
                     console.log(error);
                 }
             });
         }
     })
-    $('#citiesSelected').on('click', '.timeHours button', function(e) {
+    $('#citiesSelected').on('click', '.timeHours button', function (e) {
         $('#citiesSelected #citiesSelectedRow .col-12 .timeHours button').each((index, ele) => {
+            $(ele).removeClass('active');
+        });
+        $('#citiesSelected .justMobile .timeHours button').each((index, ele) => {
             $(ele).removeClass('active');
         });
         let ownGmt = $(this).closest('.col-12').data('gmt');
@@ -1053,15 +1086,19 @@
         $('#daySelected').html(daysOfWeekFull[date.getDay()]);
         $('#dateSelected').html(formatDate(date));
 
-        $('#citiesSelected .col-12').each((index, ele) => {
+        $('#citiesSelected .justMobile').each((index, ele) => {
             let date = new Date($('#AddCityButtonDate').val());
-            var alert;
+            let alert;
             const toggleAlertDay = (show) => {
                 $(ele).find('.alertDay').each((_, ale) => {
-                    alert = $(ale)
+                    alert = $(ale);
                     $(ale).toggleClass('d-none', !show);
                 });
             };
+
+            if (alert && alert.length) {
+                alert.html(daysOfWeek[date.getDay()]);
+            }
             toggleAlertDay(false);
             let hisGmt = parseInt($(ele).data('gmt'));
             let hisTime = parseInt(localStorage.getItem('timeZero')) + hisGmt;
@@ -1075,7 +1112,9 @@
                 date.setDate(date.getDate() + 1);
                 hisTime -= 24;
                 toggleAlertDay(true);
-                alert.html(daysOfWeek[date.getDay()]);
+                if (alert) {
+                    alert.html(daysOfWeek[date.getDay()]);
+                }
             }
             $('#meetingOnContent div').each((i, el) => {
                 if ($(el).data('slug') === $(ele).data('slug')) {
@@ -1108,9 +1147,29 @@
                 }
             });
             $(ele).find('.timeHours button').each((index, button) => {
+                let is24HourFormat = $('#color_mode').prop('checked'); // إذا كان true سيكون 24 ساعة
+                let formattedTime = `${hisTime}:00`;
+
+                // إذا كان التنسيق 12 ساعة، قم بتحويل الوقت إلى تنسيق 12 ساعة
+                if (!is24HourFormat) {
+                    // تحويل الوقت إلى 12 ساعة مع تحديد AM/PM
+                    let hour = parseInt(hisTime);
+                    let ampm = hour >= 12 ? 'PM' : 'AM';
+                    hour = hour % 12;
+                    hour = hour ? hour : 12; // 0 يصبح 12
+                    formattedTime = `${hour}:00 ${ampm}`;
+                }
+
                 if ($(button).data('time') == hisTime) {
-                    console.log($(button).parent().parent().find('.mobile-time-only').find('p').html(
-                        `${hisTime}:00`))
+                    $(button).parent().parent().find('.mobile-time-only').find('p').html(`${formattedTime}`);
+                    $(button).addClass('active');
+                } else {
+                    $(button).removeClass('active');
+                }
+                $(button).attr('disabled', false);
+            });
+            $(ele).find('.timeHours button').each((index, button) => {
+                if ($(button).data('time') == hisTime) {
                     $(button).addClass('active');
                 } else {
                     $(button).removeClass('active');
@@ -1118,16 +1177,21 @@
                 $(button).attr('disabled', false);
             });
         });
+
 
         $('#citiesSelected #citiesSelectedRow .col-12').each((index, ele) => {
             let date = new Date($('#AddCityButtonDate').val());
-            var alert;
+            let alert;
             const toggleAlertDay = (show) => {
                 $(ele).find('.alertDay').each((_, ale) => {
-                    alert = $(ale)
+                    alert = $(ale);
                     $(ale).toggleClass('d-none', !show);
                 });
             };
+
+            if (alert && alert.length) {
+                alert.html(daysOfWeek[date.getDay()]);
+            }
             toggleAlertDay(false);
             let hisGmt = parseInt($(ele).data('gmt'));
             let hisTime = parseInt(localStorage.getItem('timeZero')) + hisGmt;
@@ -1141,7 +1205,9 @@
                 date.setDate(date.getDate() + 1);
                 hisTime -= 24;
                 toggleAlertDay(true);
-                alert.html(daysOfWeek[date.getDay()]);
+                if (alert) {
+                    alert.html(daysOfWeek[date.getDay()]);
+                }
             }
             $('#meetingOnContent div').each((i, el) => {
                 if ($(el).data('slug') === $(ele).data('slug')) {
@@ -1175,8 +1241,6 @@
             });
             $(ele).find('.timeHours button').each((index, button) => {
                 if ($(button).data('time') == hisTime) {
-                    console.log($(button).parent().parent().find('.mobile-time-only').find('p').html(
-                        `${hisTime}:00`))
                     $(button).addClass('active');
                 } else {
                     $(button).removeClass('active');
@@ -1184,7 +1248,6 @@
                 $(button).attr('disabled', false);
             });
         });
-
         let today = new Date();
         let newToday = today.setHours(0, 0, 0, 0);
         let newDate = date.setHours(0, 0, 0, 0);
@@ -1192,6 +1255,15 @@
             dayNotAvailable()
         } else if (newDate === newToday) {
             $('#citiesSelected #citiesSelectedRow .col-12').each((index, ele) => {
+                let time = $(ele).data('now');
+                $(ele).find('.timeHours button').each((index, button) => {
+                    if ($(button).data('time') <= time) {
+                        $(button).attr('disabled', true);
+                        $(button).removeClass('active');
+                    }
+                });
+            });
+            $('#citiesSelected .justMobile').each((index, ele) => {
                 let time = $(ele).data('now');
                 $(ele).find('.timeHours button').each((index, button) => {
                     if ($(button).data('time') <= time) {
@@ -1222,6 +1294,12 @@
 
     function dayNotAvailable() {
         $('#citiesSelected #citiesSelectedRow .col-12').each((index, ele) => {
+            $(ele).find('.timeHours button').each((index, button) => {
+                $(button).removeClass('active');
+                $(button).attr('disabled', true);
+            });
+        });
+        $('#citiesSelected .justMobile').each((index, ele) => {
             $(ele).find('.timeHours button').each((index, button) => {
                 $(button).removeClass('active');
                 $(button).attr('disabled', true);
