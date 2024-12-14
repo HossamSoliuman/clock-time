@@ -157,13 +157,13 @@ class HomeController extends Controller
     public function city($slug)
     {
         try {
-            $city = City::whereSlug($slug)->firstOrFail();
+          $city = City::whereSlug($slug)->firstOrFail();
             $country = country::where('name', $city->country)->firstOrFail();
             $similarCities = City::where('country', $city->country)
                 ->orderByDesc('score')
                 ->take(9)
                 ->get();
-            $IanaTimezone = IanaTimezone::where('iana_timezone', $city->timezone)->first();
+            $IanaTimezone = IanaTimezone::where('iana_timezone', Str::replace(' ', '', $city->timezone))->first();
             foreach ($similarCities as $key => $similarCity) {
                 try {
                     $timezone = $city->timezone;
