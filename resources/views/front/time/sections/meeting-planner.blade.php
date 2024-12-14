@@ -484,14 +484,26 @@
 <script>
     const daysOfWeek = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
     const daysOfWeekFull = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    const monthsOfYear = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    const monthsOfYear = ["January", "February", "March", "April", "May", "June", "July", "August", "September",
+        "October", "November", "December"
+    ];
     var meetingSearchInput;
-    $(document).ready(function () {
+    $(document).ready(function() {
         localStorage.removeItem('date');
+
+
         var today = new Date();
-        var storedDate = localStorage.getItem('date');
-        var date = storedDate ? new Date(storedDate) : today;
-        var formattedDate = date.toISOString().split('T')[0];
+        console.log(today);
+
+        var year = today.getFullYear();
+        var month = String(today.getMonth() + 1).padStart(2, '0');
+        var day = String(today.getDate()).padStart(2, '0');
+
+        var formattedDate = `${year}-${month}-${day}`;
+        console.log(formattedDate);
+
+        $('#AddCityButtonDate').val(formattedDate);
+
         $('#AddCityButtonDate').val(formattedDate);
 
 
@@ -532,19 +544,19 @@
         }
 
         // تفعيل الزر للموبايل والتابلت
-        $('#addCityButton').on('click', function () {
+        $('#addCityButton').on('click', function() {
             handleCityAddition();
         });
 
         // التغيير التلقائي يعمل على الديسكتوب فقط
-        meetingSearchInput.on('change', function () {
+        meetingSearchInput.on('change', function() {
             if (window.innerWidth >= 768) {
                 handleCityAddition();
             }
         });
 
         // طلب البيانات أثناء الكتابة
-        meetingSearchInput.on('input', function (e) {
+        meetingSearchInput.on('input', function(e) {
             $.ajax({
                 url: '{{ route('fetch.city') }}',
                 type: 'post',
@@ -552,11 +564,11 @@
                     search: e.detail.value,
                     _token: '{{ csrf_token() }}',
                 },
-                success: function (response) {
+                success: function(response) {
                     meetingSearchInput.settings.whitelist = response;
                     meetingSearchInput.dropdown.show.call();
                 },
-                error: function (xhr, status, error) {
+                error: function(xhr, status, error) {
                     console.error('AJAX Error:', status, error);
                 },
             });
@@ -565,20 +577,20 @@
     var date = localStorage.getItem('date') ? new Date(localStorage.getItem('date')) : new Date();
     var formattedDate = date.toISOString().split('T')[0]; // Formats as YYYY-MM-DD
     $('#AddCityButtonDate').val(formattedDate);
-    $('#AddCityButtonDate').on('change', function () {
+    $('#AddCityButtonDate').on('change', function() {
         localStorage.setItem('date', $(this).val())
         renderTimeSelect()
     });
-    $('#AddCityButtonDate').on('click', function () {
+    $('#AddCityButtonDate').on('click', function() {
         this.showPicker();
     });
-    $(document).on('click', '.toUp', function () {
+    $(document).on('click', '.toUp', function() {
         let button = $(this);
         button.prop('disabled', true);
         let ownDiv = button.closest('.col-12');
         let ownOrder = ownDiv.data('order');
 
-        let previousDiv = $('#citiesSelected .col-12').filter(function () {
+        let previousDiv = $('#citiesSelected .col-12').filter(function() {
             return $(this).data('order') == ownOrder - 1;
         }).first();
 
@@ -593,13 +605,13 @@
         button.prop('disabled', false);
     });
 
-    $(document).on('click', '.toBottom', function () {
+    $(document).on('click', '.toBottom', function() {
         let button = $(this);
         button.prop('disabled', true);
         let ownDiv = button.closest('.col-12');
         let ownOrder = ownDiv.data('order');
 
-        let nextDiv = $('#citiesSelected .col-12').filter(function () {
+        let nextDiv = $('#citiesSelected .col-12').filter(function() {
             return $(this).data('order') == ownOrder + 1;
         }).first();
 
@@ -614,7 +626,7 @@
         button.prop('disabled', false);
     });
 
-    $('#citiesSelected').on('click', '.removeItem', function (e) {
+    $('#citiesSelected').on('click', '.removeItem', function(e) {
         var citySlug = $(this).data('city');
 
         removeCityFromLocalstorage(citySlug);
@@ -645,10 +657,10 @@
         }
     });
 
-    $('#color_mode').on('change', function () {
+    $('#color_mode').on('change', function() {
         if ($('#color_mode').prop('checked')) {
             $('#make12').removeClass('d-none');
-            let elements = $('.timeHours button').filter(function () {
+            let elements = $('.timeHours button').filter(function() {
                 return $(this).data('time') > 12;
             });
             elements.each((index, ele) => {
@@ -656,7 +668,7 @@
             });
         } else {
             $('#make24').removeClass('d-none');
-            let elements = $('.timeHours button').filter(function () {
+            let elements = $('.timeHours button').filter(function() {
                 return $(this).data('time') > 12;
             });
             elements.each((index, ele) => {
@@ -696,11 +708,11 @@
             data: {
                 city_slug: city,
             },
-            success: function (response) {
+            success: function(response) {
                 $('#addCitySerach').val('').trigger('change')
                 addRow(response)
             },
-            error: function (xhr, status, error) {
+            error: function(xhr, status, error) {
                 console.log(error);
             }
         });
@@ -709,7 +721,7 @@
     function addRow(data) {
         function calculateNewOrder() {
             let lastOrder = 0;
-            $('#citiesSelected .justMobile').each(function () {
+            $('#citiesSelected .justMobile').each(function() {
                 let order = $(this).data('order');
                 if (order > lastOrder) {
                     lastOrder = order;
@@ -1024,7 +1036,7 @@
         renderTimeSelect()
     }
 
-    $(document).ready(function () {
+    $(document).ready(function() {
         localStorage.setItem('timeZero', timeZero);
 
         let citiesArray = localStorage.getItem('cities');
@@ -1037,7 +1049,7 @@
             $.ajax({
                 url: '{{ route('getUserLocationPlanner') }}',
                 type: 'get',
-                success: function (response) {
+                success: function(response) {
                     if (response.success) {
                         let city = response.data
                         $.ajax({
@@ -1046,24 +1058,24 @@
                             data: {
                                 city_slug: city,
                             },
-                            success: function (response) {
+                            success: function(response) {
                                 $('#addCitySerach').val('').trigger('change')
                                 addCityToLocalstorage(city)
                                 addRow(response)
                             },
-                            error: function (xhr, status, error) {
+                            error: function(xhr, status, error) {
                                 console.log(error);
                             }
                         });
                     }
                 },
-                error: function (xhr, status, error) {
+                error: function(xhr, status, error) {
                     console.log(error);
                 }
             });
         }
     })
-    $('#citiesSelected').on('click', '.timeHours button', function (e) {
+    $('#citiesSelected').on('click', '.timeHours button', function(e) {
         $('#citiesSelected #citiesSelectedRow .col-12 .timeHours button').each((index, ele) => {
             $(ele).removeClass('active');
         });
@@ -1177,7 +1189,8 @@
                 }
 
                 if ($(button).data('time') == hisTime) {
-                    $(button).parent().parent().find('.mobile-time-only').find('p').html(`${formattedTime}`);
+                    $(button).parent().parent().find('.mobile-time-only').find('p').html(
+                        `${formattedTime}`);
                     $(button).addClass('active');
                 } else {
                     $(button).removeClass('active');
