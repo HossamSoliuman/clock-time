@@ -26,6 +26,12 @@
     }
 
     @media only screen and (max-width: 767px) {
+        .col-3.main-custom-div2 {
+            padding-top: 10px;
+            padding-bottom: 10px;
+            box-shadow: 5px 10px 15px rgba(136, 136, 136, 0.5);
+        }
+
         #addCityButton {
             height: 41px;
             width: 200px;
@@ -70,8 +76,8 @@
         }
 
         #addCitySection {
-            margin-top: 16px;
-            margin-bottom: 46px;
+            margin-top: 20px;
+            margin-bottom: 50px;
         }
 
         .justDesktop {
@@ -125,7 +131,7 @@
         }
 
         .removeItem i::before {
-            font-size: 10px !important;
+            font-size: 12px !important;
         }
 
         .switcher label::before,
@@ -154,11 +160,11 @@
         }
 
         .cityText {
-            font-size: 18px !important;
+            font-size: 20px !important;
         }
 
         .countryText {
-            font-size: 12px !important;
+            font-size: 14px !important;
         }
 
         #meetingOnContent p {
@@ -481,6 +487,14 @@
     const monthsOfYear = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     var meetingSearchInput;
     $(document).ready(function () {
+        localStorage.removeItem('date');
+        var today = new Date();
+        var storedDate = localStorage.getItem('date');
+        var date = storedDate ? new Date(storedDate) : today;
+        var formattedDate = date.toISOString().split('T')[0];
+        $('#AddCityButtonDate').val(formattedDate);
+
+
         var input2 = document.querySelector('input[name=meetingCitySearch]');
         meetingSearchInput = new Tagify(input2, {
             enforceWhitelist: false,
@@ -867,7 +881,7 @@
                             <i class="fa-solid fa-chevron-down"></i>
                         </button>
                         <button class="btn removeItem d-md-none py-1 mt-3 pt-0" data-city="${data.city_slug}">
-                            <i class="fa-solid fa-x" style="color:#fff;"></i>
+                            <i class="fa-solid fa-trash" style="color:#fff;"></i>
                         </button>
                     </div>
                     <div class="card p-2" style="width: 90%; justify-content: center;">
@@ -1011,6 +1025,8 @@
     }
 
     $(document).ready(function () {
+        localStorage.setItem('timeZero', timeZero);
+
         let citiesArray = localStorage.getItem('cities');
         if (citiesArray && JSON.parse(localStorage.getItem('cities')).length > 0) {
             citiesArray = JSON.parse(localStorage.getItem('cities'));

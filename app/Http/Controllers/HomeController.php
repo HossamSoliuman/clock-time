@@ -157,7 +157,7 @@ class HomeController extends Controller
     public function city($slug)
     {
         try {
-          $city = City::whereSlug($slug)->firstOrFail();
+            $city = City::whereSlug($slug)->firstOrFail();
             $country = country::where('name', $city->country)->firstOrFail();
             $similarCities = City::where('country', $city->country)
                 ->orderByDesc('score')
