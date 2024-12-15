@@ -26,6 +26,18 @@
     }
 
     @media only screen and (max-width: 767px) {
+        .mobile-time-only {
+            opacity: 0;
+        }
+
+        #meetingMailContentRows .row {
+            flex-direction: column;
+        }
+
+        #meetingMailContentRows .row .col-3 {
+            width: 100%;
+        }
+
         .col-3.main-custom-div2 {
             padding-top: 10px;
             padding-bottom: 10px;
@@ -124,6 +136,19 @@
         .removeBtnDiv,
         .removeItem {
             width: 100% !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4px !important;
+            margin-top: 12px;
+            box-shadow: 2px 6px 15px rgba(136, 136, 136, 0.4);
+        }
+
+        .removeBtnDiv,
+        .removeItem i,
+        .toUp,
+        .toBottom {
+            color: red !important;
         }
 
         .removeBtnDiv {
@@ -485,8 +510,34 @@
     const daysOfWeek = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
     const daysOfWeekFull = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const monthsOfYear = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+    function setToCurrentHour() {
+        let timeZero = localStorage.getItem("timeZero")
+        let cities = localStorage.getItem("cities")
+        if (!timeZero && cities) {
+            cities = JSON.parse(cities);
+            const city = cities[0]
+            $.ajax({
+                url: '{{ route('get.city.planner') }}',
+                type: 'get',
+                data: {
+                    city_slug: city,
+                },
+                success: function (response) {
+                    $('#addCitySerach').val('').trigger('change')
+                    console.log(+response.hours - 1)
+                    localStorage.setItem("timeZero", +response.hours - 1)
+                    renderTimeSelect()
+                },
+                error: function (xhr, status, error) {
+                    console.log(error);
+                }
+            });
+        }
+    }
     var meetingSearchInput;
     $(document).ready(function () {
+        setToCurrentHour();
         localStorage.removeItem('date');
         var today = new Date();
         var storedDate = localStorage.getItem('date');
@@ -503,6 +554,7 @@
 
         // التعامل مع تغيير القيمة
         function handleCityAddition() {
+            setToCurrentHour();
             let slug = meetingSearchInput.value[0]?.slug;
             if (slug) {
                 let isset = false;
@@ -676,7 +728,7 @@
             }
 
             // صياغة الوقت
-            let formattedTime = `${hisTime}:00`;
+            let formattedTime = `${hisTime === 24 ? "00" : hisTime}:00`;
             if (!is24HourFormat) {
                 // تحويل الوقت إلى 12 ساعة مع AM/PM
                 let hour = hisTime % 12 || 12; // إذا كان صفر، اجعله 12
@@ -707,6 +759,7 @@
     }
 
     function addRow(data) {
+        setToCurrentHour();
         function calculateNewOrder() {
             let lastOrder = 0;
             $('#citiesSelected .justMobile').each(function () {
@@ -873,14 +926,14 @@
         <div class="row">
             <div class="col-3 main-custom-div2">
                 <div class="d-flex orderedsContanier">
-                    <div class="orderContainer d-flex flex-column justify-content-center p-2 pb-0" style="width: 10%">
+                    <div class="orderContainer d-flex flex-column justify-content-center p-2 pb-0" style="width: 10%; gap: 8px;">
                         <button class="btn p-0 toUp">
                             <i class="fa-solid fa-chevron-up"></i>
                         </button>
                         <button class="btn p-0 toBottom">
                             <i class="fa-solid fa-chevron-down"></i>
                         </button>
-                        <button class="btn removeItem d-md-none py-1 mt-3 pt-0" data-city="${data.city_slug}">
+                        <button class="btn removeItem" data-city="${data.city_slug}">
                             <i class="fa-solid fa-trash" style="color:#fff;"></i>
                         </button>
                     </div>
@@ -923,10 +976,10 @@
             <div class="flagMobile">
             <img loading="lazy" src="${data.flag}" alt="${data.city_name}" width="20">
                     <p>${data.city_name}</p>
+                    <p class="text-danger p-0 m-0 alertDay d-none" style="font-size:11px;font-weight: 500;"></p>
                     </div>
-                    <p class="text-danger p-0 m-0 position-absolute alertDay d-none" style="bottom: 35%; font-size:11px;font-weight: 500;"></p>
                 <div class="d-flex h-100 flex-column flex-md-row">
-                    <div class="p-0 mobile-time-only d-block d-md-none align-items-center justify-content-center align-self-center" style="margin-top: 10px;padding-right: 10px !important;">
+                    <div class="p-0 mobile-time-only d-block d-md-none align-items-center justify-content-center align-self-center" style="margin-top: 2px; padding-right: 10px !important;">
                         <p class="mb-0">12:00PM</p>
                     </div>
                     <div class="d-flex timeHours">
@@ -1161,16 +1214,14 @@
                 }
             });
             $(ele).find('.timeHours button').each((index, button) => {
-                let is24HourFormat = $('#color_mode').prop('checked'); // إذا كان true سيكون 24 ساعة
-                let formattedTime = `${hisTime}:00`;
+                let is24HourFormat = $('#color_mode').prop('checked');
+                let formattedTime = `${hisTime === 24 ? "00" : hisTime}:00`;
 
-                // إذا كان التنسيق 12 ساعة، قم بتحويل الوقت إلى تنسيق 12 ساعة
                 if (!is24HourFormat) {
-                    // تحويل الوقت إلى 12 ساعة مع تحديد AM/PM
                     let hour = parseInt(hisTime);
                     let ampm = hour >= 12 ? 'PM' : 'AM';
                     hour = hour % 12;
-                    hour = hour ? hour : 12; // 0 يصبح 12
+                    hour = hour ? hour : 12;
                     formattedTime = `${hour}:00 ${ampm}`;
                 }
 
@@ -1242,7 +1293,7 @@
                 if ($(el).data('slug') === $(ele).data('slug')) {
                     $(el).find('.time').html(date.toDateString());
                     if (hisTime) {
-                        $(el).find('.time2').html(`${hisTime}:00`);
+                        $(el).find('.time2').html(`${hisTime === 24 ? "00" : hisTime}:00`);
                         if (hisTime <= 12)
                             $(el).find('.time3').html(`${hisTime}:00 AM`);
                         else
