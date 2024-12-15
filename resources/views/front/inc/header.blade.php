@@ -1,9 +1,21 @@
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WG483ZXMQH"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-WG483ZXMQH');
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@yield('title')</title>
 
-    {{--    Meta--}}
+    {{--    Meta --}}
     <meta name="title" content="@yield('title')">
     <meta name="description" content="@yield('description')">
     <meta name="keywords" content="@yield('keywords')">
@@ -16,7 +28,7 @@
     <meta property="og:image:alt" content="@yield('ogImageAlt')">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="The Clock Time" />
-    {{--    End OG--}}
+    {{--    End OG --}}
     <meta name="msvalidate.01" content="@yield('msvalidate')" />
     <meta name="google-site-verification" content="@yield('google-site-verification')" />
 
@@ -42,16 +54,7 @@
     <link rel="stylesheet" href="{{ asset('tagify/tagify.css') }}">
     <!-- Google tag (gtag.js) -->
     <script src="{{ asset('cdn/js.js') }}"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
 
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-
-        gtag('config', 'G-WG483ZXMQH');
-    </script>
     <style>
         /* Set the size of the map */
         #map {
