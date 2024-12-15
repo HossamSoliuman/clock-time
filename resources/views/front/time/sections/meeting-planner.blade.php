@@ -527,7 +527,6 @@
                 },
                 success: function (response) {
                     $('#addCitySerach').val('').trigger('change')
-                    console.log(+response.hours + 1, response.gmt)
                     localStorage.setItem("timeZero", (+response.hours + 1 - response.gmt))
                     renderTimeSelect()
                 },
@@ -699,6 +698,10 @@
 
         // إذا لم يكن هناك أي عناصر في #citiesSelected، إزالة 'timeZero' من localStorage
         if ($('#citiesSelected .col-12').length == 0) {
+            localStorage.removeItem('timeZero');
+        }
+        let cities = localStorage.getItem("cities")
+        if (JSON.parse(cities).length <= 0) {
             localStorage.removeItem('timeZero');
         }
     });
@@ -1121,6 +1124,7 @@
         }
     })
     $('#citiesSelected').on('click', '.timeHours button', function (e) {
+        console.log("changedManually")
         $('#citiesSelected #citiesSelectedRow .col-12 .timeHours button').each((index, ele) => {
             $(ele).removeClass('active');
         });
@@ -1130,7 +1134,6 @@
         let ownGmt = $(this).closest('.col-12').data('gmt');
         let time = $(this).data('time');
         let timeZero = time - ownGmt;
-        console.log(timeZero, time, ownGmt)
         localStorage.setItem('timeZero', timeZero);
         renderTimeSelect()
     });
