@@ -514,6 +514,8 @@
     function setToCurrentHour() {
         let timeZero = localStorage.getItem("timeZero")
         let cities = localStorage.getItem("cities")
+        let dateNow = new Date();
+        let timeNow = dateNow.getHours();
         if (!timeZero && cities) {
             cities = JSON.parse(cities);
             const city = cities[0]
@@ -525,8 +527,8 @@
                 },
                 success: function (response) {
                     $('#addCitySerach').val('').trigger('change')
-                    console.log(+response.hours - 1)
-                    localStorage.setItem("timeZero", +response.hours - 1)
+                    console.log(+response.hours + 1, response.gmt)
+                    localStorage.setItem("timeZero", (+response.hours + 1 - response.gmt))
                     renderTimeSelect()
                 },
                 error: function (xhr, status, error) {
@@ -541,8 +543,12 @@
         localStorage.removeItem('date');
         var today = new Date();
         var storedDate = localStorage.getItem('date');
-        var date = storedDate ? new Date(storedDate) : today;
-        var formattedDate = date.toISOString().split('T')[0];
+
+        const year = today.getFullYear();
+        const month = String(today.getMonth() + 1).padStart(2, '0');
+        const day = String(today.getDate()).padStart(2, '0');
+
+        const formattedDate = `${year}-${month}-${day}`;
         $('#AddCityButtonDate').val(formattedDate);
 
 
@@ -1124,6 +1130,7 @@
         let ownGmt = $(this).closest('.col-12').data('gmt');
         let time = $(this).data('time');
         let timeZero = time - ownGmt;
+        console.log(timeZero, time, ownGmt)
         localStorage.setItem('timeZero', timeZero);
         renderTimeSelect()
     });
@@ -1187,7 +1194,7 @@
                 if ($(el).data('slug') === $(ele).data('slug')) {
                     $(el).find('.time').html(date.toDateString());
                     if (hisTime) {
-                        $(el).find('.time2').html(`${hisTime}:00`);
+                        $(el).find('.time2').html(`${hisTime === 24 ? "00" : hisTime}:00`);
                         if (hisTime <= 12)
                             $(el).find('.time3').html(`${hisTime}:00 AM`);
                         else
@@ -1202,7 +1209,7 @@
                 if ($(el).data('slug') === $(ele).data('slug')) {
                     $(el).find('.time').html(date.toDateString());
                     if (hisTime) {
-                        $(el).find('.time2').html(`${hisTime}:00`);
+                        $(el).find('.time2').html(`${hisTime === 24 ? "00" : hisTime}:00`);
                         if (hisTime <= 12)
                             $(el).find('.time3').html(`${hisTime}:00 AM`);
                         else
@@ -1278,7 +1285,7 @@
                 if ($(el).data('slug') === $(ele).data('slug')) {
                     $(el).find('.time').html(date.toDateString());
                     if (hisTime) {
-                        $(el).find('.time2').html(`${hisTime}:00`);
+                        $(el).find('.time2').html(`${hisTime === 24 ? "00" : hisTime}:00`);
                         if (hisTime <= 12)
                             $(el).find('.time3').html(`${hisTime}:00 AM`);
                         else
