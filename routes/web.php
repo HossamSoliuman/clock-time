@@ -215,7 +215,6 @@ Route::get('/fetch-super-all', [ConvertAllToAllController::class, 'fetchAll'])->
 
 //------------------meeting planner
 Route::get('/meeting-planner', [MeetingPlannerController::class, 'index'])->name('meeting-planner');
-Route::get('/meeting-org', [MeetingPlannerController::class, 'meetingOrg'])->name('meetingOrg');
 Route::get('/getUserLocationPlanner', [MeetingPlannerController::class, 'getUserLocationPlanner'])->name('getUserLocationPlanner');
 
 
