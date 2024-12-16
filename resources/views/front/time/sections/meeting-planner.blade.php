@@ -26,6 +26,10 @@
     }
 
     @media only screen and (max-width: 767px) {
+        .justMobile.col-12 {
+            margin-bottom: 0px !important;
+        }
+
         .mobile-time-only {
             opacity: 0;
         }
@@ -38,10 +42,24 @@
             width: 100%;
         }
 
+        #meetingMailContentRows .row .col-3 p {
+            font-weight: 800 !important;
+        }
+
+        #meetingMailContentRows .row .col-9 p {
+            font-size: 16px;
+        }
+
+        #meetingMailContentRows .row .col-3 p,
+        #meetingMailContentRows .row .col-9 p {
+            color: rgba(144, 149, 161, 1);
+        }
+
+
         .col-3.main-custom-div2 {
             padding-top: 10px;
             padding-bottom: 10px;
-            box-shadow: 5px 10px 15px rgba(136, 136, 136, 0.5);
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
         }
 
         #addCityButton {
@@ -141,7 +159,6 @@
             justify-content: center;
             padding: 4px !important;
             margin-top: 12px;
-            box-shadow: 2px 6px 15px rgba(136, 136, 136, 0.4);
         }
 
         .removeBtnDiv,
@@ -153,6 +170,10 @@
 
         .removeBtnDiv {
             margin-top: 10px;
+        }
+
+        .meeting-planner-section #citiesSelected .item .removeItem {
+            background: none;
         }
 
         .removeItem i::before {
@@ -961,7 +982,7 @@
                                             ${data.time}
                                         </p>
                                     </div>
-                                    <div class="d-flex justify-content-between">
+                                    <div class="d-flex justify-content-between" style="align-items: end;">
                                         <p class="countryText p-0 m-0">
                                             ${data.country_name}
                                         </p>
