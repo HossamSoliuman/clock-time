@@ -26,6 +26,10 @@
     }
 
     @media only screen and (max-width: 767px) {
+        #timesContainer {
+            margin-bottom: 16px !important;
+        }
+
         .justMobile.col-12 {
             margin-bottom: 0px !important;
         }
@@ -44,17 +48,18 @@
 
         #meetingMailContentRows .row .col-3 p {
             font-weight: 800 !important;
+            margin-bottom: 2px;
+        }
+
+        #meetingMailContentRows .row .col-9 {
+            width: 100% !important;
         }
 
         #meetingMailContentRows .row .col-9 p {
             font-size: 16px;
-        }
-
-        #meetingMailContentRows .row .col-3 p,
-        #meetingMailContentRows .row .col-9 p {
             color: rgba(144, 149, 161, 1);
+            margin-bottom: 12px;
         }
-
 
         .col-3.main-custom-div2 {
             padding-top: 10px;
@@ -74,6 +79,7 @@
 
         .orderContainer {
             padding: 4 !important;
+            gap: 4px !important;
         }
 
         .fa-solid {
@@ -158,7 +164,6 @@
             align-items: center;
             justify-content: center;
             padding: 4px !important;
-            margin-top: 12px;
         }
 
         .removeBtnDiv,
@@ -960,11 +965,11 @@
                         <button class="btn p-0 toUp">
                             <i class="fa-solid fa-chevron-up"></i>
                         </button>
-                        <button class="btn p-0 toBottom">
-                            <i class="fa-solid fa-chevron-down"></i>
-                        </button>
                         <button class="btn removeItem" data-city="${data.city_slug}">
                             <i class="fa-solid fa-trash" style="color:#fff;"></i>
+                        </button>
+                        <button class="btn p-0 toBottom">
+                            <i class="fa-solid fa-chevron-down"></i>
                         </button>
                     </div>
                     <div class="card p-2" style="width: 90%; justify-content: center;">
@@ -1009,7 +1014,7 @@
                     <p class="text-danger p-0 m-0 alertDay d-none" style="font-size:11px;font-weight: 500;"></p>
                     </div>
                 <div class="d-flex h-100 flex-column flex-md-row">
-                    <div class="p-0 mobile-time-only d-block d-md-none align-items-center justify-content-center align-self-center" style="margin-top: 2px; padding-right: 10px !important;">
+                    <div class="p-0 mobile-time-only d-block d-md-none align-items-center justify-content-center align-self-center" style="height: 16px; padding-right: 10px !important;">
                         <p class="mb-0">12:00PM</p>
                     </div>
                     <div class="d-flex timeHours">
