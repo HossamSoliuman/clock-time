@@ -542,7 +542,7 @@
         let cities = localStorage.getItem("cities")
         let dateNow = new Date();
         let timeNow = dateNow.getHours();
-        if (!timeZero && cities) {
+        if (cities) {
             cities = JSON.parse(cities);
             const city = cities[0]
             $.ajax({
