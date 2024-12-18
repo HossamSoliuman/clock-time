@@ -1298,7 +1298,6 @@
             });
         });
 
-
         $('#citiesSelected #citiesSelectedRow .col-12').each((index, ele) => {
             let date = new Date($('#AddCityButtonDate').val());
             let alert;
@@ -1395,7 +1394,6 @@
                 $(ele).find('.timeHours button').each((index, button) => {
                     if ($(button).data('time') <= time) {
                         $(button).attr('disabled', true);
-                        $(button).removeClass('active');
                     }
                 });
             });
@@ -1404,7 +1402,6 @@
                 $(ele).find('.timeHours button').each((index, button) => {
                     if ($(button).data('time') <= time) {
                         $(button).attr('disabled', true);
-                        $(button).removeClass('active');
                     }
                 });
             });
