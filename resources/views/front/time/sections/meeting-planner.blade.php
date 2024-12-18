@@ -698,6 +698,7 @@
     });
 
     $('#citiesSelected').on('click', '.removeItem', function (e) {
+        setToCurrentHour();
         var citySlug = $(this).data('city');
 
         removeCityFromLocalstorage(citySlug);
@@ -1087,7 +1088,7 @@
                         <button class="btn btn-dark" data-time="23">
                             ${fullHours ? 23 : 11}
                         </button>
-                        <button class="btn btn-dark" data-time="24">
+                        <button class="btn btn-dark onlyHalfHours" data-time="24">
                             ${fullHours ? 24 : 12}
                         </button>
                     </div>
@@ -1224,7 +1225,7 @@
                     $(el).find('.time').html(date.toDateString());
                     if (hisTime) {
                         $(el).find('.time2').html(`${hisTime === 24 ? "00" : hisTime}:00`);
-                        if (hisTime <= 12)
+                        if (hisTime <= 13)
                             $(el).find('.time3').html(`${hisTime}:00 AM`);
                         else
                             $(el).find('.time3').html(`${hisTime - 12}:00 PM`);
@@ -1240,9 +1241,9 @@
                     if (hisTime) {
                         $(el).find('.time2').html(`${hisTime === 24 ? "00" : hisTime}:00`);
                         if (hisTime <= 12)
-                            $(el).find('.time3').html(`${hisTime}:00 AM`);
+                            $(el).find('.time3').html(`${hisTime}:00 PM`);
                         else
-                            $(el).find('.time3').html(`${hisTime - 12}:00 PM`);
+                            $(el).find('.time3').html(`${hisTime - 12}:00 AM`);
                     } else {
                         $(el).find('.time2').html(`00:00`);
                         $(el).find('.time3').html(`00:00`);
@@ -1316,9 +1317,9 @@
                     if (hisTime) {
                         $(el).find('.time2').html(`${hisTime === 24 ? "00" : hisTime}:00`);
                         if (hisTime <= 12)
-                            $(el).find('.time3').html(`${hisTime}:00 AM`);
+                            $(el).find('.time3').html(`${hisTime}:00 PM`);
                         else
-                            $(el).find('.time3').html(`${hisTime - 12}:00 PM`);
+                            $(el).find('.time3').html(`${hisTime - 12}:00 AM`);
                     } else {
                         $(el).find('.time2').html(`00:00`);
                         $(el).find('.time3').html(`00:00`);
@@ -1331,9 +1332,9 @@
                     if (hisTime) {
                         $(el).find('.time2').html(`${hisTime === 24 ? "00" : hisTime}:00`);
                         if (hisTime <= 12)
-                            $(el).find('.time3').html(`${hisTime}:00 AM`);
+                            $(el).find('.time3').html(`${hisTime}:00 PM`);
                         else
-                            $(el).find('.time3').html(`${hisTime - 12}:00 PM`);
+                            $(el).find('.time3').html(`${hisTime - 12}:00 AM`);
                     } else {
                         $(el).find('.time2').html(`00:00`);
                         $(el).find('.time3').html(`00:00`);

@@ -31,6 +31,7 @@
     {{--    End OG --}}
     <meta name="msvalidate.01" content="@yield('msvalidate')" />
     <meta name="google-site-verification" content="@yield('google-site-verification')" />
+    <meta name="yandex-verification" content="710cb27d8d2ff493" />
 
     <link rel="shortcut icon" type="image/x-icon" href="#"> {{-- this link need image --}}
     <link rel="stylesheet" href="{{ asset('cdn/animate.min.css') }}">
