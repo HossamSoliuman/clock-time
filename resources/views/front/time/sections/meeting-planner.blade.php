@@ -1228,8 +1228,10 @@
                     if (hisTime) {
                         $(el).find('.time2').html(`${hisTime === 24 ? "00" : hisTime}:00`);
                         if (hisTime === 24) {
+                            date.setDate(date.getDate() + 1);
+                            $(el).find('.time').html(date.toDateString());
                             $(el).find('.time3').html(`12:00 AM`);
-                            return
+                            return;
                         }
                         if (hisTime === 12) {
                             $(el).find('.time3').html(`12:00 PM`);
@@ -1251,8 +1253,10 @@
                     if (hisTime) {
                         $(el).find('.time2').html(`${hisTime === 24 ? "00" : hisTime}:00`);
                         if (hisTime === 24) {
+                            date.setDate(date.getDate() + 1);
+                            $(el).find('.time').html(date.toDateString());
                             $(el).find('.time3').html(`12:00 AM`);
-                            return
+                            return;
                         }
                         if (hisTime === 12) {
                             $(el).find('.time3').html(`12:00 PM`);
@@ -1334,8 +1338,10 @@
                     if (hisTime) {
                         $(el).find('.time2').html(`${hisTime === 24 ? "00" : hisTime}:00`);
                         if (hisTime === 24) {
+                            date.setDate(date.getDate() + 1);
+                            $(el).find('.time').html(date.toDateString());
                             $(el).find('.time3').html(`12:00 AM`);
-                            return
+                            return;
                         }
                         if (hisTime === 12) {
                             $(el).find('.time3').html(`12:00 PM`);
