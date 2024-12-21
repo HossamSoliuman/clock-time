@@ -26,6 +26,11 @@
     }
 
     @media only screen and (max-width: 767px) {
+        .img {
+            display: flex;
+            align-items: end;
+        }
+
         #timesContainer {
             margin-bottom: 16px !important;
         }
@@ -88,6 +93,10 @@
 
         .d-flex.justify-content-between {
             height: 100%;
+        }
+
+        .meetingOnCityAndCountry {
+            min-width: 180px !important;
         }
 
         .content.w-100 {
@@ -212,6 +221,7 @@
 
         .cityText {
             font-size: 20px !important;
+            margin-left: -27px !important;
         }
 
         .countryText {
@@ -543,7 +553,7 @@
         let dateNow = new Date();
         let timeNow = dateNow.getHours();
         console.log(timeNow - 1 - 24, timeZero, timeNow - 1 - 24 > timeZero)
-        if (timeNow - 1 > timeZero || !timeZero || (timeNow - 1 - 24 > timeZero && cities)) {
+        if ((timeNow - 1 > timeZero || !timeZero || timeNow - 1 - 24 > timeZero) && cities) {
             cities = JSON.parse(cities);
             const city = cities[0]
             $.ajax({
@@ -796,6 +806,15 @@
         });
     }
 
+    function newDateFormat(date) {
+        const days = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+        const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+
+        const formattedDate = `${days[date.getDay()]} - ${date.getDate().toString().padStart(2, '0')}-${months[date.getMonth()]}-${date.getFullYear().toString().slice(-2)}`;
+
+        return (formattedDate)
+    }
+
     function addRow(data) {
         setToCurrentHour();
         function calculateNewOrder() {
@@ -808,7 +827,6 @@
             });
             return lastOrder + 1;
         }
-
 
         let perant = $('#citiesSelected #citiesSelectedRow');
         let order = calculateNewOrder();
@@ -1224,23 +1242,23 @@
             }
             $('#meetingOnContent div').each((i, el) => {
                 if ($(el).data('slug') === $(ele).data('slug')) {
-                    $(el).find('.time').html(date.toDateString());
+                    $(el).find('.time').html(newDateFormat(date));
                     if (hisTime) {
                         $(el).find('.time2').html(`${hisTime === 24 ? "00" : hisTime}:00`);
                         if (hisTime === 24) {
                             date.setDate(date.getDate() + 1);
-                            $(el).find('.time').html(date.toDateString());
-                            $(el).find('.time3').html(`12:00 AM`);
+                            $(el).find('.time').html(newDateFormat(date));
+                            $(el).find('.time3').html(`12:00 am`);
                             return;
                         }
                         if (hisTime === 12) {
-                            $(el).find('.time3').html(`12:00 PM`);
+                            $(el).find('.time3').html(`12:00 pm`);
                             return
                         }
                         if (hisTime <= 12)
-                            $(el).find('.time3').html(`${hisTime}:00 AM`);
+                            $(el).find('.time3').html(`${hisTime}:00 am`);
                         else
-                            $(el).find('.time3').html(`${hisTime - 12}:00 PM`);
+                            $(el).find('.time3').html(`${hisTime - 12}:00 pm`);
                     } else {
                         $(el).find('.time2').html(`00:00`);
                         $(el).find('.time3').html(`00:00`);
@@ -1249,23 +1267,23 @@
             });
             $('#meetingMailContentRows .row').each((i, el) => {
                 if ($(el).data('slug') === $(ele).data('slug')) {
-                    $(el).find('.time').html(date.toDateString());
+                    $(el).find('.time').html(newDateFormat(date));
                     if (hisTime) {
                         $(el).find('.time2').html(`${hisTime === 24 ? "00" : hisTime}:00`);
                         if (hisTime === 24) {
                             date.setDate(date.getDate() + 1);
-                            $(el).find('.time').html(date.toDateString());
-                            $(el).find('.time3').html(`12:00 AM`);
+                            $(el).find('.time').html(newDateFormat(date));
+                            $(el).find('.time3').html(`12:00 am`);
                             return;
                         }
                         if (hisTime === 12) {
-                            $(el).find('.time3').html(`12:00 PM`);
+                            $(el).find('.time3').html(`12:00 pm`);
                             return
                         }
                         if (hisTime <= 12)
-                            $(el).find('.time3').html(`${hisTime}:00 AM`);
+                            $(el).find('.time3').html(`${hisTime}:00 am`);
                         else
-                            $(el).find('.time3').html(`${hisTime - 12}:00 PM`);
+                            $(el).find('.time3').html(`${hisTime - 12}:00 pm`);
                     } else {
                         $(el).find('.time2').html(`00:00`);
                         $(el).find('.time3').html(`00:00`);
@@ -1334,23 +1352,23 @@
             }
             $('#meetingOnContent div').each((i, el) => {
                 if ($(el).data('slug') === $(ele).data('slug')) {
-                    $(el).find('.time').html(date.toDateString());
+                    $(el).find('.time').html(newDateFormat(date));
                     if (hisTime) {
                         $(el).find('.time2').html(`${hisTime === 24 ? "00" : hisTime}:00`);
                         if (hisTime === 24) {
                             date.setDate(date.getDate() + 1);
-                            $(el).find('.time').html(date.toDateString());
-                            $(el).find('.time3').html(`12:00 AM`);
+                            $(el).find('.time').html(newDateFormat(date));
+                            $(el).find('.time3').html(`12:00 am`);
                             return;
                         }
                         if (hisTime === 12) {
-                            $(el).find('.time3').html(`12:00 PM`);
+                            $(el).find('.time3').html(`12:00 pm`);
                             return
                         }
                         if (hisTime <= 12)
-                            $(el).find('.time3').html(`${hisTime}:00 AM`);
+                            $(el).find('.time3').html(`${hisTime}:00 am`);
                         else
-                            $(el).find('.time3').html(`${hisTime - 12}:00 PM`);
+                            $(el).find('.time3').html(`${hisTime - 12}:00 pm`);
                     } else {
                         $(el).find('.time2').html(`00:00`);
                         $(el).find('.time3').html(`00:00`);
@@ -1359,21 +1377,21 @@
             });
             $('#meetingMailContentRows .row').each((i, el) => {
                 if ($(el).data('slug') === $(ele).data('slug')) {
-                    $(el).find('.time').html(date.toDateString());
+                    $(el).find('.time').html(newDateFormat(date));
                     if (hisTime) {
                         $(el).find('.time2').html(`${hisTime === 24 ? "00" : hisTime}:00`);
                         if (hisTime === 24) {
-                            $(el).find('.time3').html(`12:00 AM`);
+                            $(el).find('.time3').html(`12:00 am`);
                             return
                         }
                         if (hisTime === 12) {
-                            $(el).find('.time3').html(`12:00 PM`);
+                            $(el).find('.time3').html(`12:00 pm`);
                             return
                         }
                         if (hisTime <= 12)
-                            $(el).find('.time3').html(`${hisTime}:00 AM`);
+                            $(el).find('.time3').html(`${hisTime}:00 am`);
                         else
-                            $(el).find('.time3').html(`${hisTime - 12}:00 PM`);
+                            $(el).find('.time3').html(`${hisTime - 12}:00 pm`);
                     } else {
                         $(el).find('.time2').html(`00:00`);
                         $(el).find('.time3').html(`00:00`);
@@ -1451,7 +1469,7 @@
         newRow =
             `
                 <div class="d-flex justify-content-between" data-slug='${slug}'>
-                    <p>${city} - ${country}</p>
+                    <p class="meetingOnCityAndCountry">${city} - ${country}</p>
                     <p>
                         <span class="time"></span> at <span class="time2"></span> (<span class="time3"></span>)
                     </p>
