@@ -295,7 +295,8 @@ class HomeController extends Controller
             'sign' => $sign,
             'hours' => $hours,
             'hoursNumber' => $hoursWithoutSign,
-            'type' => 'timezone'
+            'type' => 'timezone',
+            'slug' => $slug
         ]);
     }
 
@@ -362,7 +363,8 @@ class HomeController extends Controller
                 'slug' => $slug,
                 'diffBetweenZoneAndCity' => $diffBetweenZoneAndCity,
                 'highestTimeZones' => $highestTimeZones,
-                'type' => 'abbreviation'
+                'type' => 'abbreviation',
+                'slug' => $slug
             ]);
         } else {
             return redirect('/');
@@ -440,8 +442,8 @@ class HomeController extends Controller
                 'hoursWithSign' => $hoursWithSign,
                 'sign' => $sign,
                 'hoursNumber' => $decemalHours,
-                'type' => 'gmt'
-
+                'type' => 'gmt',
+                'slug' => $slug
             ]);
         } else {
             return redirect('/');

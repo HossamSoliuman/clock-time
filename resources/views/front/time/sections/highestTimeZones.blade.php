@@ -2,21 +2,23 @@
 
     <section class=" py-5">
         <div class="container text-center">
-            <h1>CET related time zones</h1>
+            <h1 style="font-family: Lexend,serif;">CET related time zones</h1>
             <div class="row  mt-3">
                 @foreach ($highestTimeZones as $highestTimeZone)
                     <div class="col-lg-4 mb-3">
                         <a href="  {{ url($highestTimeZone['slug']) }}">
                             <div class="card bg-white p-3">
-                                <div class="d-flex justify-content-between h-100">
-                                    <h4 class="first mb-0 col-6" id="abb"
+                                <div class="d-flex justify-content-between h-100 align-items-center">
+                                    <h4 class="first mb-0 col-6 text-start" id="abb"
                                         style="font-family: Lexend,serif;font-size: 22px;">
                                         {{ $highestTimeZone['name'] }}
                                     </h4>
                                     <h4 class="second mb-0" id="abb_time"
                                         style="font-family: Lexend,serif;font-size: 28px;color:red;">
-                                        {{ $highestTimeZone['time'] }} {{ $highestTimeZone['identify'] }} </h4>
+                                        {{ $highestTimeZone['time'] }} {{ $highestTimeZone['identify'] }}
+                                    </h4>
                                 </div>
+
                             </div>
                         </a>
                     </div>
