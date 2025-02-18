@@ -18,8 +18,9 @@
         @include('front.time.sections.timezoneToCity')
     @endif
     @include('front.time.sections.timezoneToGmtUtc')
+    @include('front.time.sections.convertBetweenTimezones')
     @if ($type && $type == 'abbreviation')
-        @include('front.time.sections.convertBetweenTimezones')
+        @include('front.time.sections.highestTimeZones')
         @include('front.time.sections.timeIn24')
     @endif
     @include('front.sections.meeting')

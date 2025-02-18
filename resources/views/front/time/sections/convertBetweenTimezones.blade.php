@@ -20,8 +20,15 @@
                     <div class="col-lg-5 mb-3 position-relative">
                         <i class="fa-solid fa-location-dot position-absolute top-50"
                             style="color:rgba(0, 0, 0, 0.4);transform: translateY(-50%);z-index: 10;left:20px;"></i>
-                        <input name="mode-select" value="{{ $timezoneName }}" placeholder="Search Time Zones..."
-                            class="w-100 rounded-2 ps-3 bg-white" required disabled />
+                        <div class="d-none">
+                            <input name="mode-select" style="background-color: #192140" value="{{ $timezoneName }}"
+                                placeholder="Search Time Zones..." class="w-100 rounded-2 ps-3 bg-white" required
+                                disabled />
+                        </div>
+
+                        <input style="background-color: #192140"
+                            class="w-100 rounded-2 ps-3 text-center fw-bold fs-3 city-input" value="{{ $timezoneName }}"
+                            disabled>
                     </div>
                     <div class="col-lg-5 mb-3 position-relative">
                         <i class="fa-solid fa-location-dot position-absolute top-50"
@@ -55,20 +62,6 @@
                         </div>
                     </div>
                     <div class="col-lg-2"></div>
-                </div>
-                <div class="row  mt-3">
-                    @foreach ($highestTimeZones as $highestTimeZone)
-                        <div class="col-lg-4 mb-3">
-                            <div class="card bg-white p-3">
-                                <div class="d-flex justify-content-between h-100">
-                                    <h4 class="first mb-0 col-6" id="abb"
-                                        style="font-family: Lexend,serif;font-size: 22px;">{{ $highestTimeZone['name'] }} </h4>
-                                    <h4 class="second mb-0" id="abb_time"
-                                        style="font-family: Lexend,serif;font-size: 28px;color:red;">{{ $highestTimeZone['time'] }} {{ $highestTimeZone['identify'] }} </h4>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
                 </div>
             </form>
         </div>

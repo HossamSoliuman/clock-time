@@ -19,10 +19,31 @@
         text-align: center;
     }
 
+    .a-input {
+        background-color: #DC1C24;
+        color: white;
+        border: 2px solid red;
+        text-align: center;
+    }
+
     .input-icon {
         background-color: #192140;
         color: white;
         border: 2px solid red;
+    }
+
+    .time-input::-webkit-inner-spin-button,
+    .time-input::-webkit-outer-spin-button {
+        opacity: 1 !important;
+        filter: invert(1);
+    }
+
+    .time-input {
+        background-color: #DC1C24;
+        color: white;
+        border: 2px solid red;
+        text-align: center;
+        appearance: textfield;
     }
 </style>
 
@@ -37,7 +58,8 @@
                 <div class="col-6 text-center">
                     <div class="input-group">
                         <span class="input-group-text input-icon"><i class="fas fa-user"></i></span>
-                        <input style="background-color: #192140" id="city" class="form-control text-center fw-bold fs-3 city-input"
+                        <input style="background-color: #192140" id="city"
+                            class="form-control text-center fw-bold fs-3 city-input"
                             value="{{ $diffBetweenZoneAndCity['cityName'] }}" disabled>
                     </div>
                 </div>
@@ -53,7 +75,7 @@
                         @php
                             $meridian = Carbon\Carbon::parse($diffBetweenZoneAndCity['cityTime'])->format('A');
                         @endphp
-                        <select name="meridian" class="form-select fw-bold fs-3 time-input">
+                        <select name="meridian" class="form-select fw-bold fs-3 a-input">
                             <option value="AM" {{ $meridian == 'AM' ? 'selected' : '' }}>AM</option>
                             <option value="PM" {{ $meridian == 'PM' ? 'selected' : '' }}>PM</option>
                         </select>
@@ -64,12 +86,14 @@
                 <div class="col-6 text-center">
                     <div class="input-group">
                         <span class="input-group-text input-icon"><i class="fas fa-user"></i></span>
-                        <input style="background-color: #192140" id="city" class="form-control text-center fw-bold fs-3 city-input"
-                            value="{{ $timezoneName }}" disabled>
+                        <input style="background-color: #192140" id="city"
+                            class="form-control text-center fw-bold fs-3 city-input" value="{{ $timezoneName }}"
+                            disabled>
                     </div>
                 </div>
                 <div class="col-3 text-center">
-                    <input style="background-color: #323a52" id="timezoneTime" class="form-control text-center fw-bold fs-3 city-input"
+                    <input style="background-color: #323a52" id="timezoneTime"
+                        class="form-control text-center fw-bold fs-3 city-input"
                         value="{{ Carbon\Carbon::parse($date['currentTimeWithSeconds'])->format('g A') }}" disabled>
                 </div>
             </div>

@@ -94,6 +94,7 @@ trait GetDate
                 'hours' => $hours,
                 'hoursNumber' => $hoursWithoutSign,
                 'name' => $timezone->name,
+                'slug' => $timezone->name_slug
             ];
         }
     }
