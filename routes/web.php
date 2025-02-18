@@ -14,6 +14,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TimezoneController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\CityController;
+use App\Http\Controllers\ConvertController;
 use App\Http\Controllers\SlugController;
 use App\Http\Controllers\TimerController;
 use App\Http\Controllers\Website\ConvertGmtController;
@@ -235,3 +236,5 @@ Route::fallback(function () {
 
 
 Route::get('/{slugable}', [HomeController::class, 'showBySlug']);
+
+Route::post('api/convert/city-timezone', [ConvertController::class, 'zoneToCity'])->name('convert.city-timezone');

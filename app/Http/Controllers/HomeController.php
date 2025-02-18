@@ -10,14 +10,18 @@ use App\Models\Gmt;
 use App\Models\Slug;
 use App\Models\IanaTimezone;
 use App\Models\TimezoneDetail;
+use App\Services\ConvertService;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Log;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-
+use App\Traits\GetDate;
 
 class HomeController extends Controller
 {
+    use getdate;
+    public function __construct(public ConvertService $convertService) {}
 
     public function index()
     {
@@ -291,15 +295,14 @@ class HomeController extends Controller
             'sign' => $sign,
             'hours' => $hours,
             'hoursNumber' => $hoursWithoutSign,
+            'type' => 'timezone'
         ]);
     }
 
 
-    public function abbreviation($slug)
+    public function abbreviation($slug, $request)
     {
         $timezone = TimezoneDetail::where('name_slug', $slug)->orWhere('long_slug', $slug)->first();
-
-
         if ($timezone) {
             $offset = $timezone->timezone_offset;
 
@@ -339,7 +342,8 @@ class HomeController extends Controller
             $hoursTime = $this->convertDecimalToTime($hoursNumberWithoutSign);
             $sign = $this->getSign($offset);
             $hoursWithSign = $this->getHoursFromOffsetWithSign($offset);
-
+            $diffBetweenZoneAndCity = $this->convertService->getDiffHoursBetweenZoneAndCity($request, $slug);
+            $highestTimeZones = $this->highestTimeZones();
             return view('front.timezone', [
                 'title' => $name,
                 'description' => "Discover everything about the {$timezoneName} time zone, including its current time, UTC offset, and the countries that observe {$timezoneName}.",
@@ -355,13 +359,24 @@ class HomeController extends Controller
                 'sign' => $sign,
                 'hours' => $hoursTime,
                 'hoursNumber' => $hoursNumberWithoutSign,
+                'slug' => $slug,
+                'diffBetweenZoneAndCity' => $diffBetweenZoneAndCity,
+                'highestTimeZones' => $highestTimeZones,
+                'type' => 'abbreviation'
             ]);
         } else {
             return redirect('/');
         }
     }
 
-
+    public function highestTimeZones()
+    {
+        $zones = TimezoneDetail::orderByDesc('weight')->take(6)->get();
+        foreach ($zones as $zone) {
+            $zoneTime[] = $this->timezoneDetails($zone->name_slug);
+        }
+        return $zoneTime;
+    }
     public function gmt($slug)
     {
         $gmt = Gmt::where('slug', $slug)
@@ -425,6 +440,7 @@ class HomeController extends Controller
                 'hoursWithSign' => $hoursWithSign,
                 'sign' => $sign,
                 'hoursNumber' => $decemalHours,
+                'type' => 'gmt'
 
             ]);
         } else {
@@ -465,7 +481,7 @@ class HomeController extends Controller
 
 
 
-    public function showBySlug($slug)
+    public function showBySlug($slug, Request $request)
     {
         $slugEntry = Slug::where('slug', $slug)->first();
 
@@ -483,6 +499,9 @@ class HomeController extends Controller
         ];
 
         if (array_key_exists($slugEntry->model, $methodsCAll)) {
+            if ($methodsCAll[$slugEntry->model] == 'abbreviation') {
+                return $this->abbreviation($slugEntry->slug, $request);
+            }
             return $this->{$methodsCAll[$slugEntry->model]}($slugEntry->slug);
         }
 

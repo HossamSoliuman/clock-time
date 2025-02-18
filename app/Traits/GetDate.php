@@ -93,6 +93,7 @@ trait GetDate
                 'sign' => $sign,
                 'hours' => $hours,
                 'hoursNumber' => $hoursWithoutSign,
+                'name' => $timezone->name,
             ];
         }
     }

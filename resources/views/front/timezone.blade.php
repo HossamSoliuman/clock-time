@@ -11,13 +11,17 @@
             background: rgba(243, 244, 246, 1);
         }
     </style>
-
 @endsection
 @section('container')
-
     @include('front.time.sections.header')
+    @if ($type && $type == 'abbreviation')
+        @include('front.time.sections.timezoneToCity')
+    @endif
     @include('front.time.sections.timezoneToGmtUtc')
-    @include('front.time.sections.convertBetweenTimezones')
+    @if ($type && $type == 'abbreviation')
+        @include('front.time.sections.convertBetweenTimezones')
+        @include('front.time.sections.timeIn24')
+    @endif
     @include('front.sections.meeting')
 
     <script>
@@ -32,7 +36,7 @@
                     url: url,
                     method: 'GET',
                     data: {
-                        abb: tagify.value[0].slug,
+                        abb: "{{ $slug }}",
                         tz: tagify2.value[0].slug,
                     },
                     success: function(response) {
