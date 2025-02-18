@@ -2,68 +2,71 @@
 <section class="TimeZones">
     <div class="container-fluid position-relative">
 
+        @if ($type && $type == 'abbreviation')
+            <!-- city row -->
+            <div class="row justify-content-center text-center bg-light p-md-5 pb-0">
 
-        <!-- city row -->
-        <div class="row justify-content-center text-center bg-light p-md-5 pb-0">
+                <h2 class=" wow animate__animated animate__fadeInUp mb-3" style="font-size:38px;">{{ $timezoneName }} time
+                    to
+                    {{ $diffBetweenZoneAndCity['cityName'] }}</h2>
 
-            <h2 class=" wow animate__animated animate__fadeInUp mb-3" style="font-size:38px;">{{ $timezoneName }} time to
-                {{ $diffBetweenZoneAndCity['cityName'] }}</h2>
+                <div class="col-lg-5 mb-3 col-12">
+                    <div
+                        class="h-100 border rounded-3 px-3 text-lg-end me-lg-4 mb-lg-0 mb-3 d-flex flex-column wow animate__animated animate__fadeIn animate__slow">
+                        <div class="d-flex justify-content-between align-items-center h-100">
+                            <div class="text-start">
+                                <p class="h2 ">
+                                    {{ $timezoneName }} Time</p>
 
-            <div class="col-lg-5 mb-3 col-12">
-                <div
-                    class="h-100 border rounded-3 px-3 text-lg-end me-lg-4 mb-lg-0 mb-3 d-flex flex-column wow animate__animated animate__fadeIn animate__slow">
-                    <div class="d-flex justify-content-between align-items-center h-100">
-                        <div class="text-start">
-                            <p class="h2 ">
-                                {{ $timezoneName }} Time</p>
+                            </div>
+                            <div class="text-end mt-2 display-5">
+                                <p class="therdText"><span class="dataWithTime">{{ $date['time'] }}</span> <span
+                                        class="dataWithTime2">{{ $date['identify'] }}</span></p>
+                                <input type="hidden" value="{{ $date['currentTimeWithSeconds'] }}"
+                                    class="dataWithSecond">
+                            </div>
 
                         </div>
-                        <div class="text-end mt-2 display-5">
-                            <p class="therdText"><span class="dataWithTime">{{ $date['time'] }}</span> <span
-                                    class="dataWithTime2">{{ $date['identify'] }}</span></p>
-                            <input type="hidden" value="{{ $date['currentTimeWithSeconds'] }}" class="dataWithSecond">
-                        </div>
-
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-2 mb-3 col-12">
-                <div
-                    class="h-100 border rounded-3 px-3 text-lg-end me-lg-4 mb-lg-0 mb-3 d-flex flex-column justify-content-center align-items-center wow animate__animated animate__fadeIn animate__slow animate__delay-1s">
-                    <div class="d-flex justify-content-center align-items-center">
-                        <p class="gmt2 m-0 text-center">
-                            {{ $diffBetweenZoneAndCity['diffHours'] }} </p>
+                <div class="col-lg-2 mb-3 col-12">
+                    <div
+                        class="h-100 border rounded-3 px-3 text-lg-end me-lg-4 mb-lg-0 mb-3 d-flex flex-column justify-content-center align-items-center wow animate__animated animate__fadeIn animate__slow animate__delay-1s">
+                        <div class="d-flex justify-content-center align-items-center">
+                            <p class="gmt2 m-0 text-center">
+                                {{ $diffBetweenZoneAndCity['diffHours'] }} </p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-lg-5 mb-3 col-12">
+                    <div
+                        class="h-100 border rounded-3 px-3 text-lg-end me-lg-4 d-flex flex-column wow animate__animated animate__fadeIn animate__slow animate__delay-2s">
+                        <div class="d-flex justify-content-between align-items-center h-100">
+                            <div class="text-start">
+                                <p class="h2"> {{ $diffBetweenZoneAndCity['cityName'] }} time</p>
+                            </div>
+                            <div class="text-end mt-2 display-5">
+                                <p class="therdText"><span
+                                        class="dataWithTime">{{ Carbon\Carbon::parse($diffBetweenZoneAndCity['cityTime'])->format('h:i') }}</span>
+                                    <span
+                                        class="dataWithTime2">{{ Carbon\Carbon::parse($diffBetweenZoneAndCity['cityTime'])->format('A') }}</span>
+                                </p>
+                                <input type="hidden"
+                                    value="{{ Carbon\Carbon::parse($diffBetweenZoneAndCity['cityTime'])->format('H:i:s') }}"
+                                    class="dataWithSecond">
+                            </div>
+
+                        </div>
                     </div>
                 </div>
-
+                <h3 class="mb-4 wow animate__animated animate__fadeInUp"
+                    style="color: #BDC1CA;font-weight: 400;font-size: 16px">
+                    {{ $timezoneName }} time is {{ $diffBetweenZoneAndCity['diffHours'] }} hours ahead of
+                    {{ $diffBetweenZoneAndCity['cityName'] }} Time
+                </h3>
             </div>
-            <div class="col-lg-5 mb-3 col-12">
-                <div
-                    class="h-100 border rounded-3 px-3 text-lg-end me-lg-4 d-flex flex-column wow animate__animated animate__fadeIn animate__slow animate__delay-2s">
-                    <div class="d-flex justify-content-between align-items-center h-100">
-                        <div class="text-start">
-                            <p class="h2"> {{ $diffBetweenZoneAndCity['cityName'] }} time</p>
-                        </div>
-                        <div class="text-end mt-2 display-5">
-                            <p class="therdText"><span
-                                    class="dataWithTime">{{ Carbon\Carbon::parse($diffBetweenZoneAndCity['cityTime'])->format('h:i') }}</span>
-                                <span
-                                    class="dataWithTime2">{{ Carbon\Carbon::parse($diffBetweenZoneAndCity['cityTime'])->format('A') }}</span>
-                            </p>
-                            <input type="hidden"
-                                value="{{ Carbon\Carbon::parse($diffBetweenZoneAndCity['cityTime'])->format('H:i:s') }}"
-                                class="dataWithSecond">
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <h3 class="mb-4 wow animate__animated animate__fadeInUp"
-                style="color: #BDC1CA;font-weight: 400;font-size: 16px">
-                {{ $timezoneName }} time is {{ $diffBetweenZoneAndCity['diffHours'] }} hours ahead of
-                {{ $diffBetweenZoneAndCity['cityName'] }} Time
-            </h3>
-        </div>
+        @endif
 
         <!-- GMT row -->
         <div class="row justify-content-center text-center bg-light p-md-5 pb-0">
