@@ -37,6 +37,27 @@
         opacity: 1 !important;
         filter: none !important;
     }
+
+    input[type=number] {
+        position: relative;
+        padding: 5px;
+        padding-right: 25px;
+    }
+
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+        opacity: 1;
+    }
+
+    input[type=number]::-webkit-outer-spin-button,
+    input[type=number]::-webkit-inner-spin-button {
+        -webkit-appearance: inner-spin-button !important;
+        width: 35px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 100%;
+    }
 </style>
 
 <section class="convertSection py-5">
