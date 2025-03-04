@@ -2,7 +2,7 @@
 
     <section class=" py-5">
         <div class="container text-center">
-            <h1 style="font-family: Lexend,serif;">CET related time zones</h1>
+            <h2 class="h1" style="font-family: Lexend,serif;">{{ $timezoneName }} related time zones</h2>
             <div class="row  mt-3">
                 @foreach ($highestTimeZones as $highestTimeZone)
                     <div class="col-lg-4 mb-3">

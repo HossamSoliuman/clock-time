@@ -63,7 +63,7 @@
 <section class="convertSection py-5">
     <div class="container">
         <div class="text-center mb-5 text-white">
-            <h2 class="fw-bold">EDT Time to Your City Time</h2>
+            <h2 class="fw-bold">{{ $timezoneName }} Time to Your City Time</h2>
             <p class="fs-4">Easily convert and manage time across different zones with our intuitive tool.</p>
         </div>
         <div class="row justify-content-center mb-4">
