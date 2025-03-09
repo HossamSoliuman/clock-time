@@ -45,13 +45,24 @@ class ConvertService
         if (!$citySlug) {
             return null;
         }
-        $cityTime = Carbon::parse($this->city($citySlug)['currentTimeWithSeconds']);
-        $zoneTime = Carbon::parse($this->timezoneDetails($timezoneSlug)['currentTimeWithSeconds']);
+
+        $zoneTime = Carbon::parse($this->timezoneDetails($timezoneSlug)['currentTimeWithSeconds'])->timestamp;
+        $cityTime = Carbon::parse($this->city($citySlug)['currentTimeWithSeconds'])->timestamp;
+
+        $diffHours = ($zoneTime - $cityTime) / 3600;
+
+        if ($diffHours > 12) {
+            $diffHours = 24 - $diffHours;
+        } elseif ($diffHours < -12) {
+            $diffHours = 24 + $diffHours;
+        }
+
+        $diffHours = $cityTime > $zoneTime ? $diffHours : -$diffHours;
 
         return [
-            'diffHours' => $cityTime->diff($zoneTime)->format('%R%H:%I'),
-            'cityTime' => $cityTime,
-            'zoneTime' => $zoneTime,
+            'diffHours' => round($diffHours),
+            'cityTime' => Carbon::createFromTimestamp($cityTime)->format('g:i A'),
+            'zoneTime' => Carbon::createFromTimestamp($zoneTime)->format('g:i A'),
             'cityName' => $city->name,
         ];
     }
