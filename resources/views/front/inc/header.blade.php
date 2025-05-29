@@ -1,16 +1,6 @@
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WG483ZXMQH"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-
-        gtag('config', 'G-WG483ZXMQH');
-    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7869793057346493"
+     crossorigin="anonymous"></script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@yield('title')</title>
@@ -29,14 +19,14 @@
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="The Clock Time" />
     {{--    End OG --}}
-    <meta name="msvalidate.01" content="@yield('msvalidate')" />
+    <meta name="msvalidate.01" content="@yield('msvalidate')" /><span id="load-test">theclocktime.com</span>
     <meta name="google-site-verification" content="@yield('google-site-verification')" />
     <meta name="yandex-verification" content="710cb27d8d2ff493" />
 
     <link rel="shortcut icon" type="image/x-icon" href="#"> {{-- this link need image --}}
     <link rel="stylesheet" href="{{ asset('cdn/animate.min.css') }}">
     <link rel="stylesheet" href="{{ asset('cdn/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('Home.css') }}" />
+    <link rel="stylesheet" href="{{ asset('Home.css?123') }}" />
     <!-- Include Moment.js and Moment Timezone -->
     <script src="{{ asset('cdn/moment.min.js') }}"></script>
     <script src="{{ asset('cdn/moment-timezone-with-data.min.js') }}"></script>
@@ -44,11 +34,6 @@
     <link rel="stylesheet" href="{{ asset('cdn/leaflet.css') }}">
     <!-- Include jQuery (required for Select2) -->
     <script src="{{ asset('cdn/jquery-3.6.0.min.js') }}"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="{{ asset('cdn/css2.css') }}">
     <script src="{{ asset('tagify/tagify.js') }}"></script>
     <script src="{{ asset('tagify/tagify.polyfills.min.js') }}"></script>
@@ -110,4 +95,10 @@
         }
     </style>
     @yield('style')
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("load-test").style.display = "none";
+});
+
+    </script>
 </head>

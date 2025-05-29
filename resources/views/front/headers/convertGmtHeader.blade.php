@@ -1,7 +1,7 @@
 <!-- Header -->
 <div class="container-fluid text-white g-2 p-0 me-0" style="margin-bottom: 8px">
     @php
-        $imageUrl = 'public/ImgHomePage/banner.svg';
+        $imageUrl = 'public/ImgHomePage/banner.jpg';
 
     @endphp
     <style>

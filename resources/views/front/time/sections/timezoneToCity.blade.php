@@ -35,7 +35,9 @@
     .time-input::-webkit-inner-spin-button,
     .time-input::-webkit-outer-spin-button {
         opacity: 1 !important;
-        filter: none !important;
+        background-color: #DC1C24 !important;
+        color: #DC1C24 !important;
+        border-color:#f00 !important;
     }
 
     input[type=number] {
@@ -58,7 +60,15 @@
         right: 0;
         height: 100%;
     }
+    
+    .time-input:focus{
+        background-color:#DC1C24;
+    color: white;
+    border: 2px solid red;
+    box-shadow:none;
+    }
 </style>
+
 
 <section class="convertSection py-5">
     <div class="container">
@@ -69,7 +79,6 @@
         <div class="row justify-content-center mb-4">
             <div class="col-md-4 col-12 mt-3">
                 <div class="input-group">
-                    <span class="input-group-text input-icon"><i class="fas fa-user"></i></span>
                     <input style="background-color: #192140" id="city"
                         class="form-control text-center fw-bold fs-3 city-input"
                         value="{{ $diffBetweenZoneAndCity['cityName'] }}" disabled>
@@ -97,7 +106,6 @@
         <div class="row justify-content-center">
             <div class="col-md-4 col-12">
                 <div class="input-group">
-                    <span class="input-group-text input-icon"><i class="fas fa-user"></i></span>
                     <input style="background-color: #192140" id="city"
                         class="form-control text-center fw-bold fs-3 city-input" value="{{ $timezoneName }}" disabled>
                 </div>

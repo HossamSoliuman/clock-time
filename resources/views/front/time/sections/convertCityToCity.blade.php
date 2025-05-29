@@ -99,7 +99,7 @@
         tagify3.on('input', function (e) {
             $.ajax({
                 url: '{{ route('fetch.city') }}',
-                type: 'get',
+                type: 'post',
                 data: {
                     search: e.detail.value,
                     _token: '{{ csrf_token() }}'

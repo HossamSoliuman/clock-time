@@ -9,14 +9,14 @@
                         <a href="  {{ url($highestTimeZone['slug']) }}">
                             <div class="card bg-white p-3">
                                 <div class="d-flex justify-content-between h-100 align-items-center">
-                                    <h4 class="first mb-0 col-6 text-start" id="abb"
+                                    <h3 class="first mb-0 col-6 text-start" id="abb"
                                         style="font-family: Lexend,serif;font-size: 22px;">
                                         {{ $highestTimeZone['name'] }}
-                                    </h4>
-                                    <h4 class="second mb-0" id="abb_time"
+                                    </h3>
+                                    <h3 class="second mb-0" id="abb_time"
                                         style="font-family: Lexend,serif;font-size: 28px;color:red;">
                                         {{ $highestTimeZone['time'] }} {{ $highestTimeZone['identify'] }}
-                                    </h4>
+                                    </h3>
                                 </div>
 
                             </div>

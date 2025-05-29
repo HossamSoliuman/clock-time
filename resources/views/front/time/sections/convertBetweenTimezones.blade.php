@@ -1,15 +1,14 @@
 <!-- Convert -->
-
 <section class="convertSection py-5">
     <div class="container">
         <div class="text-center">
             @if (Request::is('meeting-planner'))
-                <h4 class="searchBetweenA">Convert Time Zones</h4>
+                <h2 class="searchBetweenA">Convert Time Zones</h2>
             @else
-                <h4 class="searchBetweenA">Convert <b>{{ $timezoneName }}</b> to any Time Zones</h4>
+                <h2 class="searchBetweenA">Convert <b>{{ $timezoneName }}</b> to any Time Zones</h2>
             @endif
             @if (Request::is('convert-timezone'))
-                <h5 class="fs-5">Easily convert and manage across different Zones with our intuitive tool.</h5>
+                <h2 class="fs-5">Easily convert and manage across different Zones with our intuitive tool.</h2>
             @else
                 <p>Easily convert and manage across different Zones with our intuitive tool.</p>
             @endif
@@ -33,7 +32,7 @@
                     <div class="col-lg-5 mb-3 position-relative">
                         <i class="fa-solid fa-location-dot position-absolute top-50"
                             style="color:rgba(0, 0, 0, 0.4);transform: translateY(-50%);z-index: 10;left:20px;"></i>
-                        <input name="mode-select2" placeholder="Search Time Zones..."
+                        <input name="time_zones" placeholder="Search Time Zones..."
                             class="w-100 rounded-2 ps-3 bg-white" required />
                     </div>
                     <div class="col-lg-2 mb-3">
@@ -87,7 +86,7 @@
 
     var tagify2;
     $(document).ready(function() {
-        var input = document.querySelector('input[name=mode-select2]');
+        var input = document.querySelector('input[name=time_zones]');
         tagify2 = new Tagify(input, {
             enforceWhitelist: false,
             mode: "select",

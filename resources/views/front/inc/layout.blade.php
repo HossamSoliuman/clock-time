@@ -5,7 +5,7 @@
 
 
 
-<livewire:styles/>
+
 <body>
 
 @include('front.inc.nav')
@@ -15,6 +15,6 @@
 
 
 @include('front.inc.footer')
-<livewire:scripts/>
+
 </body>
 </html>

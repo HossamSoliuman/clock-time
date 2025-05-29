@@ -2,7 +2,7 @@
 <div class="container-fluid text-white g-2 p-0 me-0" style="margin-bottom: 8px">
     <style>
         .img-city {
-            background-image: url({{ asset('/') }}{{ $imageUrl ?? 'public/ImgHomePage/banner.svg' }});
+            background-image: url({{ asset('/') }}{{ $imageUrl ?? 'public/ImgHomePage/banner.jpg' }});
         }
     </style>
     @php
