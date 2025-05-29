@@ -3,9 +3,6 @@
 
 @include('front.inc.header')
 
-
-
-
 <body>
 
 @include('front.inc.nav')

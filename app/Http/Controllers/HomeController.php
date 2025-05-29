@@ -11,6 +11,7 @@ use App\Models\Slug;
 use App\Models\IanaTimezone;
 use App\Models\TimezoneDetail;
 use App\Services\ConvertService;
+use App\Services\GeoIPService;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Log;
 use Carbon\Carbon;
@@ -20,11 +21,33 @@ use App\Traits\GetDate;
 
 class HomeController extends Controller
 {
-    use getdate;
-    public function __construct(public ConvertService $convertService) {}
+    use GetDate {
+        GetDate::city as traitCity;
+    }
 
-    public function index()
+    protected $geoIPService;
+
+
+    public function __construct(public ConvertService $convertService, GeoIPService $geoIPService)
     {
+        $this->geoIPService = $geoIPService;
+    }
+
+    public function index(Request $request)
+    {
+        $ip = $request->ip();
+
+        if ($ip == '127.0.0.1' || $ip === '::1') {
+            $ip = '213.158.168.137';
+        }
+        $location = $this->geoIPService->getLocation($ip);
+        if ($location) {
+            $country = Country::where('code', $location['iso_code'])->first();
+        }
+        $currentCity = City::where('name', $country->capital)->first();
+        $currenDate = $this->traitCity($currentCity->slug);
+        $ianaTimezone = IanaTimezone::where('iana_timezone', $currentCity->timezone)->first();
+
         $citiesName = [
             'berlin',
             'dubai',
@@ -36,11 +59,8 @@ class HomeController extends Controller
             'sydney',
             'Tokyo'
         ];
-
         $capitalCities = City::whereIn('name', $citiesName)->get();
-
         foreach ($capitalCities as $key => $city) {
-
             $timezone = $city->timezone ?? null;
             if ($timezone) {
                 $country = Country::where('capital', $city->name)->first();
@@ -54,29 +74,27 @@ class HomeController extends Controller
                 unset($capitalCities[$key]);
             }
         }
-
-
         $data['capital'] = $capitalCities;
-
         $title = "What time now";
         $description = "What time is it now? Get precise time information for any location in the world. Use our reliable clock to stay on schedule.";
         $keywords = "time, clock, world time, world clocks, time now, clock with world time, clock time, world clock, current time, world global clock, clocks, time zone, date and time, timestamp, system time, server time, real-time, standard time, daylight saving time, timekeeping, time management, time measurement, time calculation, clocks on time, current times, time a clock, time the clock, time regions, Real-Time Clock, current time, time in clock, what time is, what is time, what time is it, the time, time right now, on clock, clocks of the world";
 
-        return view('front.index', compact('title', 'description', 'keywords', 'data'));
+        return view('front.index', compact('title', 'description', 'keywords', 'data'))
+            ->with([
+                'currentDate' => $currenDate,
+                'timezoneName' => $currentCity->name,
+                'currentCity' => $currentCity,
+                'ianaTimezone' => $ianaTimezone,
+            ]);
     }
 
-    // protected $fillable = ['name', 'slug','code','capital','nationality','weight'];
 
     public function country($slug)
     {
-
         try {
-
             $country = Country::where('slug', $slug)->firstOrFail();
-
             $capital = City::where('name', $country->capital)->firstOrFail();
             $IanaTimezone = IanaTimezone::where('iana_timezone', $capital->timezone)->first();
-
             $majorCities = City::where('country', $country->name)
                 ->orderByDesc('score')
                 ->take(9)

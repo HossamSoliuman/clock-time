@@ -20,11 +20,6 @@
         </div>
     </div>
 </section>
-
-
-
-
-
 <script>
     var citySearch;
     $(document).ready(function() {

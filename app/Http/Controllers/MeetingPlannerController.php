@@ -14,6 +14,7 @@ use App\Traits\GetDate;
 class MeetingPlannerController extends Controller
 {
     use GetDate;
+    
     protected $geoIPService;
 
     public function __construct(GeoIPService $geoIPService)

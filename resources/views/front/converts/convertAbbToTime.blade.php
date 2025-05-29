@@ -1,8 +1,8 @@
 <!-- Convert -->
 
 
-<section class="convertSection py-5">
-    <div class="container">
+<section class="convertSection py-5" style="background-color: black">
+    <div class="container " >
         <div class="text-center">
             @if(Request::is('meeting-planner'))
                 <h2 class="searchBetweenA"> Convert Time Zones </h2>

@@ -19,7 +19,7 @@
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="The Clock Time" />
     {{--    End OG --}}
-    <meta name="msvalidate.01" content="@yield('msvalidate')" /><span id="load-test">theclocktime.com</span>
+    <meta name="msvalidate.01" content="@yield('msvalidate')" /><span id="load-test"></span>
     <meta name="google-site-verification" content="@yield('google-site-verification')" />
     <meta name="yandex-verification" content="710cb27d8d2ff493" />
 
@@ -100,5 +100,9 @@
     document.getElementById("load-test").style.display = "none";
 });
 
+
     </script>
+
+<script src="https://kit.fontawesome.com/7622502461.js" crossorigin="anonymous"></script>
+
 </head>

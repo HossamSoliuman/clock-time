@@ -36,6 +36,7 @@ trait GetDate
             'identify' => $adjustedTime->format('A'),
             'currentTimeWithSeconds' => $adjustedTime->format('H:i:s'),
             'formatted_date' => $adjustedTime->format('D, j-M-Y'),
+            'formatted_date_home' => $adjustedTime->format('D j M Y'),
             'utc' => $currentTimeUTC->format('h:i'),
             'utcWithSeconds' => $currentTimeUTC->format('H:i:s'),
             'utcIdentify' => $currentTimeUTC->format('A'),

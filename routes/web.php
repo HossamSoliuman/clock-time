@@ -184,7 +184,7 @@ Route::get('/convert-country', [ConvertCountryController::class, 'country'])->na
 Route::get('/convert-city', [ConvertCountryController::class, 'city'])->name('convert-city');
 Route::get('/convert-timezone', [ConvertCountryController::class, 'tz'])->name('convert-timezone');
 
-Route::post('/fetch-country', [ConvertCountryController::class, 'fetchAll'])->name('fetch.country');
+Route::get('/fetch-country', [ConvertCountryController::class, 'fetchAll'])->name('fetch.country');
 Route::get('/get-convert-country', [ConvertCountryController::class, 'fetchCountry'])->name('get.convert.country');
 
 //---------------------------convert utc To City

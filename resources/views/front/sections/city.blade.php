@@ -1,7 +1,8 @@
 <!-- Cities -->
 <!--{{ asset('images/theclocktime-logo.png') }}-->
+
 <section class="citiesSection" style="margin-top: 10px">
-    <div class="container-fluid">
+    <div class="container">
         <div class="text-center">
             <h2 class=" wow animate__animated animate__fadeInUp">Time in World Major Cities </h2>
         </div>
@@ -75,4 +76,5 @@
         </div>
     </div>
 </section>
+
 <!-- Cities end -->
