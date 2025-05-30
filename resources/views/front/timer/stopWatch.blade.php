@@ -1,8 +1,10 @@
 @extends('front.inc.layout')
 @section('title', 'Stopwatch Timer Online')
-@section('description', 'Online stopwatch offers a user-friendly interface, customizable timers, and lap time tracking.
+@section('description',
+    'Online stopwatch offers a user-friendly interface, customizable timers, and lap time tracking.
     Ideal for athletes, students, and anyone who needs precise timekeeping')
-@section('keywords', 'Stop Watch, stop stopwatch, stopwatch+, stopwhatc, stopwatch for study, timer and stopwatch,
+@section('keywords',
+    'Stop Watch, stop stopwatch, stopwatch+, stopwhatc, stopwatch for study, timer and stopwatch,
     0nline stopwatch, clock and stopwatch, online stop watches, stopwatch watch online, digital stopwatch, stopwatch timer
     online')
 @section('ogImage', asset('public/images/stop-watch.jpg'))
@@ -16,7 +18,7 @@
 @section('container')
 
 
-    <div class="container-fluid text-white g-2 p-0 me-0" style="margin-bottom: 8px">
+    <div class="container-fluid text-white g-2 p-0 me-0" style="margin-bottom: 8px;position: relative">
         <style>
             body {
                 overflow-x: hidden;
@@ -86,7 +88,7 @@
             }
         </style>
 
-        <div class="img-city img-city-gmt">
+        <div class="img-city img-city-gmt" style="background-color: black">
             <div class="overlay">
                 <div
                     class="d-flex h-100 align-items-center justify-content-center wow animate__animated animate__fadeInLeft">

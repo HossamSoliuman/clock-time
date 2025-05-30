@@ -20,7 +20,7 @@
 @section('container')
 
 
-    <div class="container-fluid text-white g-2 p-0 me-0" style="margin-bottom: 8px">
+    <div class="container-fluid text-white g-2 p-0 me-0" style="margin-bottom: 8px;position: relative">
         <style>
             .btn-convert {
                 cursor: pointer;
@@ -115,7 +115,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger btn-convert" data-bs-dismiss="modal">Close</button>
                     </div>
-                   
+
                 </div>
             </div>
         </div>
@@ -155,10 +155,9 @@
             <button id="soundToggleBtn" class="btn btn-danger btn-convert" title="Toggle Sound">
                 <i class="fas fa-bell"></i>
             </button>
-            <button id="fullscreenBtn" title="Fullscreen" class="btn btn-danger btn-convert"
-            aria-label="Enter Fullscreen">
-            <i class="fas fa-expand"></i>
-        </button>
+            <button id="fullscreenBtn" title="Fullscreen" class="btn btn-danger btn-convert" aria-label="Enter Fullscreen">
+                <i class="fas fa-expand"></i>
+            </button>
         </div>
 
 

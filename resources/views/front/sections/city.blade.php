@@ -1,6 +1,4 @@
 <!-- Cities -->
-<!--{{ asset('images/theclocktime-logo.png') }}-->
-
 <section class="citiesSection" style="margin-top: 10px">
     <div class="container">
         <div class="text-center">

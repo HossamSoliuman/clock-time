@@ -26,6 +26,9 @@
         </div>
     </div>
 </div>
+<style>
+    
+</style>
 
 <!-- end Header -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7869793057346493"

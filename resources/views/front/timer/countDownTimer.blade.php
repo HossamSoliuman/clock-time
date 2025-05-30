@@ -1,8 +1,10 @@
 @extends('front.inc.layout')
 @section('title', 'Countdown Timer')
-@section('description', 'Free Online Countdown Timer - Easy to use, customizable, and full-screen. Perfect for events,
+@section('description',
+    'Free Online Countdown Timer - Easy to use, customizable, and full-screen. Perfect for events,
     deadlines, and more. Start your countdown now')
-@section('keywords', 'Timer, Timer Clock, Countdown, countdown timer, online timer, free timer, digital timer, event
+@section('keywords',
+    'Timer, Timer Clock, Countdown, countdown timer, online timer, free timer, digital timer, event
     timer, deadline timer, countdown clock, timer tool, full-screen timer, customizable timer, easy-to-use timer, web timer,
     time management tool, productivity tool, project timer, study timer, game timer, cooking timer, exercise timer')
 @section('ogImage', asset('public/images/count-down-timer.jpg'))
@@ -14,7 +16,7 @@
 @endphp
 
 @section('container')
-    <div class="container-fluid text-white g-2 p-0 me-0">
+    <div class="container-fluid text-white g-2 p-0 me-0" style="position: relative">
         <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;700&display=swap" rel="stylesheet">
         <style>
             .arrow-up,
@@ -73,7 +75,7 @@
             }
         </style>
 
-        <div class="img-city img-city-gmt">
+        <div class="img-city img-city-gmt" style="background-color: black">
             <div class="overlay">
                 <div
                     class="d-flex h-100 align-items-center justify-content-center wow animate__animated animate__fadeInLeft">
