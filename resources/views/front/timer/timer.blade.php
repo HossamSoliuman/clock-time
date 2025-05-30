@@ -79,7 +79,7 @@
             <div class="overlay">
                 <div
                     class="d-flex h-100 align-items-center justify-content-center wow animate__animated animate__fadeInLeft">
-                    <div class="cityBanner w-100">
+                    <div class="cityBanner w-100 w-md-75 mx-auto mx-md-0" style="max-width: 100%; width: 75%;">
                         <div class='d-block d-md-flex justify-content-center align-items-center w-75 m-auto'>
                             <h1 class='display-5 mt-3 head' style="font-size:44px; color: white">Timer</h1>
                         </div>
