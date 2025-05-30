@@ -20,7 +20,8 @@
 @section('container')
 
 
-    <div class="container-fluid text-white g-2 p-0 me-0" style="margin-bottom: 8px;position: relative" style="background-color: black">
+    <div class="container-fluid text-white g-2 p-0 me-0" style="margin-bottom: 8px;position: relative"
+        style="background-color: black">
         <style>
             .btn-convert {
                 cursor: pointer;
@@ -88,7 +89,7 @@
             }
         </style>
 
-        <div class="img-city img-city-gmt">
+        <div class="img-city img-city-gmt" style="background-color: black">
             <div class="overlay">
                 <div
                     class="d-flex h-100 align-items-center justify-content-center wow animate__animated animate__fadeInLeft">

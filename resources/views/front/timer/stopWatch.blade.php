@@ -88,7 +88,7 @@
             }
         </style>
 
-        <div class="img-city img-city-gmt" >
+        <div class="img-city img-city-gmt" style="background-color: black" >
             <div class="overlay">
                 <div
                     class="d-flex h-100 align-items-center justify-content-center wow animate__animated animate__fadeInLeft">
