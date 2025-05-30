@@ -18,7 +18,7 @@
 @section('container')
 
 
-    <div class="container-fluid text-white g-2 p-0 me-0" style="margin-bottom: 8px;position: relative">
+    <div class="container-fluid text-white g-2 p-0 me-0" style="margin-bottom: 8px;position: relative" style="background-color: black">
         <style>
             body {
                 overflow-x: hidden;
@@ -88,7 +88,7 @@
             }
         </style>
 
-        <div class="img-city img-city-gmt" style="background-color: black">
+        <div class="img-city img-city-gmt" >
             <div class="overlay">
                 <div
                     class="d-flex h-100 align-items-center justify-content-center wow animate__animated animate__fadeInLeft">

@@ -20,7 +20,7 @@
 @section('container')
 
 
-    <div class="container-fluid text-white g-2 p-0 me-0" style="margin-bottom: 8px;position: relative">
+    <div class="container-fluid text-white g-2 p-0 me-0" style="margin-bottom: 8px;position: relative" style="background-color: black">
         <style>
             .btn-convert {
                 cursor: pointer;
