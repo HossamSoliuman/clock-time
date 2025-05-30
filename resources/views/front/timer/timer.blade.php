@@ -73,6 +73,19 @@
             .time {
                 font-family: 'Lexend', sans-serif !important;
             }
+
+            @media (max-width: 768px) {
+                .controls {
+                    right: 0px;
+                    position: relative;
+                    top: -100px;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                    margin-top: 0;
+                    gap: 10px;
+                }
+            }
         </style>
 
         <div class="img-city img-city-gmt">
@@ -99,6 +112,21 @@
                     </div>
                 </div>
             </div>
+        </div>
+
+        <div class="controls mt-3 d-flex justify-content-center gap-2">
+            <button id="pauseBtn" title="Pause/Resume" class="btn btn-danger btn-convert">
+                <i class="fas fa-pause"></i>
+            </button>
+            <button id="resetBtn" title="Reset" class="btn btn-danger btn-convert">
+                <i class="fas fa-redo"></i>
+            </button>
+            <button id="soundToggleBtn" class="btn btn-danger btn-convert" title="Toggle Sound">
+                <i class="fas fa-bell"></i>
+            </button>
+            <button id="fullscreenBtn" title="Fullscreen" class="btn btn-danger btn-convert" aria-label="Enter Fullscreen">
+                <i class="fas fa-expand"></i>
+            </button>
         </div>
 
         <!-- Timer Finished Modal -->
@@ -145,20 +173,7 @@
                 </div>
             </div>
         </div>
-        <div class="controls mt-3 d-flex justify-content-center gap-2">
-            <button id="pauseBtn" title="Pause/Resume" class="btn btn-danger btn-convert">
-                <i class="fas fa-pause"></i>
-            </button>
-            <button id="resetBtn" title="Reset" class="btn btn-danger btn-convert">
-                <i class="fas fa-redo"></i>
-            </button>
-            <button id="soundToggleBtn" class="btn btn-danger btn-convert" title="Toggle Sound">
-                <i class="fas fa-bell"></i>
-            </button>
-            <button id="fullscreenBtn" title="Fullscreen" class="btn btn-danger btn-convert" aria-label="Enter Fullscreen">
-                <i class="fas fa-expand"></i>
-            </button>
-        </div>
+
 
 
         <script>
