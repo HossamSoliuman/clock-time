@@ -14,7 +14,7 @@
                         <p class="card-text text-muted">
                             Target time and track the remaining time down to zero for tasks, events.
                         </p>
-                        <a href="#" class="btn btn-outline-danger">Try now</a>
+                        <a href="{{ url('/hour-duration') }}" class="btn btn-outline-danger">Try now</a>
                     </div>
                 </div>
             </div>
@@ -26,7 +26,7 @@
                         <p class="card-text text-muted">
                             How many workdays are needed to complete a set number of hours
                         </p>
-                        <a href="#" class="btn btn-outline-danger">Try now</a>
+                        <a href="{{ url('/8-hour-day-calculator') }}" class="btn btn-outline-danger">Try now</a>
                     </div>
                 </div>
             </div>
@@ -38,7 +38,7 @@
                         <p class="card-text text-muted">
                             Calculates the difference between two time points with precision.
                         </p>
-                        <a href="#" class="btn btn-outline-danger">Try now</a>
+                        <a href="{{ url('/time-duration') }}" class="btn btn-outline-danger">Try now</a>
                     </div>
                 </div>
             </div>
