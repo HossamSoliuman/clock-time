@@ -56,9 +56,9 @@
                     id="calculatorsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"
                     title="Calculators">Time Calculator</a>
                 <ul class="dropdown-menu" aria-labelledby="calculatorsDropdown">
-                    <li><a class="dropdown-item" href="{{ url('/time-duration') }}">Time Duration</a></li>
-                    <li><a class="dropdown-item" href="{{ url('/hour-duration') }}">Hour Duration</a></li>
-                    <li><a class="dropdown-item" href="{{ url('/8-hour-day-calculator') }}">8 Hour Day Calculator</a>
+                    <li><a class="dropdown-item" href="#">Time Duration</a></li>
+                    <li><a class="dropdown-item" href="#">Hour Duration</a></li>
+                    <li><a class="dropdown-item" href="#">8 Hour Day Calculator</a>
                     </li>
                 </ul>
             </li>
