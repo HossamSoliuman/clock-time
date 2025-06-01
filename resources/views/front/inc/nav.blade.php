@@ -1,4 +1,10 @@
 <!-- Navbar -->
+<style>
+    .navbar-nav .nav-link {
+        white-space: nowrap;
+        font-size: 0.875rem;
+    }
+</style>
 <nav class="container-fluid navbar navbar-expand-lg navbar-light fixed-top" id="navbar">
     <a href="{{ url('/') }}" title="The Clock Time">
         <div class="px-md-4 ps-3 ">
