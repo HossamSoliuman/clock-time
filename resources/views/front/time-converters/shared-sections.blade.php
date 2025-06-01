@@ -1,26 +1,20 @@
 @extends('front.inc.layout')
-@section('title', 'Convert Time between Countries')
+@section('title', 'Time Converting')
 @section('description',
-    'Effortlessly convert time between Countries around the world. A simple and accurate tool to
-    help you manage time differences and schedule events across global locations.')
+    'Time
+    Converters')
 @section('keywords',
-    'Convert Time between Countries,Convert Time between 2 Countries,Convert Time Country,Converter for
-    Time Zone,CountriesTime calculator ,convert time timezone ,convert time difference,Country time zone calculator, time
-    converter, Countries time conversion tool, Countries time calculator,Countries time difference calculator, time
-    conversion,country local time calculator, cross time zone calculator, global time converter, calculate time difference')
+    'Time
+    Converters')
 @section('url', urldecode(url()->current()))
 @section('ogImage', 'https://theclocktime.com/images/convert-Country.jpg')
-@section('ogImageAlt', 'Convert Time between Countries')
+@section('ogImageAlt',
+    'Time
+    Converters')
 @section('style')
-    <style>
-        .MeetingSection {
-            background: rgba(243, 244, 246, 1);
-        }
-    </style>
+
 @endsection
-@php
-    $imageUrl = 'public/images/convert-country.jpg';
-@endphp
+
 @section('container')
 
     <!-- Header -->
