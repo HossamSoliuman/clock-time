@@ -1,5 +1,29 @@
-@foreach ($images as $image)
-    <div class="col-md-3 mb-4">
-        <img src="{{ asset('images/gallery/digital-clocks/' . $image) }}" class="img-fluid rounded">
+@extends('front.time-converters.shared-sections')
+@section('section')
+    @php
+        $images = [
+            '1.jpg',
+            '2.jpg',
+            '3.jpg',
+            '1.jpg',
+            '2.jpg',
+            '3.jpg',
+            '1.jpg',
+            '2.jpg',
+            '3.jpg',
+            '1.jpg',
+            '2.jpg',
+            '3.jpg',
+        ];
+    @endphp
+
+    <div class="container py-5">
+        <div class="row">
+            @foreach ($images as $image)
+                <div class="col-md-3 mb-4">
+                    <img src="{{ asset('images/gallery/digital-clocks/' . basename($image)) }}" class="img-fluid rounded">
+                </div>
+            @endforeach
+        </div>
     </div>
-@endforeach
+@endsection

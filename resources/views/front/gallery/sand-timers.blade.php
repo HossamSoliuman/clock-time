@@ -1,12 +1,20 @@
 @extends('front.time-converters.shared-sections')
 @section('section')
     @php
-        $images = File::files('images/gallery/sand-timers');
-        $count = count($images);
-        if ($count < 16) {
-            $repeat = ceil(16 / $count);
-            $images = collect($images)->flatMap(fn($i) => array_fill(0, $repeat, $i))->take(16);
-        }
+        $images = [
+            '1.jpg',
+            '2.jpg',
+            '3.jpg',
+            '1.jpg',
+            '2.jpg',
+            '3.jpg',
+            '1.jpg',
+            '2.jpg',
+            '3.jpg',
+            '1.jpg',
+            '2.jpg',
+            '3.jpg',
+        ];
     @endphp
 
     <div class="container py-5">
