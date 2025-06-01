@@ -1,7 +1,7 @@
 @extends('front.time-converters.shared-sections')
 @section('section')
     @php
-        $images = File::files(public_path('images/gallery/sand-timers'));
+        $images = File::files('images/gallery/sand-timers');
         $count = count($images);
         if ($count < 16) {
             $repeat = ceil(16 / $count);

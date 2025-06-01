@@ -1,7 +1,7 @@
 @extends('front.time-converters.shared-sections')
 @section('section')
     @php
-        $images = File::files(public_path('images/gallery/analog-clocks'));
+        $images = File::files('images/gallery/analog-clocks');
         $count = count($images);
         if ($count < 16) {
             $repeat = ceil(16 / $count);
