@@ -2,7 +2,7 @@
 <style>
     .navbar-nav .nav-link {
         white-space: nowrap;
-        font-size: 0.875rem;
+        font-size: 0.975rem;
     }
 </style>
 <nav class="container-fluid navbar navbar-expand-lg navbar-light fixed-top" id="navbar">
