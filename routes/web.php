@@ -249,6 +249,8 @@ Route::get('sand-timers', [GalleryController::class, 'sandTimers']);
 Route::get('analog-clocks', [GalleryController::class, 'analogClocks']);
 Route::get('digital-clocks', [GalleryController::class, 'digitalClocks']);
 
+Route::view('event-announcer', 'front.announcer');
+Route::view('education', 'front.education');
 
 Route::get('/{slugable}', [HomeController::class, 'showBySlug']);
 
