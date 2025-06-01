@@ -300,5 +300,25 @@
 
     </div>
 
+    <div class="container my-5">
+        <div class="row space-between">
+            <div class="col">
+                <a href="{{ url('/count-down-timer') }}">
+                    <button class="btn btn-outline-secondary w-100 mb-2 px-4">
+                        Count down timer
+                    </button>
+                </a>
+            </div>
+            <div class="col-1"></div>
+            <div class="col">
+                <a href="{{ url('/stop-watch') }}">
+                    <button class="btn btn-outline-secondary w-100 mb-2 px-4">
+                        Stop watch
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+
 
 @endsection
