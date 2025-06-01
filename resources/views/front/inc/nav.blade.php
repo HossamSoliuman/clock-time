@@ -34,7 +34,7 @@
                     <li><a class="dropdown-item" href="{{ url('/convert-city') }}">Convert City to City</a></li>
                     <li><a class="dropdown-item" href="{{ url('/convert-timezone') }}">Convert Time Zones</a></li>
                     <li><a class="dropdown-item" href="{{ url('/time-converter') }}">Convert Any to Any</a></li>
-                    <li><a class="dropdown-item" href="{{ url('/hours-to-minutes') }}">Hours to min</a></li>
+                    <li><a class="dropdown-item" href="{{ url('/minutes-to-hours') }}">min to Hours </a></li>
                     <li><a class="dropdown-item" href="{{ url('/hours-to-decimal') }}">Hours to decimals</a></li>
                     <li><a class="dropdown-item" href="{{ url('/epoch-unix') }}">Epoch Unix</a></li>
                 </ul>
