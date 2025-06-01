@@ -21,7 +21,7 @@
         <div class="row">
             @foreach ($images as $image)
                 <div class="col-md-3 mb-4">
-                    <img src="{{ asset('images/1.jpg') }}" class="img-fluid rounded">
+                    <img src="{{ asset('images/d.jpg') }}" class="img-fluid rounded">
                 </div>
             @endforeach
         </div>
