@@ -15,6 +15,7 @@ use App\Http\Controllers\TimezoneController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\ConvertController;
+use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\SlugController;
 use App\Http\Controllers\TimeCalculatorController;
 use App\Http\Controllers\TimeConverterController;
@@ -243,6 +244,10 @@ Route::get('/epoch-unix', [TimeConverterController::class, 'epochUnix']);
 Route::get('/time-duration', [TimeCalculatorController::class, 'timeDuration']);
 Route::get('/hour-duration', [TimeCalculatorController::class, 'hourDuration']);
 Route::get('/8-hour-day-calculator', [TimeCalculatorController::class, 'HourDayCalculator']);
+
+Route::get('sand-timers', [GalleryController::class, 'sandTimers']);
+Route::get('analog-clocks', [GalleryController::class, 'analogClocks']);
+Route::get('digital-clocks', [GalleryController::class, 'digitalClocks']);
 
 
 Route::get('/{slugable}', [HomeController::class, 'showBySlug']);
