@@ -18,7 +18,7 @@
 @section('container')
 
     <!-- Header -->
-    <div class="container-fluid text-white g-2 p-0 me-0">
+    <div class="container-fluid text-white g-2 p-0 me-0" style="background-color: black">
         <div class="img-city img-city-convert-country">
             <div class="overlay">
                 <div
