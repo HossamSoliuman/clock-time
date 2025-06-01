@@ -18,11 +18,7 @@
 @section('container')
 
     @include('front.headers.convertCountryHeader')
-
     @include('front.converts.convertCountryToCountry')
-
-{{--    @include('front.sections.clockCountry')--}}
-
     @include('front.sections.meeting')
 
     <script>

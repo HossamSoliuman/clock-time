@@ -16,6 +16,8 @@ use App\Http\Controllers\CountryController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\ConvertController;
 use App\Http\Controllers\SlugController;
+use App\Http\Controllers\TimeCalculatorController;
+use App\Http\Controllers\TimeConverterController;
 use App\Http\Controllers\TimerController;
 use App\Http\Controllers\Website\ConvertGmtController;
 use App\Http\Controllers\Website\LocationController;
@@ -233,6 +235,14 @@ Route::get('not-found', [LocationController::class, 'notFound'])->name('not-foun
 Route::fallback(function () {
     return redirect()->route('not-found');
 });
+
+Route::get('/hours-to-minutes', [TimeConverterController::class, 'hoursToMins']);
+Route::get('/hours-to-decimal', [TimeConverterController::class, 'hoursToDecimal']);
+Route::get('/epoch-unix', [TimeConverterController::class, 'epochUnix']);
+
+Route::get('/time-duration', [TimeCalculatorController::class, 'timeDuration']);
+Route::get('/hour-duration', [TimeCalculatorController::class, 'hourDuration']);
+Route::get('/8-hour-day-calculator', [TimeCalculatorController::class, 'HourDayCalculator']);
 
 
 Route::get('/{slugable}', [HomeController::class, 'showBySlug']);
