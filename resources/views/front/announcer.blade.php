@@ -10,11 +10,11 @@
 @section('google-site-verification', '5cy7kTKZTqv_Rz1YTyNWF1LhueGxgXz5OD4MhLdv7vY')
 @endsection
 <!-- Header -->
-<div class="container-fluid text-white me-0" style="background-color:black;">
+<div class="container-fluid text-white g-2 p-0 me-0" style="margin-bottom: 8px;background-color:black;">
 <div class="img-city img-city-gmt">
     <div class="overlay">
-        <div class="">
-            <H1>Comming soon</H1>
+        <div class="d-flex h-100 align-items-center justify-content-center">
+            <H1 class="text-center">Comming soon</H1>
         </div>
     </div>
 </div>

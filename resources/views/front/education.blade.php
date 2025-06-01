@@ -14,7 +14,7 @@
 <div class="img-city img-city-gmt">
     <div class="overlay">
         <div class="d-flex h-100 align-items-center justify-content-center">
-            <H1>Comming soon</H1>
+            <H1 class="text-center">Comming soon</H1>
         </div>
     </div>
 </div>
