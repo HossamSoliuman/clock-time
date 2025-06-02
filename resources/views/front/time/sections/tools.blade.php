@@ -14,7 +14,7 @@
                         <p class="card-text text-muted">
                             Target time and track the remaining time down to zero for tasks, events.
                         </p>
-                        <a href="{{ url('/hour-duration') }}" class="btn btn-outline-danger">Try now</a>
+                        <a href="{{ url('/timer') }}" class="btn btn-outline-danger">Try now</a>
                     </div>
                 </div>
             </div>
