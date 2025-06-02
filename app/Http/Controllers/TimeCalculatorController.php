@@ -16,6 +16,9 @@ class TimeCalculatorController extends Controller
 
     public function HourDayCalculator()
     {
-        return view('front.timeCalculator.8-hour-day-calculator');
+        return view('front.timeCalculator.8-hour-day-calculator')
+            ->with([
+                'head' => '8 Hours work day calculator'
+            ]);
     }
 }
