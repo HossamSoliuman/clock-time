@@ -8,12 +8,12 @@ class TimeCalculatorController extends Controller
 {
     public function timeDuration()
     {
-        return view('front.timeCalculator.time-duration');
+        return view('front.timeCalculator.time-duration')
+            ->with([
+                'head' => 'Calculates the difference<br>between two times'
+            ]);
     }
-    public function hourDuration()
-    {
-        return view('front.timeCalculator.hour-duration');
-    }
+
     public function HourDayCalculator()
     {
         return view('front.timeCalculator.8-hour-day-calculator');

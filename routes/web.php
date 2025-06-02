@@ -242,7 +242,6 @@ Route::get('/hours-to-decimal', [TimeConverterController::class, 'hoursToDecimal
 Route::get('/epoch-unix', [TimeConverterController::class, 'epochUnix']);
 
 Route::get('/time-duration', [TimeCalculatorController::class, 'timeDuration']);
-Route::get('/hour-duration', [TimeCalculatorController::class, 'hourDuration']);
 Route::get('/8-hour-day-calculator', [TimeCalculatorController::class, 'HourDayCalculator']);
 
 Route::get('sand-timers', [GalleryController::class, 'sandTimers']);

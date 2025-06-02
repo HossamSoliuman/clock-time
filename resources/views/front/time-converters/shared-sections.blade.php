@@ -27,7 +27,7 @@
 
                         @if (Request::is('epoch-unix'))
                             <h5>
-                                {{ $head }}
+                                {!! $head !!}
                             </h5>
                             <h1 id="currentUnix" class="mt-3" style="font-size: 200px">
                                 {{ time() }}
@@ -37,7 +37,7 @@
                             </h5>
                         @else
                             <h1>
-                                {{ $head }}
+                                {!! $head !!}
                             </h1>
                         @endif
                     </div>
