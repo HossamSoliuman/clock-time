@@ -14,45 +14,35 @@
                         $identify = $city->identify;
 
                     @endphp
-
                     <div>
                         <div
                             class="border rounded-3 px-3 text-lg-end mb-3 d-flex flex-column wow animate__animated animate__fadeIn animate__slow h-100">
                             <div class="row justify-content-between h-100">
                                 <div class="col-lg-6 col-7">
-                                    <div class="text-start h-100">
-                                        <div class="d-flex flex-column justify-content-between h-100">
-                                            <div>
-
-                                                <a href="{{ url($city->slug) }}" title="{{ $city->name }} time now">
-                                                    <p class="mb-0 citiesSectionp" style="margin-top:11px;">
-                                                        {{-- <img loading="lazy"
-                                                            src="{{ asset('vendor/blade-flags/country-' . \Str::lower($city->name) . '.svg') }}"
-                                                            width="25" height="20"
-                                                            alt="{{ $city->country }} Flag" class="me-2 pb-1" /> --}}
-                                                        {{ $city->name }}
-                                                    </p>
-                                                </a>
-                                                <!-- HTML content for each city block -->
-                                                <input type="hidden" id="timeWith{{ $city->slug }}"
-                                                    class="citiesSectionTimeSecond"
-                                                    value="{{ $currentTimeWithSecond }}">
-                                                <p class="citiesSectionh2 mb-0" style="font-family:'Lexend', serif;"
-                                                    id="timeWithout{{ $city->slug }}"><span
-                                                        class="citiesSectionTime">{{ $currentTimeWithoutSecond }}
-                                                    </span><span>{{ $identify }}</span> </p>
-                                            </div>
-                                            <a href="{{ url($city->countrySlug) }}"
-                                                title="{{ $city->country }} time now">
-                                                <p style="color: #9095A1;  font-family: Lexend,serif; font-size: 18px"
-                                                    class="p-0 mb-3"> {{ $city->country }}</p>
-                                            </a>
-
-                                        </div>
+                                    <div class="text-start h-100 d-flex flex-column justify-content-center">
+                                        <a href="{{ url($city->slug) }}" title="{{ $city->name }} time now">
+                                            <p class="mb-1 citiesSectionp w-100 text-truncate"
+                                                style="margin-top:11px; white-space: nowrap;">
+                                                {{ $city->name }}
+                                            </p>
+                                        </a>
+                                        <input type="hidden" id="timeWith{{ $city->slug }}"
+                                            class="citiesSectionTimeSecond" value="{{ $currentTimeWithSecond }}">
+                                        <p class="citiesSectionh2 mb-1 w-100"
+                                            style="font-family:'Lexend', serif; white-space: nowrap;"
+                                            id="timeWithout{{ $city->slug }}">
+                                            <span
+                                                class="citiesSectionTime">{{ $currentTimeWithoutSecond }}</span><span>{{ $identify }}</span>
+                                        </p>
+                                        <a href="{{ url($city->countrySlug) }}" title="{{ $city->country }} time now">
+                                            <p class="w-100"
+                                                style="color: #9095A1; font-family: Lexend,serif; font-size: 18px; white-space: nowrap;">
+                                                {{ $city->country }}
+                                            </p>
+                                        </a>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-5">
-
                                     <div class="text-md-end py-3 h-100">
                                         @php
                                             $imageUrl =
