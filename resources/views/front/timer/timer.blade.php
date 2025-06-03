@@ -86,6 +86,10 @@
                     margin-top: 0;
                     gap: 10px;
                 }
+
+                #timeDisplay {
+                    font-size: 100px;
+                }
             }
         </style>
 
