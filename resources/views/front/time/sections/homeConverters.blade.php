@@ -31,7 +31,7 @@
                             style="width: 40px; height: 40px;">
                             <i class="fa-solid fa-hourglass-start text-white"></i>
                         </div>
-                        <a href="{{ url('/minutes-to-hours') }}" class="text-white text-decoration-none fw-bold">Hours
+                        <a href="{{ url('/hours-to-minutes') }}" class="text-white text-decoration-none fw-bold">Hours
                             to min</a>
                     </div>
 
@@ -49,7 +49,7 @@
                             style="width: 40px; height: 40px;">
                             <i class="fa-solid fa-stopwatch text-white"></i>
                         </div>
-                        <a href="{{ url('/hours-to-decimal') }}" class="text-white text-decoration-none fw-bold">Hours
+                        <a href="{{ url('/hours-to-seconds') }}" class="text-white text-decoration-none fw-bold">Hours
                             to Seconds</a>
                     </div>
 
@@ -58,7 +58,7 @@
                             style="width: 40px; height: 40px;">
                             <i class="fa-solid fa-clock-rotate-left text-white"></i>
                         </div>
-                        <a href="{{ url('/minutes-to-hours') }}"
+                        <a href="{{ url('/minutes-to-seconds') }}"
                             class="text-white text-decoration-none fw-bold">Minute to Seconds</a>
                     </div>
                 </div>

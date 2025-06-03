@@ -237,7 +237,10 @@ Route::fallback(function () {
     return redirect()->route('not-found');
 });
 
-Route::get('/minutes-to-hours', [TimeConverterController::class, 'hoursToMins']);
+Route::get('/minutes-to-hours', [TimeConverterController::class, 'minsToHours']);
+Route::get('/hours-to-minutes', [TimeConverterController::class, 'hoursToMins']);
+Route::get('/hours-to-seconds', [TimeConverterController::class, 'hoursToSeconds']);
+Route::get('/minutes-to-seconds', [TimeConverterController::class, 'minsToSeconds']);
 Route::get('/hours-to-decimal', [TimeConverterController::class, 'hoursToDecimal']);
 Route::get('/epoch-unix', [TimeConverterController::class, 'epochUnix']);
 
