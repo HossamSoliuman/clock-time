@@ -90,6 +90,13 @@
                 #minutes {
                     font-size: 60px !important;
                 }
+
+                .secdiv {
+                    position: absolute;
+                    right: 20px;
+                    top: 50%;
+                    transform: translateY(-50%)
+                }
             }
         </style>
 
@@ -101,36 +108,41 @@
                         <div class="d-block d-md-flex justify-content-center align-items-center w-75 m-auto">
                             <h1 class="display-5 mt-3 head">Countdown Timer</h1>
                         </div>
-                        <p class="time mt-5">
+                        <p class="time mt-5 position-relative">
                             <span id="timeDisplay">
-                                <div class="d-flex justify-content-center align-items-center">
-                                    <div>
-                                        <button class="btn btn-danger arrow-up btn-convert" data-unit="days"
-                                            aria-label="Increase Days">▲</button>
-                                        <p class="time-unit h2" id="days">0</p>
-                                        <button class="btn btn-danger arrow-down btn-convert" data-unit="days"
-                                            aria-label="Decrease Days">▼</button>
-                                    </div>
-                                    <div>
-                                        <button class="btn btn-danger arrow-up btn-convert" data-unit="hours"
-                                            aria-label="Increase Hours">▲</button>
-                                        <p class="time-unit h2" id="hours">00</p>
-                                        <button class="btn btn-danger arrow-down btn-convert" data-unit="hours"
-                                            aria-label="Decrease Hours">▼</button>
-                                    </div>
-                                    <div>
-                                        <button class="btn btn-danger arrow-up btn-convert" data-unit="minutes"
-                                            aria-label="Increase Minutes">▲</button>
-                                        <p class="time-unit h2" id="minutes">00</p>
-                                        <button class="btn btn-danger arrow-down btn-convert" data-unit="minutes"
-                                            aria-label="Decrease Minutes">▼</button>
-                                    </div>
+                                <div class="d-flex justify-content-center align-items-center position-relative">
                                     <div class="d-flex justify-content-center align-items-center">
-                                        <p class="time-unit h2" id="seconds">00</p>
+                                        <div>
+                                            <button class="btn btn-danger arrow-up btn-convert" data-unit="days"
+                                                aria-label="Increase Days">▲</button>
+                                            <p class="time-unit h2" id="days">0</p>
+                                            <button class="btn btn-danger arrow-down btn-convert" data-unit="days"
+                                                aria-label="Decrease Days">▼</button>
+                                        </div>
+                                        <div>
+                                            <button class="btn btn-danger arrow-up btn-convert" data-unit="hours"
+                                                aria-label="Increase Hours">▲</button>
+                                            <p class="time-unit h2" id="hours">00</p>
+                                            <button class="btn btn-danger arrow-down btn-convert" data-unit="hours"
+                                                aria-label="Decrease Hours">▼</button>
+                                        </div>
+                                        <div>
+                                            <button class="btn btn-danger arrow-up btn-convert" data-unit="minutes"
+                                                aria-label="Increase Minutes">▲</button>
+                                            <p class="time-unit h2" id="minutes">00</p>
+                                            <button class="btn btn-danger arrow-down btn-convert" data-unit="minutes"
+                                                aria-label="Decrease Minutes">▼</button>
+                                        </div>
+                                        <div class="d-flex justify-content-center align-items-center secdiv">
+                                            <p class="time-unit h2" id="seconds">00</p>
+                                        </div>
                                     </div>
+                                   
                                 </div>
                             </span>
                         </p>
+
+
                     </div>
                 </div>
             </div>
