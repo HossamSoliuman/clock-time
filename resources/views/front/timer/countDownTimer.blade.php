@@ -93,7 +93,7 @@
 
                 .secdiv {
                     position: absolute;
-                    right: 20px;
+                    right: 40px;
                     top: 50%;
                     transform: translateY(-50%)
                 }
