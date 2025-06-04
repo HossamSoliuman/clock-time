@@ -25,7 +25,7 @@
             }
 
             .time-unit {
-                font-size: 10rem !important;
+                /* font-size: 10rem !important; */
                 margin: 0 10px;
                 font-weight: bold;
                 text-align: center;
