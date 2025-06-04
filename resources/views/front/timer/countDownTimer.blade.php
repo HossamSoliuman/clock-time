@@ -97,6 +97,10 @@
                     top: 50%;
                     transform: translateY(-50%)
                 }
+
+                .head {
+                    font-size: 40px !important;
+                }
             }
         </style>
 
@@ -137,7 +141,7 @@
                                             <p class="time-unit h2" id="seconds">00</p>
                                         </div>
                                     </div>
-                                   
+
                                 </div>
                             </span>
                         </p>
