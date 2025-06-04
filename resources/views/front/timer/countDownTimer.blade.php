@@ -98,7 +98,7 @@
                     transform: translateY(-50%)
                 }
 
-                .head {
+                #head {
                     font-size: 40px !important;
                 }
             }
@@ -110,7 +110,7 @@
                     class="d-flex h-100 align-items-center justify-content-center wow animate__animated animate__fadeInLeft">
                     <div class="cityBanner w-100">
                         <div class="d-block d-md-flex justify-content-center align-items-center w-75 m-auto">
-                            <h1 class="display-5 mt-3 head">Countdown Timer</h1>
+                            <h1 class="display-5 mt-3 head" id="head">Countdown Timer</h1>
                         </div>
                         <p class="time mt-5 position-relative">
                             <span id="timeDisplay">
