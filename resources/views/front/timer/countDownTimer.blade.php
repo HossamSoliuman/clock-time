@@ -99,7 +99,7 @@
                 }
 
                 #head {
-                    font-size: 40px !important;
+                    font-size: 20px !important;
                 }
             }
         </style>
