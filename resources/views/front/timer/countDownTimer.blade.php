@@ -75,7 +75,7 @@
 
             @media (max-width: 768px) {
                 .time-unit {
-                    font-size: 40px !important;
+                    font-size: 50px !important;
                 }
             }
         </style>
