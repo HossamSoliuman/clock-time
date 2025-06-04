@@ -33,7 +33,7 @@
                     </div>
                     <div class="my-3 d-flex justify-content-between align-items-center">
                         <div class="w-50">End Time</div>
-                        <div class="form-control w-50 text-center" style="color: gray;">05:30PM</div>
+                        <div class="form-control w-50 text-center" style="color: gray;">05:30 PM</div>
                     </div>
                     <div class="my-3 d-flex justify-content-between align-items-center">
                         <div class="w-50">Break Time (hours)</div>
@@ -73,23 +73,36 @@
         </div>
     </div>
 
-
     <script>
         function parseTimeToHours(timeStr) {
             const [hours, minutes] = timeStr.split(':').map(Number)
             return hours + minutes / 60
         }
 
+        function updateEndTimeDisplay(startHour, hoursPerDay) {
+            const endHour = startHour + hoursPerDay
+            const endDate = new Date()
+            endDate.setHours(0, 0, 0, 0)
+            endDate.setMinutes(endHour * 60)
+            const formatted = endDate.toLocaleTimeString([], {
+                hour: '2-digit',
+                minute: '2-digit'
+            })
+            document.querySelector('.form-control[style*="color: gray"]').textContent = formatted
+        }
+
         function calculateWorkDays() {
             const startTime = document.querySelector('input[name="startTime"]').value
             const breakTime = parseFloat(document.querySelector('input[name="breakTime"]').value) || 0
-            const endTime = '17:30'
             const totalHours = parseFloat(document.querySelector('input[name="totalHours"]').value) || 0
             const costPerHour = parseFloat(document.querySelector('input[name="costPerHour"]').value) || 0
 
             const startHour = parseTimeToHours(startTime)
-            const endHour = parseTimeToHours(endTime)
-            const hoursPerDay = Math.max(0, endHour - startHour - breakTime)
+            const baseWorkHours = 9
+            const endHour = startHour + baseWorkHours + breakTime
+            const hoursPerDay = baseWorkHours
+
+            updateEndTimeDisplay(startHour, baseWorkHours + breakTime)
 
             const workDays = totalHours / hoursPerDay
             const costPerDay = hoursPerDay * costPerHour
