@@ -85,6 +85,12 @@
                 font-size: 4rem !important;
                 text-align: center !important;
             }
+
+            @media (max-width: 768px) {
+                #timeDisplay {
+                    font-size: 80px;
+                }
+            }
         </style>
 
         <div class="img-city img-city-gmt" style="background-color: black">
