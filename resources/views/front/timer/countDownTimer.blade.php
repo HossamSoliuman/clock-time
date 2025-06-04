@@ -74,8 +74,19 @@
             }
 
             @media (max-width: 768px) {
+                .controls {
+                    right: 0px;
+                    position: relative;
+                    top: -50px;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                    margin-top: 0;
+                    gap: 10px;
+                }
+
                 .time-unit {
-                    font-size: 50px !important;
+                    font-size: 60px !important;
                 }
             }
         </style>
