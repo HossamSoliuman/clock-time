@@ -88,7 +88,7 @@
 
             @media (max-width: 768px) {
                 #timeDisplay {
-                    font-size: 80px;
+                    font-size: 60px;
                 }
             }
         </style>
