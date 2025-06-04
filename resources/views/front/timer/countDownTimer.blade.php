@@ -25,7 +25,6 @@
             }
 
             .time-unit {
-                /* font-size: 10rem !important; */
                 margin: 0 10px;
                 font-weight: bold;
                 text-align: center;
@@ -76,7 +75,7 @@
 
             @media (max-width: 768px) {
                 .time-unit {
-                    font-size: 40px;
+                    font-size: 40px !important;
                 }
             }
         </style>
