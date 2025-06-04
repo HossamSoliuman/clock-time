@@ -85,7 +85,9 @@
                     gap: 10px;
                 }
 
-                .time-unit {
+                #days,
+                #hours,
+                #minutes {
                     font-size: 60px !important;
                 }
             }
