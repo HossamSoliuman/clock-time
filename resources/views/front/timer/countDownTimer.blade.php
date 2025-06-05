@@ -77,7 +77,7 @@
                 .controls {
                     right: 0px;
                     position: relative;
-                    top: -50px;
+                    top: -30px;
                     flex-direction: row;
                     flex-wrap: wrap;
                     justify-content: center;
