@@ -29,7 +29,22 @@
 <style>
     
 </style>
-
+<!-- Theclocktime_S2S_IncontentBanner1_ROS -->
+<style>
+	@media only screen and (min-width: 0px) and (min-height: 0px) {
+		div[id^="bsa-zone_1760608118370-0_123456"] {
+			min-width: 300px;
+			min-height: 50px;
+		}
+	}
+	@media only screen and (min-width: 880px) and (min-height: 0px) {
+		div[id^="bsa-zone_1760608118370-0_123456"] {
+			min-width: 300px;
+			min-height: 250px;
+		}
+	}
+</style>
+<div id="bsa-zone_1760608118370-0_123456"></div>
 <!-- end Header -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7869793057346493"
     crossorigin="anonymous"></script>
