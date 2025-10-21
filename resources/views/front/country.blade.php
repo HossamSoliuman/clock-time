@@ -3,15 +3,18 @@
 @section('description', $description)
 @section('keywords', $keywords)
 @section('ogImage', asset('images/country-time.jpg'))
-@section('ogImageAlt',$title)
+@section('ogImageAlt', $title)
 @section('url', urldecode(url()->current()))
 
 @section('container')
 
     @include('front.time.sections.header')
-    @include('front.time.sections.timezoneToGmtUtc')
-    @include('front.time.sections.similarCity')
 
+    @include('front.sections.googleAds')
+
+    @include('front.time.sections.timezoneToGmtUtc')
+
+    @include('front.time.sections.similarCity')
 
     @include('front.time.sections.convertCountryToCountry')
 

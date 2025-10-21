@@ -9,29 +9,13 @@
     $imageUrl = 'public/images/city-time.jpg';
 @endphp
 @section('container')
-
     @include('front.time.sections.header')
+    @include('front.sections.googleAds')
     @include('front.time.sections.timezoneToGmtUtc')
     @include('front.time.sections.similarCity')
-
     @include('front.time.sections.citySearch')
     @include('front.time.sections.convertCityToCity')
-
-
-    {{-- @php
-
-        $dataPayer = payer($_SESSION['payer'], $name, 'ts');
-
-    @endphp
-    @if (count($dataPayer) > 0)
-        @include('front.sections.payer')
-        @include('front.sections.sun')
-    @endif --}}
-
-
-
     @include('front.sections.meeting')
-
     <script>
         $(document).ready(function() {
             $('#cityTocity').on('submit', function(event) {

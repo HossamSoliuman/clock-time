@@ -11,6 +11,8 @@
 
 @include('front.time.sections.homeHeader')
 
+@include('front.sections.googleAds')
+
 @include('front.sections.city')
 
 @include('front.time.sections.tools')

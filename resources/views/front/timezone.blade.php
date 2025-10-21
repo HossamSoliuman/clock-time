@@ -14,6 +14,7 @@
 @endsection
 @section('container')
     @include('front.time.sections.header')
+    @include('front.sections.googleAds')
     @if ($type && $type == 'abbreviation')
         @include('front.time.sections.timezoneToCity')
     @endif
