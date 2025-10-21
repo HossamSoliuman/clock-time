@@ -31,6 +31,8 @@ use App\Models\Slug;
 use Carbon\Carbon;
 
 
+Route::view('test', 'test');
+
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 //Route::get('/country', [HomeController::class, 'country'])->name('country');
