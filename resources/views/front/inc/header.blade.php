@@ -1,6 +1,6 @@
 <head>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7869793057346493"
-     crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@yield('title')</title>
@@ -96,13 +96,20 @@
     </style>
     @yield('style')
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-    document.getElementById("load-test").style.display = "none";
-});
-
-
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("load-test").style.display = "none";
+        });
     </script>
 
-<script src="https://kit.fontawesome.com/7622502461.js" crossorigin="anonymous"></script>
-
+    <script src="https://kit.fontawesome.com/7622502461.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        (function() {
+            var bsa_optimize = document.createElement('script');
+            bsa_optimize.type = 'text/javascript';
+            bsa_optimize.async = true;
+            bsa_optimize.src = 'https://cdn4.buysellads.net/pub/theclocktime.js?' + (new Date() - new Date() % 600000);
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(
+                bsa_optimize);
+        })();
+    </script>
 </head>
